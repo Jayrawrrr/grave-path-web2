@@ -1,0 +1,27 @@
+/* staff-dashboard/src/pages/PublicAccess.css */
+.public-access-page {
+    padding: 1rem;
+    font-family: Arial, sans-serif;
+  }
+  .tabs {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+  .tabs button {
+    padding: 0.5rem 1rem;
+    border: none;
+    background: #e2e6ea;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  .tabs button.active {
+    background: #007bff;
+    color: white;
+  }
+  .tab-content {
+    border: 1px solid #ccc;
+    padding: 1rem;
+    border-radius: 4px;
+    background: white;
+  }

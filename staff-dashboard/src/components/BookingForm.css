@@ -1,0 +1,35 @@
+/* staff-dashboard/src/components/BookingForm.css */
+.booking-form {
+    max-width: 400px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    font-family: Arial, sans-serif;
+  }
+  .booking-form h3 {
+    text-align: center;
+    margin-bottom: 0.5rem;
+  }
+  .booking-form label {
+    display: flex;
+    flex-direction: column;
+    font-size: 0.9rem;
+  }
+  .booking-form input,
+  .booking-form select {
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+  }
+  .booking-form button {
+    padding: 0.75rem;
+    background: #28a745;
+    color: white;
+    border: none;
+    font-size: 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
