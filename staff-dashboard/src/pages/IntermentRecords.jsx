@@ -11,6 +11,14 @@ export default function IntermentRecords() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [modalRecord, setModalRecord] = useState(null);
+  const [newRecord, setNewRecord] = useState({
+    name: '',
+    plotId: '',
+    intermentDate: '',
+    intermentTime: '',
+    officiant: '',
+    status: 'scheduled'
+  });
 
   const fetchRecords = async () => {
     setLoading(true);
@@ -65,18 +73,96 @@ export default function IntermentRecords() {
     }
   };
 
+  const handleCreate = async e => {
+    e.preventDefault();
+    try {
+      await axios.post(
+        `${process.env.REACT_APP_API_URL}/admin/interments`,
+        newRecord,
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      setNewRecord({ name: '', plotId: '', intermentDate: '', intermentTime: '', officiant: '', status: 'scheduled' });
+      fetchRecords();
+    } catch (err) {
+      console.error(err);
+      alert('Create failed');
+    }
+  };
+
+  const handleSeed = async () => {
+    if (!window.confirm('Seed 20 dummy interment records? This will add to existing records.')) return;
+    try {
+      await axios.post(
+        `${process.env.REACT_APP_API_URL}/admin/interments/seed`,
+        {},
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      fetchRecords();
+    } catch (err) {
+      console.error(err);
+      alert('Seeding failed');
+    }
+  };
+
   if (loading) return <div>Loading interment records…</div>;
   if (error)   return <div className="error">{error}</div>;
 
   return (
     <div className="interment-records-page">
       <h2>Interment Records</h2>
+      <button onClick={handleSeed} style={{ marginBottom: '1rem' }}>Seed 20 Dummy Records</button>
+      <form onSubmit={handleCreate} className="create-form">
+        <input
+          type="text"
+          placeholder="Name"
+          value={newRecord.name}
+          onChange={e => setNewRecord({ ...newRecord, name: e.target.value })}
+          required
+        />
+        <input
+          type="text"
+          placeholder="Plot ID"
+          value={newRecord.plotId}
+          onChange={e => setNewRecord({ ...newRecord, plotId: e.target.value })}
+          required
+        />
+        <input
+          type="date"
+          placeholder="Interment Date"
+          value={newRecord.intermentDate}
+          onChange={e => setNewRecord({ ...newRecord, intermentDate: e.target.value })}
+          required
+        />
+        <input
+          type="text"
+          placeholder="Interment Time"
+          value={newRecord.intermentTime}
+          onChange={e => setNewRecord({ ...newRecord, intermentTime: e.target.value })}
+        />
+        <input
+          type="text"
+          placeholder="Officiant"
+          value={newRecord.officiant}
+          onChange={e => setNewRecord({ ...newRecord, officiant: e.target.value })}
+        />
+        <select
+          value={newRecord.status}
+          onChange={e => setNewRecord({ ...newRecord, status: e.target.value })}
+        >
+          <option value="scheduled">Scheduled</option>
+          <option value="completed">Completed</option>
+          <option value="cancelled">Cancelled</option>
+        </select>
+        <button type="submit">Add Interment</button>
+      </form>
       <table className="records-table">
         <thead>
           <tr>
             <th>Name</th>
             <th>Plot ID</th>
             <th>Date of Interment</th>
+            <th>Time</th>
+            <th>Officiant</th>
             <th>Status</th>
             <th>Actions</th>
           </tr>
@@ -87,9 +173,12 @@ export default function IntermentRecords() {
               <td>{record.name}</td>
               <td>{record.plotId}</td>
               <td>{new Date(record.intermentDate).toLocaleDateString()}</td>
+              <td>{record.intermentTime || '—'}</td>
+              <td>{record.officiant || '—'}</td>
               <td>{record.status}</td>
               <td>
                 <button onClick={() => handleEdit(record)}>Edit</button>
+                <button onClick={() => handleDelete(record._id)} style={{ marginLeft: 8 }}>Delete</button>
               </td>
             </tr>
           ))}

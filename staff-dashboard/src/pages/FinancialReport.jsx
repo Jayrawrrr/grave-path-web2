@@ -6,19 +6,30 @@ import './FinancialReport.css';
 
 export default function FinancialReport() {
   const { token } = useContext(AuthContext);
+  const API_BASE = process.env.REACT_APP_API_URL;
+
   const [records, setRecords] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [error,   setError]   = useState(null);
+  const [total,   setTotal]   = useState(0);
 
   useEffect(() => {
     const fetchReport = async () => {
       setLoading(true);
       try {
+        // Fetch from your financial report endpoint
         const res = await axios.get(
-          `${process.env.REACT_APP_API_URL}/admin/reports/financial`,
+          `${API_BASE}/admin/reports/financial`,
           { headers: { Authorization: `Bearer ${token}` } }
         );
-        setRecords(res.data);
+
+        const data = res.data; // [{ _id, date, description, amount }, …]
+        setRecords(data);
+
+        // Sum all amounts
+        const sum = data.reduce((acc, rec) => acc + (rec.amount || 0), 0);
+        setTotal(sum);
+
         setError(null);
       } catch (err) {
         console.error(err);
@@ -27,8 +38,9 @@ export default function FinancialReport() {
         setLoading(false);
       }
     };
+
     fetchReport();
-  }, [token]);
+  }, [API_BASE, token]);
 
   if (loading) return <div>Loading financial report…</div>;
   if (error)   return <div className="error">{error}</div>;
@@ -36,6 +48,14 @@ export default function FinancialReport() {
   return (
     <div className="financial-report-page">
       <h2>Financial Report</h2>
+      <div className="total-income">
+        Total Income:{' '}
+        {total.toLocaleString(undefined, {
+          style:    'currency',
+          currency: 'PHP'
+        })}
+      </div>
+
       <table className="report-table">
         <thead>
           <tr>
@@ -45,11 +65,16 @@ export default function FinancialReport() {
           </tr>
         </thead>
         <tbody>
-          {records.map(item => (
-            <tr key={item._id}>
-              <td>{new Date(item.date).toLocaleDateString()}</td>
-              <td>{item.description}</td>
-              <td>{item.amount.toLocaleString(undefined, { style: 'currency', currency: 'USD' })}</td>
+          {records.map(({ _id, date, description, amount }) => (
+            <tr key={_id}>
+              <td>{new Date(date).toLocaleDateString()}</td>
+              <td>{description}</td>
+              <td>
+                {amount.toLocaleString(undefined, {
+                  style:    'currency',
+                  currency: 'PHP'
+                })}
+              </td>
             </tr>
           ))}
         </tbody>

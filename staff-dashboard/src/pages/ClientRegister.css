@@ -3,12 +3,20 @@
 /* Container layout */
 .register-container {
   height: 100vh;
-  background: url('../../public/Register.png') no-repeat center/cover;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  
   padding: 0.5rem;
+  margin-top: 50px;
+}
+
+/* Register form heading */
+.register-heading {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  margin-top: 170px;
+  margin-left: 30px;
 }
 
 /* Form uses flex-gap */
@@ -17,13 +25,35 @@
   flex-direction: column;
   gap: 0.1px;
   width: 430px;
-  margin-top: 50px;
   margin-left: 260px;
 }
 
-.register-form button[type="submit"] {
-  margin-top: 1px;   /* adjust this value as needed */
+/* Submit button */
+button[type="submit"] {
+  margin-top: 30px;        /* as before */
+  background-color: #6d4c41;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  padding: 12px 16px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
 }
+
+/* Hover only when enabled */
+button[type="submit"]:not(:disabled):hover {
+  background-color: #5d4037;
+}
+
+/* Gray out & disable hover when disabled */
+button[type="submit"]:disabled {
+  background-color: #ccc;
+  color: #666;
+  cursor: not-allowed;
+}
+
 /* Field wrapper */
 .field-group {
   position: relative;
@@ -31,16 +61,15 @@
   flex-direction: column;
 }
 
-
 /* Hide native placeholder text */
 .field-group input::placeholder {
   color: transparent;
 }
 
-/* Base input style: extra top padding to make room for floating label */
+/* Base input style */
 .field-group input {
   width: 100%;
-  padding: 12px 12px ;       /* more top padding */
+  padding: 12px;
   font-size: 12px;
   color: #333;
   background: #fafafa;
@@ -51,13 +80,12 @@
   z-index: 1;
 }
 
-/* Floating label positioned over input text */
+/* Floating label */
 .field-group label {
   position: absolute;
   left: 7px;
-  top: 7px;                    /* matches input's top padding */
-  transform: none;
-  background: transparent;          /* same as input bg */
+  top: 7px;
+  background: transparent;
   padding: 0 4px;
   color: #999;
   font-size: 0.95rem;
@@ -66,10 +94,10 @@
   z-index: 2;
 }
 
-/* Lift label on focus or when input has text */
+/* Lift label on focus or when input has content */
 .field-group input:focus + label,
 .field-group input:not(:placeholder-shown) + label {
-  top: 4px;                     /* at the top border */
+  top: 4px;
   left: 5px;
   font-size: 8px;
   color: #6d4c41;
@@ -104,21 +132,21 @@
   font-size: 0.85rem;
 }
 
-/* Submit button */
-button[type="submit"] {
-  background-color: #6d4c41;
-  color: white;
-  font-weight: bold;
-  border: none;
-  border-radius: 6px;
-  padding: 12px 16px;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background-color 0.2s;
+/* Back-to-login link */
+.back-to-login {
+  text-align: center;
+  margin-top: 1rem;
+  font-size: 0.9rem;
 }
 
-button[type="submit"]:hover {
-  background-color: #5d4037;
+.back-to-login .login-link {
+  color: #6d4c41;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.back-to-login .login-link:hover {
+  text-decoration: underline;
 }
 
 /* Invalid input highlight */
@@ -192,7 +220,6 @@ button[type="submit"]:hover {
   margin-top: 1rem;
 }
 
-/* Resend link styled as button */
 .modal-actions .resend-link {
   background: none;
   border: none;
@@ -204,7 +231,6 @@ button[type="submit"]:hover {
   align-self: center;
 }
 
-/* Primary verify button */
 .modal-actions button {
   background: #6d4c41;
   color: #fff;
@@ -219,4 +245,97 @@ button[type="submit"]:hover {
 
 .modal-actions button:hover {
   background: #5d4037;
+}
+
+/* ─── FINAL OVERRIDES FOR T&C ROW ─── */
+
+.field-group.terms {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  margin-left: 10px;
+  gap: 0.5rem;
+}
+
+.field-group.terms input[type="checkbox"] {
+  position: static;
+  margin: 0;
+  width: auto;
+  height: auto;
+}
+
+.field-group.terms label[for="terms"] {
+  position: static;
+  margin: 0;
+  padding: 0;
+  font-size: 14px;
+  color: #ffffff;
+  line-height: 1;
+  white-space: nowrap;
+}
+.error-on-button {
+  outline: 2px solid red;
+  /* optional shake animation to draw attention: */
+  animation: shake 0.3s ease-in-out 0s 2;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0) }
+  25% { transform: translateX(-4px) }
+  75% { transform: translateX(4px) }
+}
+
+/* Regular floating validation message */
+.floating-validation {
+  position: fixed;
+  bottom: -73px;
+  left: 20px;
+  background-color: rgba(0, 0, 0, 0.8);
+  padding: 12px 24px;
+  border-radius: 4px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  z-index: 1000;
+  animation: slideInLeft 0.3s ease-out, fadeOut 0.3s ease-in 2.7s;
+  pointer-events: none;
+}
+
+.floating-validation.error {
+  color: white !important;
+}
+
+/* Separate success message styling */
+.floating-success-message {
+  position: fixed;
+  bottom: -60px;  /* Adjust this value to move up/down */
+  left: 20px;    /* Adjust this value to move left/right */
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #4CAF50;
+  padding: 12px 24px;
+  border-radius: 4px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  z-index: 1000;
+  animation: slideInLeft 0.3s ease-out, fadeOut 0.3s ease-in 2.7s;
+  pointer-events: none;
+}
+
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
 }

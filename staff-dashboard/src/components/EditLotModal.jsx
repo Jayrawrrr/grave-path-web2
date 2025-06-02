@@ -1,13 +1,16 @@
 // src/components/EditLotModal.jsx
 import React, { useState } from 'react';
-import './EditLotModal.css'; // we’ll drop in basic styles below
+import './EditLotModal.css'; // we'll drop in basic styles below
 
 export default function EditLotModal({ lot, onClose, onSave }) {
   const [form, setForm] = useState({
-    name:  lot.name,
-    birth: lot.birth,
-    death: lot.death,
-    status: lot.status,
+    _id: lot._id,
+    id: lot.id,
+    name: lot.name || '',
+    birth: lot.birth || '',
+    death: lot.death || '',
+    status: lot.status || 'available',
+    bounds: lot.bounds
   });
 
   const handleChange = e => {
@@ -17,7 +20,17 @@ export default function EditLotModal({ lot, onClose, onSave }) {
 
   const handleSubmit = e => {
     e.preventDefault();
-    onSave({ ...form, _id: lot._id });
+    onSave({
+      ...lot,
+      ...form,
+      _id: lot._id,
+      id: lot.id,
+      bounds: lot.bounds,
+      name: form.name,
+      birth: form.birth,
+      death: form.death,
+      status: form.status
+    });
   };
 
   return (
@@ -26,7 +39,7 @@ export default function EditLotModal({ lot, onClose, onSave }) {
         <h3>Edit Lot {lot.id}</h3>
         <label>
           Name<br/>
-          <input name="name"  value={form.name}  onChange={handleChange} />
+          <input name="name" value={form.name} onChange={handleChange} />
         </label>
         <label>
           Birth<br/>

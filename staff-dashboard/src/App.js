@@ -1,4 +1,3 @@
-// staff-dashboard/src/App.js
 import React from 'react';
 import { AuthProvider } from './context/AuthContext';
 import {
@@ -13,7 +12,9 @@ import Landing         from './pages/Landing';
 import Login           from './pages/Login';
 import ClientRegister  from './pages/ClientRegister';
 import MapView         from './pages/MapView';
+import ClientMapView   from './pages/ClientMapView';
 import Users           from './pages/Users';
+import HomePage        from './pages/HomePage';
 
 // Public-access components
 import VisitorInfo      from './components/VisitorInfo';
@@ -21,24 +22,27 @@ import AnnouncementForm from './components/AnnouncementForm';
 import GraveLocator     from './components/GraveLocator';
 
 // Staff Reservations
-import PlotAvailability  from './components/PlotAvailability';
-import BookingForm       from './components/BookingForm';
-import ReservationList   from './components/ReservationList';
+import PlotAvailability from './components/PlotAvailability';
+import BookingForm      from './components/BookingForm';
+import ReservationList  from './components/ReservationList';
 
 // Admin Record-Management
 import BurialRecords      from './pages/BurialRecords';
 import IntermentRecords   from './pages/IntermentRecords';
 
 // Admin Reporting
-import ActivityLogs             from './pages/ActivityLogs';
-import BurialRecordsReport      from './pages/BurialRecordsReport';
-import IntermentRecordsReport   from './pages/IntermentRecordsReport';
-import FinancialReport          from './pages/FinancialReport';
-import StatisticsReport         from './pages/StatisticsReport';
-import ReservationReport        from './pages/ReservationReport';
+import ActivityLogs            from './pages/ActivityLogs';
+import BurialRecordsReport     from './pages/BurialRecordsReport';
+import IntermentRecordsReport  from './pages/IntermentRecordsReport';
+import FinancialReport         from './pages/FinancialReport';
+import StatisticsReport        from './pages/StatisticsReport';
+import ReservationReport       from './pages/ReservationReport';
 
-import PrivateRoute    from './components/PrivateRoute';
-import Sidebar         from './components/Sidebar';
+import PrivateRoute  from './components/PrivateRoute';
+import SidebarStaff  from './components/Sidebar';         // staff & admin
+import ClientDashboardLayout from './components/ClientDashboardLayout'; // NEW
+import AdminBookingForm from './components/AdminBookingForm';
+import AdminPlotAvailability from './components/AdminPlotAvailability';
 import './App.css';
 
 export default function App() {
@@ -46,43 +50,36 @@ export default function App() {
     <AuthProvider>
       <BrowserRouter>
         <Routes>
-
           {/* Public */}
           <Route path="/"      element={<Landing />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<ClientRegister />} />
 
-          {/* Client */}
+          {/* Client (uses ClientDashboardLayout) */}
           <Route path="/client/*" element={
             <PrivateRoute roles={['client']}>
-              <div style={{ display: 'flex' }}>
-                <Sidebar />
-                <main style={{ flex: 1, marginLeft: 330, padding: '1rem' }}>
-                  <Outlet />
-                </main>
-              </div>
+              <ClientDashboardLayout />
             </PrivateRoute>
           }>
-            <Route index element={<Navigate to="map" replace />} />
-            <Route path="map" element={<MapView />} />
+            <Route index element={<Navigate to="home" replace />} />
+            <Route path="home" element={<HomePage />} />
+            <Route path="map" element={<ClientMapView />} />
             <Route path="public-access">
               <Route path="visitor-info" element={<VisitorInfo />} />
               <Route path="grave-locator" element={<GraveLocator />} />
-              <Route index element={<Navigate to="visitor-info" replace />} />
             </Route>
             <Route path="reservations">
               <Route path="availability" element={<PlotAvailability />} />
               <Route path="booking"      element={<BookingForm />} />
               <Route path="management"   element={<ReservationList />} />
-              <Route index element={<Navigate to="availability" replace />} />
             </Route>
           </Route>
 
-          {/* Staff */}
+          {/* Staff (uses SidebarStaff) */}
           <Route path="/staff/*" element={
             <PrivateRoute roles={['staff']}>
               <div style={{ display: 'flex' }}>
-                <Sidebar />
+                <SidebarStaff />
                 <main style={{ flex: 1, marginLeft: 330, padding: '1rem' }}>
                   <Outlet />
                 </main>
@@ -95,21 +92,19 @@ export default function App() {
               <Route path="info"           element={<VisitorInfo />} />
               <Route path="announcements"  element={<AnnouncementForm />} />
               <Route path="locator"        element={<GraveLocator />} />
-              <Route index element={<Navigate to="info" replace />} />
             </Route>
             <Route path="reservations">
               <Route path="availability" element={<PlotAvailability />} />
               <Route path="booking"      element={<BookingForm />} />
               <Route path="management"   element={<ReservationList />} />
-              <Route index element={<Navigate to="availability" replace />} />
             </Route>
           </Route>
 
-          {/* Admin */}
+          {/* Admin (uses SidebarStaff) */}
           <Route path="/admin/*" element={
             <PrivateRoute roles={['admin']}>
               <div style={{ display: 'flex' }}>
-                <Sidebar />
+                <SidebarStaff />
                 <main style={{ flex: 1, marginLeft: 330, padding: '1rem' }}>
                   <Outlet />
                 </main>
@@ -120,30 +115,23 @@ export default function App() {
             <Route path="map"   element={<MapView />} />
             <Route path="users" element={<Users />} />
 
-            {/* Admin Public Access */}
             <Route path="public-access">
               <Route path="info"          element={<VisitorInfo />} />
               <Route path="announcements" element={<AnnouncementForm />} />
               <Route path="locator"       element={<GraveLocator />} />
-              <Route index element={<Navigate to="info" replace />} />
             </Route>
 
-            {/* Admin Reservations */}
             <Route path="reservations">
-              <Route path="availability" element={<PlotAvailability />} />
-              <Route path="booking"      element={<BookingForm />} />
+              <Route path="availability" element={<AdminPlotAvailability />} />
+              <Route path="booking"      element={<AdminBookingForm />} />
               <Route path="management"   element={<ReservationList />} />
-              <Route index element={<Navigate to="availability" replace />} />
             </Route>
 
-            {/* Record Management */}
             <Route path="record-management">
               <Route path="burial-records"    element={<BurialRecords />} />
               <Route path="interment-records" element={<IntermentRecords />} />
-              <Route index element={<Navigate to="burial-records" replace />} />
             </Route>
 
-            {/* Reporting */}
             <Route path="reports">
               <Route path="activity-logs"       element={<ActivityLogs />} />
               <Route path="burial-records"      element={<BurialRecordsReport />} />
@@ -151,7 +139,6 @@ export default function App() {
               <Route path="financial"           element={<FinancialReport />} />
               <Route path="statistics"          element={<StatisticsReport />} />
               <Route path="reservations"        element={<ReservationReport />} />
-              <Route index element={<Navigate to="activity-logs" replace />} />
             </Route>
           </Route>
 

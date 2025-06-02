@@ -1,0 +1,38 @@
+/* src/components/StaffDashboard.css */
+
+/* Base layout */
+.staff-dashboard {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+}
+
+.dashboard-content {
+  position: relative;
+  flex: 1;
+  overflow: hidden;
+}
+
+/* Floating VisitorInfo panel */
+.visitor-info-panel {
+  position: absolute;
+  top: 16px;              /* small gap from top */
+  left: 76px;             /* 60px rail + 16px gutter */
+  width: 300px;           /* adjust to desired width */
+  max-height: calc(100% - 32px);
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+  overflow-y: auto;
+  padding: 1rem;
+  z-index: 10;
+}
+
+/* If you have scrollable content inside VisitorInfo */
+.visitor-info-panel::-webkit-scrollbar {
+  width: 6px;
+}
+.visitor-info-panel::-webkit-scrollbar-thumb {
+  background: rgba(0,0,0,0.2);
+  border-radius: 3px;
+}

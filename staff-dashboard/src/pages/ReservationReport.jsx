@@ -6,19 +6,25 @@ import './ReservationReport.css';
 
 export default function ReservationReport() {
   const { token } = useContext(AuthContext);
-  const [reports, setReports] = useState([]);
+  const [reservations, setReservations] = useState([]);
+  const [summary, setSummary] = useState({ total: 0, upcoming: 0, past: 0 });
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const fetchReport = async () => {
+    const fetchReservations = async () => {
       setLoading(true);
       try {
         const res = await axios.get(
-          `${process.env.REACT_APP_API_URL}/admin/reports/reservations`,
+          `${process.env.REACT_APP_API_URL}/api/staff/reservations`,
           { headers: { Authorization: `Bearer ${token}` } }
         );
-        setReports(res.data);
+        setReservations(res.data);
+        // Summarize
+        const now = new Date();
+        const upcoming = res.data.filter(r => new Date(r.date) >= now);
+        const past = res.data.filter(r => new Date(r.date) < now);
+        setSummary({ total: res.data.length, upcoming: upcoming.length, past: past.length });
         setError(null);
       } catch (err) {
         console.error(err);
@@ -27,7 +33,7 @@ export default function ReservationReport() {
         setLoading(false);
       }
     };
-    fetchReport();
+    fetchReservations();
   }, [token]);
 
   if (loading) return <div>Loading reservation reports…</div>;
@@ -36,6 +42,20 @@ export default function ReservationReport() {
   return (
     <div className="reservation-report-page">
       <h2>Reservation Reports</h2>
+      <div className="summary-stats">
+        <div className="stat-box">
+          <span className="stat-label">Total Reservations</span>
+          <span className="stat-value">{summary.total}</span>
+        </div>
+        <div className="stat-box">
+          <span className="stat-label">Upcoming</span>
+          <span className="stat-value">{summary.upcoming}</span>
+        </div>
+        <div className="stat-box">
+          <span className="stat-label">Past</span>
+          <span className="stat-value">{summary.past}</span>
+        </div>
+      </div>
       <table className="report-table">
         <thead>
           <tr>
@@ -47,7 +67,7 @@ export default function ReservationReport() {
           </tr>
         </thead>
         <tbody>
-          {reports.map(item => (
+          {reservations.map(item => (
             <tr key={item._id}>
               <td>{item._id}</td>
               <td>{item.clientName}</td>

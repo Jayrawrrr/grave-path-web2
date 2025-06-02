@@ -1,0 +1,212 @@
+/* src/pages/MapView.css */
+.mapview-wrapper {
+  position: relative;
+  width: 100%;
+  height: calc(100vh - 2rem);
+}
+
+.locator-panel {
+  position: absolute;
+  top: 5px;
+  left: 50px;
+  z-index: 1000;
+  padding: 0.5rem;
+  border-radius: 4px;
+}
+
+.edit-mode-toggle {
+  position: absolute;
+  top: 5px;
+  right: 50px;
+  z-index: 1000;
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.5rem;
+}
+
+.edit-mode-toggle button {
+  background: #fff;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 24px;
+  font-size: 0.9rem;
+  color: #333;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  transition: all 0.2s ease;
+}
+
+.edit-mode-toggle button:hover {
+  background: #f0f0f0;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.edit-instructions,
+.move-instructions {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  color: #666;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  max-width: 250px;
+  text-align: center;
+}
+
+.move-instructions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: center;
+  background: rgba(255, 255, 0, 0.1);
+  border: 2px solid rgba(255, 255, 0, 0.3);
+}
+
+.cancel-move-button {
+  background: #dc3545 !important;
+  color: white !important;
+  padding: 0.5rem 1rem !important;
+  font-size: 0.8rem !important;
+}
+
+.error-message {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #f8d7da;
+  color: #721c24;
+  padding: 0.75rem 1.25rem;
+  border-radius: 4px;
+  z-index: 1000;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Popup styles */
+.leaflet-popup {
+  margin-bottom: 20px;
+}
+
+.leaflet-popup-content-wrapper {
+  padding: 0 !important;
+  border-radius: 12px !important;
+  overflow: hidden !important;
+  width: auto !important;
+  min-width: 280px !important;
+}
+
+.leaflet-popup-content {
+  margin: 0 !important;
+  width: 280px !important;
+  padding: 0 !important;
+}
+
+.popup-content {
+  width: 100%;
+  min-width: 270px;
+}
+
+.popup-content h3 {
+  margin: 0;
+  color: #333;
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 15px 20px;
+  background: #f8f9fa;
+  border-bottom: 1px solid #eee;
+  width: 100%;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.popup-content p {
+  padding: 12px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #eee;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin: 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.popup-content p:last-of-type {
+  border-bottom: none;
+}
+
+.popup-content strong {
+  color: #666;
+  font-weight: normal;
+}
+
+.popup-content span {
+  text-align: right;
+  color: #333;
+}
+
+.popup-content .status-available {
+  color: #28a745;
+  font-weight: normal;
+}
+
+/* Fix popup arrow position */
+.leaflet-popup-tip-container {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  left: 50%;
+  margin-left: -10px;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.leaflet-popup-tip {
+  background: white;
+  box-shadow: none;
+  width: 17px;
+  height: 17px;
+  padding: 1px;
+  margin: -10px auto 0;
+  transform: rotate(45deg);
+}
+
+/* Action buttons */
+.action-buttons {
+  padding: 0 20px;
+  margin-top: 5px;
+}
+
+.action-button {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.reserve-button {
+  background-color: #28a745;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.reserve-button:hover {
+  background-color: #218838;
+}
+
+/* Draggable lot styles */
+.leaflet-interactive {
+  cursor: grab;
+}
+
+.leaflet-interactive:active {
+  cursor: grabbing;
+}

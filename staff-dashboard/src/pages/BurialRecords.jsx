@@ -11,6 +11,12 @@ export default function BurialRecords() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [modalRecord, setModalRecord] = useState(null);
+  const [newRecord, setNewRecord] = useState({
+    name: '',
+    burialDate: '',
+    plotId: '',
+    deathCertificateUrl: ''
+  });
 
   const fetchRecords = async () => {
     setLoading(true);
@@ -65,12 +71,74 @@ export default function BurialRecords() {
     }
   };
 
+  const handleCreate = async e => {
+    e.preventDefault();
+    try {
+      await axios.post(
+        `${process.env.REACT_APP_API_URL}/admin/burials`,
+        newRecord,
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      setNewRecord({ name: '', burialDate: '', plotId: '', deathCertificateUrl: '' });
+      fetchRecords();
+    } catch (err) {
+      console.error(err);
+      alert('Create failed');
+    }
+  };
+
+  const handleSeed = async () => {
+    if (!window.confirm('Seed 20 dummy burial records? This will add to existing records.')) return;
+    try {
+      await axios.post(
+        `${process.env.REACT_APP_API_URL}/admin/burials/seed`,
+        {},
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      fetchRecords();
+    } catch (err) {
+      console.error(err);
+      alert('Seeding failed');
+    }
+  };
+
   if (loading) return <div>Loading burial records…</div>;
   if (error)   return <div className="error">{error}</div>;
 
   return (
     <div className="burial-records-page">
       <h2>Burial Records</h2>
+      <button onClick={handleSeed} style={{ marginBottom: '1rem' }}>Seed 20 Dummy Records</button>
+      <form onSubmit={handleCreate} className="create-form">
+        <input
+          type="text"
+          placeholder="Name"
+          value={newRecord.name}
+          onChange={e => setNewRecord({ ...newRecord, name: e.target.value })}
+          required
+        />
+        <input
+          type="date"
+          placeholder="Burial Date"
+          value={newRecord.burialDate}
+          onChange={e => setNewRecord({ ...newRecord, burialDate: e.target.value })}
+          required
+        />
+        <input
+          type="text"
+          placeholder="Plot ID"
+          value={newRecord.plotId}
+          onChange={e => setNewRecord({ ...newRecord, plotId: e.target.value })}
+          required
+        />
+        <input
+          type="text"
+          placeholder="Death Certificate URL"
+          value={newRecord.deathCertificateUrl}
+          onChange={e => setNewRecord({ ...newRecord, deathCertificateUrl: e.target.value })}
+        />
+        <button type="submit">Add Burial</button>
+      </form>
       <table className="records-table">
         <thead>
           <tr>
@@ -100,6 +168,7 @@ export default function BurialRecords() {
               </td>
               <td>
                 <button onClick={() => handleEdit(record)}>Edit</button>
+                <button onClick={() => handleDelete(record._id)} style={{ marginLeft: 8 }}>Delete</button>
               </td>
             </tr>
           ))}

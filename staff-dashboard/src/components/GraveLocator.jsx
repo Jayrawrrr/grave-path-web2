@@ -1,54 +1,71 @@
-// staff-dashboard/src/components/GraveLocator.jsx
-import React, { useState, useContext } from 'react';
-import { AuthContext } from '../context/AuthContext';
-import axios from 'axios';
+// src/components/GraveLocator.jsx
+import React, { useState, useEffect } from 'react';
+import { Search as SearchIcon } from 'lucide-react';
 import './GraveLocator.css';
 
-export default function GraveLocator() {
-  const { token } = useContext(AuthContext);
-  const [query, setQuery] = useState('');
+export default function GraveLocator({ lots = [], onSelect }) {
+  const [query, setQuery]     = useState('');
   const [results, setResults] = useState([]);
 
-  const handleSearch = async e => {
-    e.preventDefault();
-    try {
-      const res = await axios.get(
-        `${process.env.REACT_APP_API_URL}/client/lots`,
-        { headers: { Authorization: `Bearer ${token}` } }
+  useEffect(() => {
+    if (query) {
+      const q = query.toLowerCase();
+      setResults(
+        lots.filter(l =>
+          l.name?.toLowerCase().includes(q) ||
+          l.id?.toLowerCase().includes(q)
+        ).slice(0, 5)
       );
-      const filtered = res.data.filter(l =>
-        l.name.toLowerCase().includes(query.toLowerCase()) ||
-        l.id.toLowerCase().includes(query.toLowerCase())
-      );
-      setResults(filtered);
-    } catch (err) {
-      console.error(err);
+    } else {
       setResults([]);
     }
+  }, [query, lots]);
+
+  const handleClear = () => {
+    setQuery('');
+    setResults([]);
   };
 
   return (
     <div className="grave-locator">
-      <form className="locator-form" onSubmit={handleSearch}>
+      <form className="locator-form" onSubmit={e => e.preventDefault()}>
         <input
           type="text"
           placeholder="Search name or plot ID"
           value={query}
           onChange={e => setQuery(e.target.value)}
-          required
         />
-        <button type="submit">Search</button>
+        {query && (
+          <button
+            type="button"
+            className="clear-btn"
+            aria-label="Clear search"
+            onClick={handleClear}
+          >
+            ×
+          </button>
+        )}
+        <button
+          type="submit"
+          className="search-btn"
+          aria-label="Search"
+        >
+          <SearchIcon />
+        </button>
       </form>
-      <ul className="locator-results">
-        {results.map(l => (
-          <li key={l._id}>
-            <strong>{l.id}</strong> – {l.name || '—'}
-            <button onClick={() => alert('Navigate to map for ' + l.id)}>
-              View on Map
-            </button>
-          </li>
-        ))}
-      </ul>
+
+      {results.length > 0 && (
+        <ul className="locator-results">
+          {results.map(lot => (
+            <li key={lot._id}>
+              <strong>{lot.id}</strong> – {lot.name || '—'}
+              <button onClick={() => onSelect(lot)}>
+                View on Map
+              </button>
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 }

@@ -5,12 +5,18 @@ import { AuthContext } from '../context/AuthContext';
 import './Sidebar.css';
 
 export default function Sidebar() {
-  const { role } = useContext(AuthContext);
+  const { role, logout } = useContext(AuthContext);
   const [publicOpen, setPublicOpen]       = useState(false);
   const [reservationOpen, setReservation] = useState(false);
   const [userOpen, setUserOpen]           = useState(false);
   const [recordOpen, setRecordOpen]       = useState(false);
   const [reportsOpen, setReportsOpen]     = useState(false);
+
+  const renderLogout = () => (
+    <button className="sidebar-logout" onClick={logout}>
+      Log Out
+    </button>
+  );
 
   if (role === 'staff') {
     return (
@@ -26,9 +32,8 @@ export default function Sidebar() {
             </div>
             {publicOpen && (
               <div className="collapsible-content">
-                <NavLink to="/staff/public-access/info" className="sidebar-subitem">🛈 Visitor Info</NavLink>
+                <NavLink to="/staff/public-access/info"          className="sidebar-subitem">🛈 Visitor Info</NavLink>
                 <NavLink to="/staff/public-access/announcements" className="sidebar-subitem">📢 Announcements</NavLink>
-                <NavLink to="/staff/public-access/locator" className="sidebar-subitem">🧭 Grave Locator</NavLink>
               </div>
             )}
           </div>
@@ -40,12 +45,13 @@ export default function Sidebar() {
             {reservationOpen && (
               <div className="collapsible-content">
                 <NavLink to="/staff/reservations/availability" className="sidebar-subitem">📈 Plot Availability</NavLink>
-                <NavLink to="/staff/reservations/booking"      className="sidebar-subitem">✍️ Booking</NavLink>
-                <NavLink to="/staff/reservations/management"   className="sidebar-subitem">⚙️ Reservation Mgmt</NavLink>
+                <NavLink to="/staff/reservations/booking"      className="sidebar-subitem">✍️ Reserve</NavLink>
+                <NavLink to="/staff/reservations/management"   className="sidebar-subitem">⚙️ Manage</NavLink>
               </div>
             )}
           </div>
         </nav>
+        {renderLogout()}
       </aside>
     );
   }
@@ -58,7 +64,6 @@ export default function Sidebar() {
             📍 Map
           </NavLink>
 
-          {/* Admin Public Access */}
           <div className="sidebar-item collapsible">
             <div className="collapsible-header" onClick={() => setPublicOpen(o => !o)}>
               🔍 Public Access {publicOpen ? '▾' : '▸'}
@@ -67,12 +72,10 @@ export default function Sidebar() {
               <div className="collapsible-content">
                 <NavLink to="/admin/public-access/info"          className="sidebar-subitem">🛈 Visitor Info</NavLink>
                 <NavLink to="/admin/public-access/announcements" className="sidebar-subitem">📢 Announcements</NavLink>
-                <NavLink to="/admin/public-access/locator"       className="sidebar-subitem">🧭 Grave Locator</NavLink>
               </div>
             )}
           </div>
 
-          {/* Admin Reservations */}
           <div className="sidebar-item collapsible">
             <div className="collapsible-header" onClick={() => setReservation(o => !o)}>
               📅 Reservations {reservationOpen ? '▾' : '▸'}
@@ -80,13 +83,12 @@ export default function Sidebar() {
             {reservationOpen && (
               <div className="collapsible-content">
                 <NavLink to="/admin/reservations/availability" className="sidebar-subitem">📈 Plot Availability</NavLink>
-                <NavLink to="/admin/reservations/booking"      className="sidebar-subitem">✍️ Booking</NavLink>
-                <NavLink to="/admin/reservations/management"   className="sidebar-subitem">⚙️ Reservation Mgmt</NavLink>
+                <NavLink to="/admin/reservations/booking"      className="sidebar-subitem">✍️ Reserve</NavLink>
+                <NavLink to="/admin/reservations/management"   className="sidebar-subitem">⚙️ Manage</NavLink>
               </div>
             )}
           </div>
 
-          {/* User & Access */}
           <div className="sidebar-item collapsible">
             <div className="collapsible-header" onClick={() => setUserOpen(o => !o)}>
               👥 User & Access {userOpen ? '▾' : '▸'}
@@ -98,7 +100,6 @@ export default function Sidebar() {
             )}
           </div>
 
-          {/* Record Management */}
           <div className="sidebar-item collapsible">
             <div className="collapsible-header" onClick={() => setRecordOpen(o => !o)}>
               📑 Record Management {recordOpen ? '▾' : '▸'}
@@ -111,7 +112,6 @@ export default function Sidebar() {
             )}
           </div>
 
-          {/* Reporting */}
           <div className="sidebar-item collapsible">
             <div className="collapsible-header" onClick={() => setReportsOpen(o => !o)}>
               📊 Reporting {reportsOpen ? '▾' : '▸'}
@@ -128,6 +128,7 @@ export default function Sidebar() {
             )}
           </div>
         </nav>
+        {renderLogout()}
       </aside>
     );
   }
@@ -147,7 +148,6 @@ export default function Sidebar() {
             {publicOpen && (
               <div className="collapsible-content">
                 <NavLink to="/client/visitor-info"   className="sidebar-subitem">🛈 Visitor Info</NavLink>
-                <NavLink to="/client/grave-locator"  className="sidebar-subitem">🧭 Grave Locator</NavLink>
               </div>
             )}
           </div>
@@ -159,12 +159,13 @@ export default function Sidebar() {
             {reservationOpen && (
               <div className="collapsible-content">
                 <NavLink to="/client/reservations/availability" className="sidebar-subitem">📈 Plot Availability</NavLink>
-                <NavLink to="/client/reservations/booking"      className="sidebar-subitem">✍️ Booking</NavLink>
+                <NavLink to="/client/reservations/booking"      className="sidebar-subitem">✍️ Reserve</NavLink>
                 <NavLink to="/client/reservations/management"   className="sidebar-subitem">⚙️ My Reservations</NavLink>
               </div>
             )}
           </div>
         </nav>
+        {renderLogout()}
       </aside>
     );
   }

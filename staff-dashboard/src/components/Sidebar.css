@@ -1,52 +1,53 @@
 /* staff-dashboard/src/components/Sidebar.css */
 
 .sidebar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 300px;
-    height: 100vh;
-    background-color: #f8f9fa;
-    box-shadow: 2px 0 5px rgba(0,0,0,0.1);
-    padding: 1rem;
-    overflow-y: auto;
-  }
-  
-  .sidebar-item,
-  .collapsible-header {
-    display: block;
-    padding: 0.5rem 1rem;
-    color: #333;
-    text-decoration: none;
-    cursor: pointer;
-    user-select: none;
-  }
-  
-  .sidebar-item:hover,
-  .collapsible-header:hover,
-  .sidebar-subitem:hover {
-    background-color: #e2e6ea;
-  }
-  
-  .active {
-    background-color: #ddd;
-    font-weight: bold;
-  }
-  
-  .collapsible {
-    margin-top: 0.5rem;
-  }
-  
-  .collapsible-content {
-    margin-top: 0.25rem;
-    margin-left: 0.5rem;
-  }
-  
-  .sidebar-subitem {
-    display: block;
-    padding: 0.25rem 1rem;
-    color: #444;
-    text-decoration: none;
-    cursor: pointer;
-  }
-  
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 300px;
+  height: 100vh;
+  background-color: #f8f9fa;
+  box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+  padding: 1rem;
+  overflow-y: auto;
+}
+
+.sidebar-item,
+.collapsible-header {
+  display: block;
+  padding: 0.5rem 1rem;
+  color: #333;
+  text-decoration: none;
+  cursor: pointer;
+  user-select: none;
+}
+
+.sidebar-item:hover,
+.collapsible-header:hover,
+.sidebar-subitem:hover {
+  background-color: #e2e6ea;
+}
+
+.active {
+  background-color: #ddd;
+  font-weight: bold;
+}
+
+.collapsible {
+  margin-top: 0.5rem;
+}
+
+.collapsible-content {
+  margin-top: 0.25rem;
+  margin-left: 0.5rem;
+}
+
+.sidebar-subitem {
+  display: block;
+  padding: 0.75rem 1.25rem !important;
+  font-size: 1rem !important;          /* larger text */
+  line-height: 1.4;
+  color: #444;
+  text-decoration: none;
+  cursor: pointer;
+}

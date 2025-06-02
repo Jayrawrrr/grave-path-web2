@@ -1,0 +1,381 @@
+/* src/pages/ClientMapView.css */
+
+.client-page {
+  position: fixed;
+  top: 60px; /* Height of the top bar */
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: calc(100vh - 60px);
+  overflow: hidden;
+}
+
+.map-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.leaflet-container {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* Plot Legend Styles */
+.plot-legend {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  background: white;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  z-index: 1000;
+  font-family: Arial, sans-serif;
+  min-width: 150px;
+  max-width: 200px;
+}
+
+.legend-title {
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: #333;
+  font-size: 14px;
+  text-align: center;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  margin: 6px 0;
+  font-size: 13px;
+  color: #666;
+}
+
+.legend-color {
+  width: 24px;
+  height: 16px;
+  margin-right: 10px;
+  border-radius: 3px;
+  opacity: 0.7;
+}
+
+/* Floating Locator */
+.floating-locator {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+  width: 340px;
+  transition: all 0.3s ease;
+}
+
+/* Popup Styles */
+.lot-popup {
+  min-width: 200px;
+}
+
+.popup-content {
+  padding: 10px;
+}
+
+.popup-content h3 {
+  margin: 0 0 10px 0;
+  font-size: 16px;
+  color: #333;
+}
+
+.popup-content p {
+  margin: 5px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.popup-content strong {
+  color: #666;
+}
+
+/* Status Colors */
+.status-available {
+  color: #34c759;
+}
+
+.status-reserved {
+  color: #007bff;
+}
+
+.status-pending {
+  color: #ffc107;
+}
+
+.status-unavailable {
+  color: #ff3b30;
+}
+
+.status-active {
+  color: #8e8e93;
+}
+
+.lot-popup .lot-info {
+  padding: 5px;
+}
+
+.lot-popup h3 {
+  margin: 0 0 8px 0;
+  font-size: 14px;
+  color: #333;
+}
+
+.lot-popup .info-row {
+  margin-bottom: 4px;
+  font-size: 12px;
+  line-height: 1.2;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 8px;
+  align-items: baseline;
+}
+
+.lot-popup .info-row:last-child {
+  margin-bottom: 0;
+}
+
+.lot-popup .info-row strong {
+  color: #666;
+  white-space: nowrap;
+}
+
+.lot-popup .info-row span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.lot-popup .status-available {
+  color: #34c759;
+  font-weight: 500;
+}
+
+.lot-popup .status-unavailable {
+  color: #ff3b30;
+  font-weight: 500;
+}
+
+.lot-popup .status-active {
+  color: #8e8e93;
+  font-weight: 500;
+}
+
+/* Override Leaflet's default popup width */
+.leaflet-popup {
+  min-width: 50px !important;
+  max-width: 140px !important;
+}
+
+.leaflet-popup-content {
+  margin: 8px !important;
+  width: auto !important;
+  min-width: 120px !important;
+}
+
+.leaflet-popup-content-wrapper {
+  padding: 0;
+}
+
+/* Popup styles */
+.leaflet-popup {
+  margin-bottom: 20px;
+}
+
+.leaflet-popup-content-wrapper {
+  padding: 0 !important;
+  border-radius: 12px !important;
+  overflow: hidden !important;
+  width: auto !important;
+  min-width: 280px !important;
+}
+
+.leaflet-popup-content {
+  margin: 0 !important;
+  width: 280px !important;
+  padding: 0 !important;
+}
+
+.lot-popup .lot-info {
+  width: 100%;
+}
+
+.lot-popup h3 {
+  margin: 0;
+  color: #333;
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 15px 20px;
+  background: #f8f9fa;
+  border-bottom: 1px solid #eee;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.lot-popup .info-row {
+  padding: 12px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #eee;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin: 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.lot-popup .info-row:last-child {
+  border-bottom: none;
+}
+
+.lot-popup .info-row strong {
+  color: #666;
+  font-weight: normal;
+}
+
+.lot-popup .info-row span {
+  text-align: right;
+  color: #333;
+}
+
+.lot-popup .status-available {
+  color: #28a745;
+  font-weight: normal;
+}
+
+/* Fix popup arrow position */
+.leaflet-popup-tip-container {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  left: 50%;
+  margin-left: -10px;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.leaflet-popup-tip {
+  background: white;
+  box-shadow: none;
+  width: 17px;
+  height: 17px;
+  padding: 1px;
+  margin: -10px auto 0;
+  transform: rotate(45deg);
+}
+
+.popup-content {
+  width: 100%;
+  min-width: 270px;
+}
+
+.popup-content h3 {
+  margin: 0;
+  color: #333;
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 15px 20px;
+  background: #f8f9fa;
+  border-bottom: 1px solid #eee;
+  width: 100%;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.popup-content p {
+  padding: 12px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #eee;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin: 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.popup-content p:last-of-type {
+  border-bottom: none;
+}
+
+.popup-content strong {
+  color: #666;
+  font-weight: normal;
+}
+
+.popup-content span {
+  text-align: right;
+  color: #333;
+}
+
+/* Add responsive styles for smaller screens */
+@media (max-width: 768px) {
+  .floating-locator {
+    width: calc(100% - 40px);
+    right: 20px;
+  }
+}
+
+/* Status notice styles */
+.reserved-notice,
+.pending-notice,
+.unavailable-notice,
+.active-notice {
+  padding: 8px 12px;
+  margin-top: 10px;
+  border-radius: 4px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.reserved-notice {
+  background-color: #e6f2ff;
+  color: #007bff;
+  border: 1px solid #b8daff;
+}
+
+.pending-notice {
+  background-color: #fff3cd;
+  color: #856404;
+  border: 1px solid #ffeeba;
+}
+
+.unavailable-notice {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+.active-notice {
+  background-color: #e9ecef;
+  color: #6c757d;
+  border: 1px solid #dee2e6;
+}
+
+.action-button.book-button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  background: #28a745;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.action-button.book-button:hover {
+  background: #218838;
+}

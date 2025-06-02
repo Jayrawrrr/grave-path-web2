@@ -1,0 +1,206 @@
+.plot-availability-wrapper {
+  position: fixed;
+  top: 60px; /* Height of the top bar */
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.error-banner {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  background: #f8d7da;
+  color: #721c24;
+  padding: 0.75rem;
+  text-align: center;
+  z-index: 1000;
+  font-family: Arial, sans-serif;
+}
+
+.leaflet-container {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Move zoom controls below the top bar */
+.leaflet-control-container .leaflet-top {
+  top: 20px !important; /* Space from top of map container */
+}
+
+.leaflet-control-container .leaflet-top.leaflet-left {
+  left: 20px !important;
+}
+
+/* Remove any margins from controls */
+.leaflet-control-zoom {
+  margin: 0 !important;
+  border: none !important;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2) !important;
+}
+
+.leaflet-control-zoom a {
+  width: 30px !important;
+  height: 30px !important;
+  line-height: 30px !important;
+  color: #333 !important;
+  background-color: white !important;
+  border: none !important;
+}
+
+.leaflet-control-zoom a:hover {
+  background-color: #f4f4f4 !important;
+}
+
+.loading-spinner {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  color: #333;
+}
+
+/* Lot popup styles */
+.lot-popup {
+  padding: 0 !important;
+  min-width: 280px !important;
+  font-family: Arial, sans-serif;
+}
+
+.lot-popup .leaflet-popup-content {
+  margin: 0 !important;
+  width: 100% !important;
+}
+
+.lot-popup .leaflet-popup-content-wrapper {
+  padding: 0 !important;
+  border-radius: 12px !important;
+  overflow: hidden !important;
+}
+
+.lot-info {
+  width: 100%;
+  padding-bottom: 15px;
+}
+
+.lot-info h3 {
+  margin: 0;
+  color: #333;
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 15px 20px;
+  background: #f8f9fa;
+  border-bottom: 1px solid #eee;
+}
+
+.info-row {
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #eee;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.info-row:last-of-type {
+  border-bottom: none;
+}
+
+.info-row strong {
+  color: #666;
+  font-weight: normal;
+}
+
+.info-row-value {
+  text-align: right;
+  color: #333;
+}
+
+.status-available {
+  color: #6d4c41;
+  font-weight: normal;
+}
+
+.action-buttons {
+  padding: 0 20px;
+  margin-top: 5px;
+}
+
+.action-button {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.book-button {
+  background: linear-gradient(135deg, #6d4c41 0%, #8d6e63 100%);
+  color: white;
+}
+
+.book-button:hover {
+  background: linear-gradient(135deg, #5d4037 0%, #6d4c41 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(109, 76, 65, 0.2);
+}
+
+/* Fix popup arrow position */
+.leaflet-popup-tip-container {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  left: 50%;
+  margin-left: -10px;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.leaflet-popup-tip {
+  background: white;
+  box-shadow: none;
+  width: 17px;
+  height: 17px;
+  padding: 1px;
+  margin: -10px auto 0;
+  transform: rotate(45deg);
+}
+
+/* Status colors */
+.status-reserved {
+  color: #007bff;
+}
+
+.status-pending {
+  color: #ffc107;
+}
+
+.status-unavailable {
+  color: #dc3545;
+}
+
+.status-active {
+  color: #8e8e93;
+}

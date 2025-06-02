@@ -24,11 +24,11 @@ export default function Reservations() {
         <button
           className={tab==='booking' ? 'active' : ''}
           onClick={() => setTab('booking')}
-        >Booking</button>
+        >Reserve</button>
         <button
           className={tab==='management' ? 'active' : ''}
           onClick={() => setTab('management')}
-        >Reservation Management</button>
+        >Manage</button>
       </div>
       <div className="tab-content">
         {tab === 'availability' && <PlotAvailability token={token} />}
