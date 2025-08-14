@@ -1,6 +1,7 @@
 {
   "name": "staff-dashboard",
   "version": "0.1.0",
+  "homepage": "https://jayrawrrr.github.io/grave-path-web2",
   "private": true,
   "dependencies": {
     "@testing-library/dom": "^10.4.0",
