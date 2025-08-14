@@ -1,0 +1,29 @@
+/* src/pages/IntermentRecordsReport.css */
+.interment-records-report-page {
+  padding: 1rem;
+}
+
+.report-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+.report-table th,
+.report-table td {
+  padding: 8px;
+  border: 1px solid #ddd;
+}
+.report-table th {
+  background-color: #f4f4f4;
+  text-align: left;
+  font-weight: 500;
+}
+.report-table tr:nth-child(even) {
+  background-color: #fafafa;
+}
+
+.error {
+  color: #e74c3c;
+  margin: 1rem 0;
+  font-weight: 500;
+}

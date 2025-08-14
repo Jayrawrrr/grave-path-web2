@@ -1,0 +1,19 @@
+/* src/pages/ClientMapView.css */
+
+.client-page {
+  display: flex;
+  height: 100vh;
+}
+
+.map-container {
+  position: relative;
+  flex: 1;
+}
+
+.floating-locator {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  z-index: 1000;
+  width: 300px;
+}

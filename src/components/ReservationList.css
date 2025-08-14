@@ -1,0 +1,18 @@
+/* staff-dashboard/src/components/ReservationList.css */
+.reservation-list {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: Arial, sans-serif;
+  }
+  .reservation-list th,
+  .reservation-list td {
+    border: 1px solid #ccc;
+    padding: 0.5rem;
+    text-align: left;
+  }
+  .reservation-list th {
+    background: #f8f9fa;
+  }
+  .reservation-list tr:nth-child(even) {
+    background: #f2f2f2;
+  }

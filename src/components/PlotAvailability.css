@@ -1,0 +1,20 @@
+.plot-availability-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.error-banner {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  background: #f8d7da;
+  color: #721c24;
+  padding: 0.75rem;
+  text-align: center;
+  z-index: 1000;
+  font-family: Arial, sans-serif;
+}
+
+.leaflet-container {
+  background: #eee;
+}

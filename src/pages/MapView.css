@@ -1,0 +1,15 @@
+/* src/pages/MapView.css */
+.mapview-wrapper {
+  position: relative;
+}
+
+.locator-panel {
+  position: absolute;
+  top: 5px;
+  left: 50px;
+  z-index: 1000;
+  
+  padding: 0.5rem;
+  border-radius: 4px;
+  
+}

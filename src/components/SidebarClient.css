@@ -1,0 +1,175 @@
+/* src/components/SidebarClient.css */
+
+/* ---------- Sidebar Container ---------- */
+.sidebar.sidebar-client {
+  box-sizing: border-box;
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 60px;
+  padding: 0;
+  margin: 0;
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---------- Module Tiles ---------- */
+.sidebar-modules {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.sidebar-module-item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 48px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-bottom: 12px;
+}
+
+.sidebar-module-item .icon {
+  color: #000;
+  padding-left: 3px;
+}
+
+.sidebar-module-item .label {
+  font-size: 0.6rem;
+  margin-top: 2px;
+  color: #000;
+}
+
+.sidebar-module-item:hover {
+  background: #f1f3f4;
+}
+
+.sidebar-module-item.active {
+  background: #e8f0fe;
+}
+
+/* ---------- Collapsible Subitems ---------- */
+.collapsible-content {
+  margin-left: 6px;
+}
+.sidebar-subitem {
+  padding: 3px 6px;
+  font-size: 0.7rem;
+  color: #555;
+  text-decoration: none;
+  cursor: pointer;
+}
+.sidebar-subitem:hover {
+  background: #f1f3f4;
+  border-radius: 4px;
+}
+
+/* ---------- Logout-specific hover color ---------- */
+.sidebar-module-item.logout:hover .icon,
+.sidebar-module-item.logout:hover .label {
+  color: #dc3545;
+}
+
+.visitor-info-pill {
+  position: fixed;
+  top: 90px; /* Vertically align with "Public" icon, adjust as needed */
+  left: 75px; /* Just right of the sidebar */
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border: none;
+  box-shadow: 0 2px 8px rgba(60,60,60,0.16);
+  border-radius: 24px;
+  padding: 8px 18px;
+  font-size: 1rem;
+  cursor: pointer;
+  z-index: 2000;
+  gap: 8px;
+  text-decoration: none;
+  color: #222;
+  font-weight: 500;
+  transition: box-shadow 0.2s, background 0.2s;
+}
+.visitor-info-pill:hover,
+.visitor-info-pill.active {
+  box-shadow: 0 4px 16px rgba(60,60,60,0.22);
+  background: #f1f3f4;
+}
+.visitor-info-pill .pill-icon {
+  font-size: 1.1rem;
+  margin-right: 6px;
+}
+.sidebar-pills.booking {
+  position: fixed;
+  left: 75px;  /* right beside sidebar (adjust if needed) */
+  top: 140px;  /* below 'Booking' icon, adjust if needed */
+  z-index: 1200;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.sidebar-pill {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 18px;
+  border-radius: 24px;
+  background: #fff;
+  border: none;
+  box-shadow: 0 2px 8px rgba(60,60,60,0.10);
+  font-size: 1rem;
+  color: #222;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s, box-shadow 0.15s, color 0.15s;
+  outline: none;
+}
+.sidebar-pill:hover {
+  background: #e8f0fe;
+  color: #1a73e8;
+  box-shadow: 0 4px 16px rgba(60,60,60,0.16);
+}
+
+/* Booking pills - float beside sidebar */
+.sidebar-pills.booking {
+  position: fixed;
+  left: 75px;
+  top: 170px;
+  z-index: 1200;
+  display: flex;
+  flex-direction: row;      /* Horizontal! */
+  gap: 12px;
+}
+
+.sidebar-pill {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 18px;
+  border-radius: 24px;
+  background: #fff;
+  border: none;
+  box-shadow: 0 2px 8px rgba(60,60,60,0.10);
+  font-size: 1rem;
+  color: #222;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s, box-shadow 0.15s, color 0.15s;
+  outline: none;
+}
+.sidebar-pill:hover {
+  background: #e8f0fe;
+  color: #1a73e8;
+  box-shadow: 0 4px 16px rgba(60,60,60,0.16);
+}
