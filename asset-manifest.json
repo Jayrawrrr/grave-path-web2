@@ -1,15 +1,19 @@
 {
   "files": {
-    "main.css": "/grave-path-web2/static/css/main.c9906b32.css",
-    "main.js": "/grave-path-web2/static/js/main.e564b5f4.js",
-    "static/js/453.444aa761.chunk.js": "/grave-path-web2/static/js/453.444aa761.chunk.js",
-    "index.html": "/grave-path-web2/index.html",
-    "main.c9906b32.css.map": "/grave-path-web2/static/css/main.c9906b32.css.map",
-    "main.e564b5f4.js.map": "/grave-path-web2/static/js/main.e564b5f4.js.map",
-    "453.444aa761.chunk.js.map": "/grave-path-web2/static/js/453.444aa761.chunk.js.map"
+    "main.css": "/static/css/main.fcf80a46.css",
+    "main.js": "/static/js/main.87fa0977.js",
+    "static/css/68.28dcf1d4.chunk.css": "/static/css/68.28dcf1d4.chunk.css",
+    "static/js/68.155f5395.chunk.js": "/static/js/68.155f5395.chunk.js",
+    "static/js/453.444aa761.chunk.js": "/static/js/453.444aa761.chunk.js",
+    "index.html": "/index.html",
+    "main.fcf80a46.css.map": "/static/css/main.fcf80a46.css.map",
+    "main.87fa0977.js.map": "/static/js/main.87fa0977.js.map",
+    "68.28dcf1d4.chunk.css.map": "/static/css/68.28dcf1d4.chunk.css.map",
+    "68.155f5395.chunk.js.map": "/static/js/68.155f5395.chunk.js.map",
+    "453.444aa761.chunk.js.map": "/static/js/453.444aa761.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.c9906b32.css",
-    "static/js/main.e564b5f4.js"
+    "static/css/main.fcf80a46.css",
+    "static/js/main.87fa0977.js"
   ]
 }
