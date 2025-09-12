@@ -1,11 +1,12 @@
 // src/pages/ClientRegister.jsx
 import React, { useState, useEffect, useRef } from 'react';
+import { createPortal } from 'react-dom';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './ClientRegister.css';
 import VerificationModal from '../components/VerificationModal';
 
-const API_BASE = process.env.REACT_APP_API_URL || 'http://localhost:5000/api';
+const API_BASE = 'https://api.grave-path.com/api';
 
 export default function ClientRegister({ onBack }) {
   const navigate = useNavigate();
@@ -48,6 +49,8 @@ export default function ClientRegister({ onBack }) {
   // Add new state for validation message type
   const [validationType, setValidationType] = useState('error');
 
+
+
   // Countdown timer for resend
   useEffect(() => {
     if (secondsLeft > 0) {
@@ -89,13 +92,33 @@ export default function ClientRegister({ onBack }) {
   }, [email, touched.email]);
 
   useEffect(() => {
-    const valid = password.length >= 8;
+    const hasMinLength = password.length >= 8;
+    const hasUppercase = /[A-Z]/.test(password);
+    const hasLowercase = /[a-z]/.test(password);
+    const hasNumbers = /\d/.test(password);
+    const hasSymbols = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(password);
+    
+    const valid = hasMinLength && hasUppercase && hasLowercase && hasNumbers && hasSymbols;
     setIsPasswordValid(valid);
+    
     if (touched.password) {
-      setErrors(e => ({
-        ...e,
-        password: valid ? null : 'Password must be at least 8 characters'
-      }));
+      if (!password) {
+        setErrors(e => ({ ...e, password: 'Password is required' }));
+      } else if (!valid) {
+        const missing = [];
+        if (!hasMinLength) missing.push('8+ characters');
+        if (!hasUppercase) missing.push('uppercase letter');
+        if (!hasLowercase) missing.push('lowercase letter');
+        if (!hasNumbers) missing.push('number');
+        if (!hasSymbols) missing.push('special character');
+        
+        setErrors(e => ({ 
+          ...e, 
+          password: `Strong password needs: ${missing.join(', ')}` 
+        }));
+      } else {
+        setErrors(e => ({ ...e, password: null }));
+      }
     }
   }, [password, touched.password]);
 
@@ -149,6 +172,9 @@ export default function ClientRegister({ onBack }) {
       setShowModal(true);
       setSecondsLeft(60);
     } catch (err) {
+      console.error('Send verification error:', err);
+      
+      // Handle specific error cases
       if (err.response?.data?.message?.toLowerCase().includes('exist')) {
         // Show floating validation for existing email
         setValidationType('error');
@@ -169,10 +195,18 @@ export default function ClientRegister({ onBack }) {
         return; // Exit early
       }
       
-      setErrors(e => ({
-        ...e,
-        sendCode: err.response?.data?.message || 'Failed to send code'
-      }));
+      // Handle email service configuration errors
+      if (err.response?.data?.message?.toLowerCase().includes('email service not configured')) {
+        setErrors(e => ({
+          ...e,
+          sendCode: 'Email service is currently unavailable. Please contact support.'
+        }));
+      } else {
+        setErrors(e => ({
+          ...e,
+          sendCode: err.response?.data?.message || 'Failed to send verification code'
+        }));
+      }
     } finally {
       setSendingCode(false);
     }
@@ -325,8 +359,8 @@ export default function ClientRegister({ onBack }) {
   return (
     <>
       <div className="register-container">
-        <h1 className="register-heading">Register</h1>
-        <form className="register-form" onSubmit={handleRegister} noValidate>
+        <h1 className="form-title">Register</h1>
+        <form className="auth-form" onSubmit={handleRegister} noValidate>
           {/* First Name */}
           <div className="field-group">
             <input
@@ -410,48 +444,77 @@ export default function ClientRegister({ onBack }) {
               checked={termsChecked}
               onChange={e => setTermsChecked(e.target.checked)}
             />
-            <label htmlFor="terms">
-              I agree to the{' '}
-              <a href="/terms" target="_blank" rel="noopener noreferrer">
+            <div className="terms-text-wrapper">
+              <span>I agree to the </span>
+              <a 
+                href="/terms" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="terms-link" 
+                style={{ cursor: 'pointer', color: '#007bff', textDecoration: 'underline', fontWeight: 'bold' }}
+              >
                 Terms and Conditions
               </a>
-            </label>
+            </div>
           </div>
 
           {/* Submit */}
           <button
             type="submit"
             disabled={sendingCode}
-            className={!termsChecked && touched.terms ? 'error-on-button' : ''}
+            className={`auth-button ${!termsChecked && touched.terms ? 'error-on-button' : ''}`}
           >
             Register
           </button>
           {errors.register && <p className="error">{errors.register}</p>}
 
-          <p className="back-to-login">
+          <p className="switch-text">
             Already have an account?{' '}
-            <span className="login-link" onClick={onBack}>
+            <span className="switch-link" onClick={onBack}>
               Login
             </span>
           </p>
         </form>
-
-        {showValidation && (
-          <div className={
-            validationType === 'success' 
-              ? 'floating-success-message' 
-              : 'floating-validation error'
-          }>
-            {validationType === 'success' 
-              ? 'Registration successful!'
-              : codeVerified && !registrationSuccess
-              ? 'Verified'
-              : !termsChecked && touched.terms
-              ? 'Please accept the Terms and Conditions'
-              : 'Email already exists!'}
-          </div>
-        )}
       </div>
+
+      {/* Floating validation message using React Portal */}
+      {showValidation && createPortal(
+        <div 
+          className={
+            validationType === 'success' 
+              ? 'portal-floating-success' 
+              : 'portal-floating-validation'
+          }
+          style={{
+            position: 'fixed',
+            bottom: '20px',
+            left: '20px',
+            zIndex: 999999,
+            backgroundColor: 'rgba(0, 0, 0, 0.95)',
+            color: 'white',
+            padding: '14px 28px',
+            borderRadius: '8px',
+            boxShadow: '0 4px 16px rgba(0, 0, 0, 0.4)',
+            fontSize: '0.9rem',
+            fontWeight: '500',
+            maxWidth: '420px',
+            minWidth: '340px',
+            textAlign: 'center',
+            pointerEvents: 'none',
+            animation: 'slideInFromLeft 0.3s ease-out',
+            whiteSpace: 'nowrap'
+          }}
+        >
+          {validationType === 'success' 
+            ? 'Registration successful!'
+            : codeVerified && !registrationSuccess
+            ? 'Verified'
+            : !termsChecked && touched.terms
+            ? 'Please accept the Terms and Conditions'
+            : 'Email Already Exist!'}
+        </div>,
+        document.body
+      )}
 
       {/* Only show modal if email doesn't exist and code needs verification */}
       {!showValidation && showModal && (

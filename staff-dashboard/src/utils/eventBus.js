@@ -24,7 +24,9 @@ export const EVENTS = {
   LOT_UPDATED: 'lotUpdated',
   RESERVATION_CHANGED: 'reservationChanged',
   LOT_DELETED: 'lotDeleted',
-  LOT_CREATED: 'lotCreated'
+  LOT_CREATED: 'lotCreated',
+  GRAVE_LOCATOR_NAVIGATE: 'graveLocatorNavigate',
+  COLUMBARIUM_SEARCH_NAVIGATE: 'columbariumSearchNavigate'
 };
 
 export default eventBus; 

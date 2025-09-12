@@ -6,6 +6,22 @@ import { AuthContext } from '../context/AuthContext';
 import eventBus, { EVENTS } from '../utils/eventBus';
 import './BookingForm.css';
 
+// Helper function to decode JWT token
+const decodeToken = (token) => {
+  try {
+    if (!token) return null;
+    const base64Url = token.split('.')[1];
+    const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    const jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+      return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+    }).join(''));
+    return JSON.parse(jsonPayload);
+  } catch (error) {
+    console.error('Error decoding token:', error);
+    return null;
+  }
+};
+
 const startY = 0.73;
 const startX = 0.34;
 const size = 0.025;
@@ -68,7 +84,7 @@ const moreLots = [
 ];
 
 export default function BookingForm() {
-  const { token, user, role } = useContext(AuthContext);
+  const { token, role } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
   const [lots, setLots] = useState([]);
@@ -182,6 +198,7 @@ export default function BookingForm() {
       formData.append('paymentMethod', form.paymentMethod);
       formData.append('paymentAmount', form.paymentAmount);
       formData.append('totalPrice', totalPrice);
+      formData.append('sendEmail', 'true');
 
       // Staff specific data
       if (isStaffBooking) {
@@ -189,8 +206,13 @@ export default function BookingForm() {
         if (form.staffNotes) {
           formData.append('staffNotes', form.staffNotes);
         }
-        if (user && user._id) {
-          formData.append('staffId', user._id);
+        // Decode token to get staff ID
+        const decodedToken = decodeToken(token);
+        if (decodedToken && decodedToken.id) {
+          formData.append('staffId', decodedToken.id);
+          console.log('Setting staffId to:', decodedToken.id);
+        } else {
+          console.warn('Could not decode staff ID from token');
         }
       }
       
@@ -258,148 +280,208 @@ export default function BookingForm() {
   };
 
   return (
-    <div className="booking-form-wrapper">
-      <h2>{isStaffBooking ? 'Staff Reservation Form' : 'Reservation Form'}</h2>
-      <form onSubmit={handleSubmit}>
-        <div className="lot-details">
-          <div><strong>Lot ID:</strong> {lotDetails.id}</div>
-          <div><strong>Status:</strong> {lotDetails.status || 'Available'}</div>
-          <div><strong>Square Meters:</strong> {lotDetails.sqm || 'N/A'}</div>
-          <div><strong>Location:</strong> {lotDetails.location || 'N/A'}</div>
-          <div><strong>Total Price:</strong> ₱{Number(lotDetails.price || '50000').toLocaleString()}</div>
-          <div><strong>Reservation Fee (10%):</strong> ₱{Number(form.paymentAmount).toLocaleString()}</div>
+    <div className="booking-form-container">
+      <div className="booking-page-header">
+        <h2 className="booking-form-title">
+          {isStaffBooking ? 'Staff Reservation Form' : 'Cemetery Plot Reservation'}
+        </h2>
+        <p className="booking-form-subtitle">
+          Complete the form below to reserve your selected cemetery plot
+        </p>
+      </div>
+
+      <div className="booking-form-wrapper">
+        {/* Lot Details Section */}
+        <div className="booking-lot-details-section">
+          <h3>Selected Plot Details</h3>
+          <div className="booking-lot-details-grid">
+            <div className="booking-detail-item">
+              <span className="booking-detail-label">Lot ID:</span>
+              <span className="booking-detail-value">{lotDetails.id}</span>
+            </div>
+            <div className="booking-detail-item">
+              <span className="booking-detail-label">Status:</span>
+              <span className="booking-detail-value">{lotDetails.status || 'Available'}</span>
+            </div>
+            <div className="booking-detail-item">
+              <span className="booking-detail-label">Square Meters:</span>
+              <span className="booking-detail-value">{lotDetails.sqm || 'N/A'}</span>
+            </div>
+            <div className="booking-detail-item">
+              <span className="booking-detail-label">Location:</span>
+              <span className="booking-detail-value">{lotDetails.location || 'N/A'}</span>
+            </div>
+            <div className="booking-detail-item">
+              <span className="booking-detail-label">Total Price:</span>
+              <span className="booking-detail-value price">₱{Number(lotDetails.price || '50000').toLocaleString()}</span>
+            </div>
+            <div className="booking-detail-item">
+              <span className="booking-detail-label">Reservation Fee (10%):</span>
+              <span className="booking-detail-value reservation-fee">₱{Number(form.paymentAmount).toLocaleString()}</span>
+            </div>
+          </div>
         </div>
 
-        <div className="reservation-notice">
-          <p>Note: A 10% reservation fee of the total lot price is required to proceed with the reservation.</p>
+        {/* Reservation Notice */}
+        <div className="booking-reservation-notice">
+          <div className="booking-notice-icon">💰</div>
+          <div className="booking-notice-text">
+            <p><strong>Important:</strong> A 10% reservation fee of the total lot price is required to proceed with the reservation.</p>
+            <p>This fee secures your plot and will be deducted from the final payment.</p>
+          </div>
         </div>
 
-        {/* Client Information - Required for both client and staff bookings */}
-        <div>
-          <label>
-            Client Name:
-            <input
-              type="text"
-              name="clientName"
-              value={form.clientName}
-              onChange={handleChange}
-              required
-              placeholder="Enter client name"
-            />
-          </label>
-        </div>
-        <div>
-          <label>
-            Client Email/Contact:
-            <input
-              type="text"
-              name="clientContact"
-              value={form.clientContact}
-              onChange={handleChange}
-              required
-              placeholder="Enter email or contact number"
-            />
-          </label>
-        </div>
-
-        {/* Payment Method Selection */}
-        <div>
-          <label>
-            Mode of Payment:
-            <select
-              name="paymentMethod"
-              value={form.paymentMethod}
-              onChange={handleChange}
-              required
-            >
-              {isStaffBooking && <option value="cash">Cash</option>}
-              <option value="gcash">GCash</option>
-              <option value="bank">Bank Transfer</option>
-            </select>
-          </label>
-        </div>
-
-        {/* Payment Amount (Read-only) */}
-        <div>
-          <label>
-            Payment Amount:
-            <input
-              type="text"
-              value={`₱${Number(form.paymentAmount).toLocaleString()}`}
-              readOnly
-              className="readonly-input"
-            />
-          </label>
-        </div>
-
-        {/* Optional Proof of Payment */}
-        <div>
-          <label>
-            Attach Proof of Payment (Optional):
-            <input
-              type="file"
-              accept="image/*"
-              onChange={e => setProof(e.target.files[0])}
-            />
-          </label>
-        </div>
-
-        {/* Staff Notes (Only for staff bookings) */}
-        {isStaffBooking && (
-          <div>
-            <label>
-              Staff Notes:
-              <textarea
-                name="staffNotes"
-                value={form.staffNotes}
+        {/* Reservation Form */}
+        <form onSubmit={handleSubmit} className="booking-reservation-form">
+          <h3>Reservation Information</h3>
+          
+          <div className="booking-form-grid">
+            {/* Client Information */}
+            <div className="booking-form-group">
+              <label htmlFor="clientName">
+                Client Name <span className="booking-required">*</span>
+              </label>
+              <input
+                type="text"
+                id="clientName"
+                name="clientName"
+                value={form.clientName}
                 onChange={handleChange}
-                placeholder="Add any relevant notes about this reservation"
-                rows="3"
+                required
+                placeholder="Enter full name"
               />
-            </label>
-          </div>
-        )}
+            </div>
 
-        {/* Submit Buttons */}
-        <div className="form-buttons">
-          <button 
-            type="submit" 
-            className="btn-submit"
-            disabled={loading}
-          >
-            {loading ? 'Processing...' : 'Submit Reservation'}
-          </button>
-          <button 
-            type="button" 
-            className="btn-cancel"
-            onClick={() => navigate(-1)}
-            disabled={loading}
-          >
-            Cancel
-          </button>
-        </div>
+            <div className="booking-form-group">
+              <label htmlFor="clientContact">
+                Client Email/Contact <span className="booking-required">*</span>
+              </label>
+              <input
+                type="text"
+                id="clientContact"
+                name="clientContact"
+                value={form.clientContact}
+                onChange={handleChange}
+                required
+                placeholder="Enter email or contact number"
+              />
+            </div>
 
-        {/* Message Display */}
-        {message.text && (
-          <div className={`message ${message.type}`}>
-            {message.text}
+            {/* Payment Information */}
+            <div className="booking-form-group">
+              <label htmlFor="paymentMethod">
+                Mode of Payment <span className="booking-required">*</span>
+              </label>
+              <select
+                id="paymentMethod"
+                name="paymentMethod"
+                value={form.paymentMethod}
+                onChange={handleChange}
+                required
+              >
+                {isStaffBooking && <option value="cash">Cash</option>}
+                <option value="gcash">GCash</option>
+                <option value="bank">Bank Transfer</option>
+              </select>
+            </div>
+
+            <div className="booking-form-group">
+              <label htmlFor="paymentAmount">
+                Payment Amount
+              </label>
+              <input
+                type="text"
+                id="paymentAmount"
+                value={`₱${Number(form.paymentAmount).toLocaleString()}`}
+                readOnly
+                className="booking-readonly-input"
+              />
+            </div>
+
+            {/* Proof of Payment */}
+            <div className="booking-form-group booking-file-upload">
+              <label htmlFor="proofImage">
+                Attach Proof of Payment (Optional)
+              </label>
+              <input
+                type="file"
+                id="proofImage"
+                accept="image/*"
+                onChange={e => setProof(e.target.files[0])}
+              />
+              <small className="booking-file-hint">Accepted formats: JPG, PNG, GIF</small>
+            </div>
+
+            {/* Staff Notes (Only for staff bookings) */}
+            {isStaffBooking && (
+              <div className="booking-form-group full-width">
+                <label htmlFor="staffNotes">
+                  Staff Notes
+                </label>
+                <textarea
+                  id="staffNotes"
+                  name="staffNotes"
+                  value={form.staffNotes}
+                  onChange={handleChange}
+                  placeholder="Add any relevant notes about this reservation"
+                  rows="3"
+                />
+              </div>
+            )}
           </div>
-        )}
-      </form>
+
+          {/* Submit Buttons */}
+          <div className="booking-form-actions">
+            <button 
+              type="submit" 
+              className="booking-btn-submit"
+              disabled={loading}
+            >
+              {loading ? (
+                <>
+                  <span className="booking-spinner"></span>
+                  Processing...
+                </>
+              ) : (
+                'Submit Reservation'
+              )}
+            </button>
+            <button 
+              type="button" 
+              className="booking-btn-cancel"
+              onClick={() => navigate(-1)}
+              disabled={loading}
+            >
+              Cancel
+            </button>
+          </div>
+
+          {/* Message Display */}
+          {message.text && (
+            <div className={`booking-form-message ${message.type}`}>
+              <div className="booking-message-icon">
+                {message.type === 'success' ? '✅' : '❌'}
+              </div>
+              <div className="booking-message-text">{message.text}</div>
+            </div>
+          )}
+        </form>
+      </div>
 
       {/* Confirmation Modal */}
       {showConfirmationDialog && (
-        <div className="modal-overlay">
-          <div className="modal-content">
+        <div className="booking-modal-overlay">
+          <div className="booking-modal-content">
+            <div className="booking-modal-icon">🎉</div>
             <h3>Reservation Submitted Successfully!</h3>
             <p>Thank you for your reservation. Please check your email for confirmation and further instructions.</p>
-            <div className="modal-actions">
+            <div className="booking-modal-actions">
               <button
                 onClick={() => {
                   setShowConfirmationDialog(false);
                   navigate('/client/reservations/management');
                 }}
-                className="btn-submit"
+                className="booking-btn-modal"
               >
                 View My Reservations
               </button>

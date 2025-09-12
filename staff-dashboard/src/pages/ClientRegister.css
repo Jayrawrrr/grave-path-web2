@@ -1,64 +1,59 @@
 /* src/pages/ClientRegister.css */
 
-/* Container layout */
+/* Container layout - compact space usage */
 .register-container {
-  height: 100vh;
+  height: 100%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 0.5rem;
-  margin-top: 50px;
+  align-items: center;
+  padding: 0.8rem;  /* Less padding for more space */
+  transform: translate(30px, -20px);  /* Move to the right and up */
 }
 
-/* Register form heading */
-.register-heading {
-  text-align: center;
-  font-size: 2rem;
-  margin-bottom: 1rem;
-  margin-top: 170px;
-  margin-left: 30px;
+/* Register form specific overrides - compact */
+.register-container .auth-form {
+  width: 100%;
+  max-width: 80% !important;  /* Smaller width to fit better */
+  gap: 0.5rem;  /* Tighter spacing */
 }
 
-/* Form uses flex-gap */
-.register-form {
-  display: flex;
-  flex-direction: column;
-  gap: 0.1px;
-  width: 430px;
-  margin-left: 260px;
-}
-
-/* Submit button */
-button[type="submit"] {
-  margin-top: 30px;        /* as before */
-  background-color: #6d4c41;
-  color: white;
+.register-container .form-title {
+  font-size: clamp(1.3rem, 3vw, 1.6rem);  /* Smaller title */
   font-weight: bold;
-  border: none;
-  border-radius: 6px;
-  padding: 12px 16px;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background-color 0.2s;
+  margin-bottom: 0.8rem;  /* Less space below title */
+  color: #333;
+  text-align: left !important;  /* Force title to the left */
+  width: 100%;
+  padding-left: 0;
+  margin-left: 0;
 }
 
-/* Hover only when enabled */
-button[type="submit"]:not(:disabled):hover {
-  background-color: #5d4037;
+/* Submit button - compact */
+.register-container .auth-button {
+  margin-top: 0.5rem;  /* Less space above button */
+  padding: 10px 14px !important;  /* Smaller button */
+  font-size: 0.9rem !important;
+  width: 100%;  /* Full width button */
 }
 
-/* Gray out & disable hover when disabled */
-button[type="submit"]:disabled {
+.register-container .auth-button:disabled {
   background-color: #ccc;
   color: #666;
   cursor: not-allowed;
 }
 
-/* Field wrapper */
-.field-group {
+/* Field wrapper - ensure proper positioning for floating labels */
+.register-container .field-group {
   position: relative;
   display: flex;
   flex-direction: column;
+}
+
+/* Exclude terms field from floating label styles */
+.register-container .field-group:not(.terms) {
+  position: relative;
 }
 
 /* Hide native placeholder text */
@@ -66,11 +61,11 @@ button[type="submit"]:disabled {
   color: transparent;
 }
 
-/* Base input style */
-.field-group input {
-  width: 100%;
-  padding: 12px;
-  font-size: 12px;
+/* Base input style - copied from Login.css */
+.register-container .field-group input {
+  width: 100% !important;
+  padding: 12px !important;       /* Same as login */
+  font-size: 12px !important;     /* Same as login */
   color: #333;
   background: #fafafa;
   border: 1px solid #ccc;
@@ -80,8 +75,8 @@ button[type="submit"]:disabled {
   z-index: 1;
 }
 
-/* Floating label */
-.field-group label {
+/* Floating label - copied exactly from Login.css */
+.register-container .field-group label {
   position: absolute;
   left: 7px;
   top: 7px;
@@ -94,9 +89,9 @@ button[type="submit"]:disabled {
   z-index: 2;
 }
 
-/* Lift label on focus or when input has content */
-.field-group input:focus + label,
-.field-group input:not(:placeholder-shown) + label {
+/* Lift label when focused or filled - copied exactly from Login.css */
+.register-container .field-group input:focus + label,
+.register-container .field-group input:not(:placeholder-shown) + label {
   top: 4px;
   left: 5px;
   font-size: 8px;
@@ -110,14 +105,14 @@ button[type="submit"]:disabled {
   outline: none;
 }
 
-/* Error text */
-.field-group small.error {
+/* Error text - compressed */
+.register-container .field-group small.error {
   display: block;
-  min-height: 1em;
-  margin-top: 0.25rem;
+  min-height: 0.8em;
+  margin-top: 0.15rem;
   color: red;
-  font-size: 10px;
-  line-height: 1em;
+  font-size: 9px;
+  line-height: 0.9em;
 }
 
 /* Resend link */
@@ -132,20 +127,22 @@ button[type="submit"]:disabled {
   font-size: 0.85rem;
 }
 
-/* Back-to-login link */
-.back-to-login {
+/* Back-to-login link - compact */
+.register-container .switch-text {
   text-align: center;
-  margin-top: 1rem;
-  font-size: 0.9rem;
+  margin-top: 0.6rem;  /* Less space above */
+  font-size: 0.8rem;  /* Smaller text size */
+  color: #333;
 }
 
-.back-to-login .login-link {
+.register-container .switch-link {
   color: #6d4c41;
   font-weight: bold;
   cursor: pointer;
+  text-decoration: none;
 }
 
-.back-to-login .login-link:hover {
+.register-container .switch-link:hover {
   text-decoration: underline;
 }
 
@@ -249,29 +246,127 @@ button[type="submit"]:disabled {
 
 /* ─── FINAL OVERRIDES FOR T&C ROW ─── */
 
-.field-group.terms {
+/* Terms section - compact and horizontally aligned */
+.register-container .field-group.terms {
   display: flex;
   flex-direction: row;
-  align-items: baseline;
-  margin-left: 10px;
+  align-items: center;  /* Center align checkbox with text */
   gap: 0.5rem;
+  margin-top: 0.2rem;
+  margin-bottom: 0.2rem;
+  width: 100%;
 }
 
-.field-group.terms input[type="checkbox"] {
+.register-container .field-group.terms input[type="checkbox"] {
   position: static;
   margin: 0;
-  width: auto;
-  height: auto;
+  width: 12px !important;
+  height: 12px !important;
+  min-width: 12px;
+  max-width: 12px;
+  transform: scale(0.8);  /* Smaller checkbox */
+  flex-shrink: 0;  /* Don't shrink checkbox */
 }
 
-.field-group.terms label[for="terms"] {
+.register-container .terms-text-wrapper {
   position: static;
   margin: 0;
   padding: 0;
-  font-size: 14px;
-  color: #ffffff;
-  line-height: 1;
+  font-size: 11px;
+  color: #333;
+  line-height: 1.2;
+  flex: 1;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
+  display: inline;
+}
+
+/* Terms link styling - more specific to override label color */
+.register-container .field-group.terms .terms-link {
+  color: #6d4c41 !important;
+  text-decoration: underline;
+  cursor: pointer;
+  font-weight: bold;
+  display: inline;
+}
+
+.register-container .field-group.terms .terms-link:hover {
+  color: #5d4037 !important;
+}
+
+/* Ensure all terms text elements are inline */
+.register-container .field-group.terms span,
+.register-container .field-group.terms a {
+  display: inline;
   white-space: nowrap;
+}
+
+/* Terms content box */
+.terms-content-box {
+  background: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin-top: 1rem;
+  max-height: 300px;
+  overflow-y: auto;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.terms-header {
+  background: #6d4c41;
+  color: white;
+  padding: 0.75rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 8px 8px 0 0;
+}
+
+.terms-header h3 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.close-terms {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 0;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.close-terms:hover {
+  opacity: 0.8;
+}
+
+.terms-text {
+  padding: 1rem;
+  font-size: 0.85rem;
+  line-height: 1.4;
+}
+
+.terms-text h4 {
+  color: #6d4c41;
+  margin: 0.75rem 0 0.5rem 0;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.terms-text h4:first-child {
+  margin-top: 0;
+}
+
+.terms-text p {
+  margin: 0 0 0.75rem 0;
+  color: #555;
 }
 .error-on-button {
   outline: 2px solid red;
@@ -285,48 +380,73 @@ button[type="submit"]:disabled {
   75% { transform: translateX(4px) }
 }
 
-/* Regular floating validation message */
+/* Regular floating validation message - positioned at lower left of screen */
 .floating-validation {
-  position: fixed;
-  bottom: -73px;
-  left: 20px;
-  background-color: rgba(0, 0, 0, 0.8);
-  padding: 12px 24px;
-  border-radius: 4px;
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
-  z-index: 1000;
-  animation: slideInLeft 0.3s ease-out, fadeOut 0.3s ease-in 2.7s;
-  pointer-events: none;
+  position: fixed !important;
+  bottom: 20px !important;  /* 20px from bottom of screen */
+  left: 20px !important;    /* 20px from left of screen */
+  background-color: rgba(0, 0, 0, 0.95) !important;
+  color: white !important;
+  padding: 12px 24px !important;
+  border-radius: 8px !important;
+  z-index: 99999 !important;  /* Very high z-index to appear above everything */
+  animation: slideInLeft 0.3s ease-out, fadeOut 0.3s ease-in 2.7s !important;
+  pointer-events: none !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
+  transform: none !important;  /* Override any transform */
+  top: auto !important;       /* Override any top positioning */
+  right: auto !important;     /* Override any right positioning */
 }
 
 .floating-validation.error {
   color: white !important;
 }
 
-/* Separate success message styling */
-.floating-success-message {
-  position: fixed;
-  bottom: -60px;  /* Adjust this value to move up/down */
-  left: 20px;    /* Adjust this value to move left/right */
-  background-color: rgba(0, 0, 0, 0.8);
-  color: #4CAF50;
-  padding: 12px 24px;
-  border-radius: 4px;
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
-  z-index: 1000;
-  animation: slideInLeft 0.3s ease-out, fadeOut 0.3s ease-in 2.7s;
-  pointer-events: none;
+/* Extra specific selector to ensure validation appears at screen bottom-left */
+body .floating-validation,
+html .floating-validation,
+.register-container .floating-validation,
+.login-container .floating-validation {
+  position: fixed !important;
+  bottom: 20px !important;
+  left: 20px !important;
+  z-index: 99999 !important;
+  transform: none !important;
+  top: auto !important;
+  right: auto !important;
+  margin: 0 !important;
+}
+
+/* Separate success message styling - positioned at lower left of screen */
+.floating-success-message,
+body .floating-success-message,
+html .floating-success-message,
+.register-container .floating-success-message,
+.login-container .floating-success-message {
+  position: fixed !important;
+  bottom: 20px !important;  /* 20px from bottom of screen */
+  left: 20px !important;    /* 20px from left of screen */
+  background-color: rgba(0, 0, 0, 0.9) !important;
+  color: #4CAF50 !important;
+  padding: 12px 24px !important;
+  border-radius: 8px !important;
+  z-index: 99999 !important;  /* Higher z-index to appear above everything */
+  animation: slideInLeft 0.3s ease-out, fadeOut 0.3s ease-in 2.7s !important;
+  pointer-events: none !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
+  transform: none !important;
+  top: auto !important;
+  right: auto !important;
+  margin: 0 !important;
 }
 
 @keyframes slideInLeft {
   from {
-    transform: translateX(-100%);
+    transform: translateX(-100%) !important;
     opacity: 0;
   }
   to {
-    transform: translateX(0);
+    transform: translateX(0) !important;
     opacity: 1;
   }
 }
@@ -337,5 +457,210 @@ button[type="submit"]:disabled {
   }
   to {
     opacity: 0;
+  }
+}
+
+/* —— RESPONSIVE DESIGN FOR REGISTER - COMPRESSED —— */
+@media (max-width: 900px) {
+  .register-container {
+    transform: translate(20px, -15px);  /* Reduce transform on tablet */
+  }
+  
+  .register-container .auth-form {
+    max-width: 80% !important;  /* Balanced width for tablets */
+    gap: 0.4rem;
+  }
+  
+  .register-container .terms-text-wrapper {
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .register-container {
+    padding: 0.5rem;
+    transform: translate(0, 0);  /* Reset position on mobile */
+  }
+  
+  .register-container .form-title {
+    font-size: 1.5rem;
+    margin-bottom: 0.6rem;
+  }
+  
+  .register-container .auth-form {
+    max-width: 85% !important;  /* Balanced mobile width */
+    gap: 0.4rem;
+  }
+  
+  .register-container .field-group input {
+    padding: 10px 12px !important;
+    font-size: 12px !important;
+    min-height: 40px !important;
+  }
+  
+  .register-container .terms-text-wrapper {
+    font-size: 9px;
+  }
+  
+  .register-container .field-group.terms input[type="checkbox"] {
+    transform: scale(0.7);
+    min-width: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .register-container {
+    transform: translate(0, 0);  /* Ensure centered on small mobile */
+  }
+  
+  .register-container .form-title {
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .register-container .auth-form {
+    max-width: 90% !important;  /* Reasonable small mobile width */
+    gap: 0.3rem;
+  }
+  
+  .register-container .field-group input {
+    padding: 8px 10px !important;
+    font-size: 11px !important;
+    min-height: 38px !important;
+  }
+  
+  .register-container .auth-button {
+    padding: 7px 10px;
+    font-size: 0.8rem;
+    margin-top: 0.3rem;
+  }
+  
+  .register-container .switch-text {
+    font-size: 0.65rem;
+    margin-top: 0.3rem;
+  }
+  
+  .register-container .terms-text-wrapper {
+    font-size: 8px;
+    line-height: 1.0;
+  }
+  
+  .register-container .field-group.terms input[type="checkbox"] {
+    transform: scale(0.6);
+    min-width: 8px;
+  }
+  
+  .register-container .field-group small.error {
+    font-size: 8px;
+    margin-top: 0.1rem;
+  }
+  
+  /* Responsive floating validation messages */
+  .floating-validation,
+  .floating-success-message {
+    bottom: 10px !important;  /* Closer to bottom on small screens */
+    left: 10px !important;    /* Closer to edge on small screens */
+    padding: 8px 16px !important;  /* Smaller padding */
+    font-size: 0.8rem !important;  /* Smaller text */
+  }
+}
+
+/* Ultimate override for floating validation - must be at bottom of file */
+.floating-validation,
+.floating-validation.error,
+div.floating-validation,
+span.floating-validation,
+body .floating-validation,
+html .floating-validation {
+  position: fixed !important;
+  bottom: 20px !important;
+  left: 20px !important;
+  z-index: 999999 !important;
+  background-color: rgba(0, 0, 0, 0.95) !important;
+  color: white !important;
+  padding: 14px 28px !important;
+  border-radius: 8px !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
+  pointer-events: none !important;
+  font-size: 0.9rem !important;
+  font-weight: 500 !important;
+  width: auto !important;
+  height: auto !important;
+  max-width: 400px !important;
+  min-width: 320px !important;
+  transform: translateX(0) !important;
+  top: auto !important;
+  right: auto !important;
+  margin: 0 !important;
+  animation: slideInFromLeft 0.3s ease-out !important;
+  white-space: nowrap !important;
+  text-align: center !important;
+}
+
+/* Additional super-specific selectors to ensure override */
+body > div.floating-validation,
+body > .floating-validation,
+#root > div.floating-validation,
+#root > .floating-validation,
+* > .floating-validation {
+  position: fixed !important;
+  bottom: 20px !important;
+  left: 20px !important;
+  z-index: 9999999 !important;
+  max-width: 420px !important;
+  min-width: 340px !important;
+  background-color: rgba(0, 0, 0, 0.95) !important;
+  color: white !important;
+  padding: 14px 28px !important;
+  border-radius: 8px !important;
+  animation: slideInFromLeft 0.3s ease-out !important;
+  white-space: nowrap !important;
+  text-align: center !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4) !important;
+  font-size: 0.9rem !important;
+  font-weight: 500 !important;
+  pointer-events: none !important;
+}
+
+/* Force any container to allow overflow for floating validation */
+.login-container,
+.form-container,
+.register-container {
+  overflow: visible !important;
+}
+
+@keyframes slideInFromLeft {
+  0% {
+    transform: translateX(-100%) !important;
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0) !important;
+    opacity: 1;
+  }
+}
+
+/* Portal-based floating validation styles */
+.portal-floating-validation,
+.portal-floating-success {
+  position: fixed !important;
+  bottom: 20px !important;
+  left: 20px !important;
+  z-index: 999999 !important;
+}
+
+.portal-floating-success {
+  color: #4CAF50 !important;
+}
+
+/* Ensure animation works for portal elements */
+@keyframes slideInFromLeft {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
   }
 }

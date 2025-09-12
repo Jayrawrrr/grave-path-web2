@@ -379,3 +379,86 @@
 .action-button.book-button:hover {
   background: #218838;
 }
+
+/* Columbarium Search Result Styles */
+.columbarium-search-result {
+  padding: 0;
+}
+
+.search-result-header {
+  background: #e8f5e8;
+  padding: 15px 20px;
+  border-bottom: 1px solid #4caf50;
+}
+
+.search-result-header h4 {
+  margin: 0;
+  color: #2e7d32;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.location-details {
+  padding: 15px 20px;
+  background: #f8f9fa;
+}
+
+.location-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid #e9ecef;
+  font-size: 0.9rem;
+}
+
+.location-item:last-child {
+  border-bottom: none;
+}
+
+.location-item strong {
+  color: #495057;
+  font-weight: 600;
+  min-width: 80px;
+}
+
+.date-info {
+  padding: 10px 20px;
+  background: #fff3cd;
+  border-top: 1px solid #ffeaa7;
+  font-size: 0.9rem;
+  color: #856404;
+}
+
+.date-info strong {
+  color: #856404;
+  font-weight: 600;
+}
+
+/* Columbarium popup specific styles */
+.columbarium-popup .leaflet-popup-content-wrapper {
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.columbarium-popup .leaflet-popup-content {
+  margin: 0;
+  padding: 0;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.columbarium-popup .popup-content {
+  min-width: 320px;
+  max-width: 400px;
+}
+
+.columbarium-popup .popup-content h3 {
+  background: #2e7d32;
+  color: white;
+  margin: 0;
+  padding: 15px 20px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-align: center;
+}

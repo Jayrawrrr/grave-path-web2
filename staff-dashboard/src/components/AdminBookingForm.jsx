@@ -139,121 +139,189 @@ export default function AdminBookingForm() {
   };
 
   return (
-    <div className="booking-form-wrapper">
-      <h2>Admin Reservation Form</h2>
-      <form onSubmit={handleSubmit}>
-        <div className="lot-details">
-          <div><strong>Lot ID:</strong> {lotDetails.id}</div>
-          <div><strong>Status:</strong> {lotDetails.status || 'Available'}</div>
-          <div><strong>Square Meters:</strong> {lotDetails.sqm || 'N/A'}</div>
-          <div><strong>Location:</strong> {lotDetails.location || 'N/A'}</div>
-          <div><strong>Total Price:</strong> ₱{Number(lotDetails.price || '50000').toLocaleString()}</div>
-          <div><strong>Reservation Fee (10%):</strong> ₱{Number(form.paymentAmount).toLocaleString()}</div>
-        </div>
+    <div className="booking-form-container">
+      <div className="booking-page-header">
+        <h2 className="booking-form-title">Administrator Reservation Form</h2>
+        <p className="booking-form-subtitle">
+          Create a new reservation on behalf of a client with full administrative privileges
+        </p>
+      </div>
 
-        <div>
-          <label>
-            Client Name:
-            <input
-              type="text"
-              name="clientName"
-              value={form.clientName}
-              onChange={handleChange}
-              required
-              placeholder="Enter client name"
-            />
-          </label>
-        </div>
-        <div>
-          <label>
-            Client Email/Contact:
-            <input
-              type="text"
-              name="clientContact"
-              value={form.clientContact}
-              onChange={handleChange}
-              required
-              placeholder="Enter email or contact number"
-            />
-          </label>
-        </div>
-
-        <div>
-          <label>
-            Mode of Payment:
-            <select
-              name="paymentMethod"
-              value={form.paymentMethod}
-              onChange={handleChange}
-              required
-            >
-              <option value="cash">Cash</option>
-              <option value="gcash">GCash</option>
-              <option value="bank">Bank Transfer</option>
-            </select>
-          </label>
-        </div>
-
-        <div>
-          <label>
-            Payment Amount:
-            <input
-              type="text"
-              value={`₱${Number(form.paymentAmount).toLocaleString()}`}
-              readOnly
-              className="readonly-input"
-            />
-          </label>
-        </div>
-
-        <div>
-          <label>
-            Attach Proof of Payment (Optional):
-            <input
-              type="file"
-              accept="image/*"
-              onChange={e => setProof(e.target.files[0])}
-            />
-          </label>
-        </div>
-
-        <div>
-          <label>
-            Admin Notes:
-            <textarea
-              name="staffNotes"
-              value={form.staffNotes}
-              onChange={handleChange}
-              placeholder="Add any relevant notes about this reservation"
-              rows="3"
-            />
-          </label>
-        </div>
-
-        <div className="form-buttons">
-          <button 
-            type="submit" 
-            className="btn-submit"
-            disabled={loading}
-          >
-            {loading ? 'Processing...' : 'Create Reservation'}
-          </button>
-          <button 
-            type="button" 
-            className="btn-cancel"
-            onClick={() => navigate(-1)}
-            disabled={loading}
-          >
-            Cancel
-          </button>
-        </div>
-
-        {message.text && (
-          <div className={`message ${message.type}`}>
-            {message.text}
+      <div className="booking-form-wrapper">
+        {/* Lot Details Section */}
+        <div className="booking-lot-details-section">
+          <h3>Selected Plot Details</h3>
+          <div className="booking-lot-details-grid">
+            <div className="booking-detail-item">
+              <span className="booking-detail-label">Lot ID:</span>
+              <span className="booking-detail-value">{lotDetails.id}</span>
+            </div>
+            <div className="booking-detail-item">
+              <span className="booking-detail-label">Status:</span>
+              <span className="booking-detail-value">{lotDetails.status || 'Available'}</span>
+            </div>
+            <div className="booking-detail-item">
+              <span className="booking-detail-label">Square Meters:</span>
+              <span className="booking-detail-value">{lotDetails.sqm || 'N/A'}</span>
+            </div>
+            <div className="booking-detail-item">
+              <span className="booking-detail-label">Location:</span>
+              <span className="booking-detail-value">{lotDetails.location || 'N/A'}</span>
+            </div>
+            <div className="booking-detail-item">
+              <span className="booking-detail-label">Total Price:</span>
+              <span className="booking-detail-value price">₱{Number(lotDetails.price || '50000').toLocaleString()}</span>
+            </div>
+            <div className="booking-detail-item">
+              <span className="booking-detail-label">Reservation Fee (10%):</span>
+              <span className="booking-detail-value reservation-fee">₱{Number(form.paymentAmount).toLocaleString()}</span>
+            </div>
           </div>
-        )}
-      </form>
+        </div>
+
+        {/* Admin Notice */}
+        <div className="booking-reservation-notice">
+          <div className="booking-notice-icon">👨‍💼</div>
+          <div className="booking-notice-text">
+            <p><strong>Admin Privilege:</strong> You are creating a reservation with administrative rights.</p>
+            <p>This reservation will be automatically marked as 'Reserved' and will bypass standard approval processes.</p>
+          </div>
+        </div>
+
+        {/* Reservation Form */}
+        <form onSubmit={handleSubmit} className="booking-reservation-form">
+          <h3>Client & Reservation Information</h3>
+          
+          <div className="booking-form-grid">
+            {/* Client Information */}
+            <div className="booking-form-group">
+              <label htmlFor="clientName">
+                Client Name <span className="booking-required">*</span>
+              </label>
+              <input
+                type="text"
+                id="clientName"
+                name="clientName"
+                value={form.clientName}
+                onChange={handleChange}
+                required
+                placeholder="Enter client full name"
+              />
+            </div>
+
+            <div className="booking-form-group">
+              <label htmlFor="clientContact">
+                Client Email/Contact <span className="booking-required">*</span>
+              </label>
+              <input
+                type="text"
+                id="clientContact"
+                name="clientContact"
+                value={form.clientContact}
+                onChange={handleChange}
+                required
+                placeholder="Enter email or contact number"
+              />
+            </div>
+
+            {/* Payment Information */}
+            <div className="booking-form-group">
+              <label htmlFor="paymentMethod">
+                Mode of Payment <span className="booking-required">*</span>
+              </label>
+              <select
+                id="paymentMethod"
+                name="paymentMethod"
+                value={form.paymentMethod}
+                onChange={handleChange}
+                required
+              >
+                <option value="cash">Cash</option>
+                <option value="gcash">GCash</option>
+                <option value="bank">Bank Transfer</option>
+              </select>
+            </div>
+
+            <div className="booking-form-group">
+              <label htmlFor="paymentAmount">
+                Payment Amount
+              </label>
+              <input
+                type="text"
+                id="paymentAmount"
+                value={`₱${Number(form.paymentAmount).toLocaleString()}`}
+                readOnly
+                className="booking-readonly-input"
+              />
+            </div>
+
+            {/* Proof of Payment */}
+            <div className="booking-form-group booking-file-upload">
+              <label htmlFor="proofImage">
+                Attach Proof of Payment (Optional)
+              </label>
+              <input
+                type="file"
+                id="proofImage"
+                accept="image/*"
+                onChange={e => setProof(e.target.files[0])}
+              />
+              <small className="booking-file-hint">Accepted formats: JPG, PNG, GIF</small>
+            </div>
+
+            {/* Admin Notes */}
+            <div className="booking-form-group full-width">
+              <label htmlFor="staffNotes">
+                Administrator Notes
+              </label>
+              <textarea
+                id="staffNotes"
+                name="staffNotes"
+                value={form.staffNotes}
+                onChange={handleChange}
+                placeholder="Add any relevant administrative notes about this reservation"
+                rows="3"
+              />
+            </div>
+          </div>
+
+          {/* Submit Buttons */}
+          <div className="booking-form-actions">
+            <button 
+              type="submit" 
+              className="booking-btn-submit"
+              disabled={loading}
+            >
+              {loading ? (
+                <>
+                  <span className="booking-spinner"></span>
+                  Processing...
+                </>
+              ) : (
+                'Create Reservation'
+              )}
+            </button>
+            <button 
+              type="button" 
+              className="booking-btn-cancel"
+              onClick={() => navigate(-1)}
+              disabled={loading}
+            >
+              Cancel
+            </button>
+          </div>
+
+          {/* Message Display */}
+          {message.text && (
+            <div className={`booking-form-message ${message.type}`}>
+              <div className="booking-message-icon">
+                {message.type === 'success' ? '✅' : '❌'}
+              </div>
+              <div className="booking-message-text">{message.text}</div>
+            </div>
+          )}
+        </form>
+      </div>
     </div>
   );
 }

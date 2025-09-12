@@ -6,25 +6,24 @@ export default function SliderBoxes({ active, onChange }) {
 
   return (
     <>
-      {/* 1) Placeholders (blur) behind the form */}
+      {/* 1) Background placeholders behind the forms */}
       <div className="placeholder-container">
         {positions.map((pos, i) => (
           <div
             key={i}
-            className="box placeholder"
+            className="placeholder-box"
             style={{ left: pos }}
-            
           />
         ))}
       </div>
 
-      {/* 2) Slider highlight + logo rides ON TOP */}
+      {/* 2) Slider highlight + logo that moves to opposite side */}
       <div className="slider-container">
         <div
-          className="box slider"
-          style={{ left: positions[active] }}
+          className="slider-box"
+          style={{ left: positions[active === 0 ? 1 : 0] }}
         >
-          {/* logo always inside the sliding box */}
+          {/* logo on the opposite side of the active form */}
           <img
             src={`${process.env.PUBLIC_URL}/gravepath3.png`}
             alt="Grave Path Logo"

@@ -1,0 +1,13 @@
+/* staff-dashboard/src/pages/Profile.css */
+
+.profile-page {
+  min-height: 100vh;
+  background: #f8fafc;
+  padding: 0;
+}
+
+.profile-page .profile-container {
+  background: transparent;
+  padding: 2rem;
+  min-height: auto;
+} 

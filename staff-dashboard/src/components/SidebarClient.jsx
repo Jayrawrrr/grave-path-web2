@@ -8,7 +8,10 @@ import {
   LogOut as LogoutIcon,
   Settings2 as SettingsIcon,
   Info as VisitorInfoIcon,
-  Home as HomeIcon
+  Home as HomeIcon,
+  User as ProfileIcon,
+  Bookmark as BookmarkIcon,
+  Building as ColumbariumIcon
 } from 'lucide-react';
 import './SidebarClient.css';
 
@@ -38,11 +41,14 @@ export default function SidebarClient({
   onLogout,
   current,
   onVisitorInfo,
-  onBookingPill
+  onBookingPill,
+  onBookmarkPill
 }) {
   const [hoveredModule, setHoveredModule] = useState(null);
+  const mapRef = useRef(null);
   const publicRef = useRef(null);
   const bookingRef = useRef(null);
+  const mapPillRef = useRef(null);
   const publicPillRef = useRef(null);
   const bookingPillRef = useRef(null);
 
@@ -51,8 +57,18 @@ export default function SidebarClient({
   };
 
   const handleMouseLeave = (e, module) => {
-    const ref = module === 'public' ? publicRef : bookingRef;
-    const pillRef = module === 'public' ? publicPillRef : bookingPillRef;
+    let ref, pillRef;
+    
+    if (module === 'map') {
+      ref = mapRef;
+      pillRef = mapPillRef;
+    } else if (module === 'public') {
+      ref = publicRef;
+      pillRef = publicPillRef;
+    } else {
+      ref = bookingRef;
+      pillRef = bookingPillRef;
+    }
     
     const navRect = ref.current.getBoundingClientRect();
     const pillRect = pillRef.current.getBoundingClientRect();
@@ -128,12 +144,31 @@ export default function SidebarClient({
           active={current === 'home'}
           onClick={() => onNavigate('home')}
         />
-        <SidebarModuleItem
-          icon={<MapIcon />}
-          label="Map"
-          active={current === 'map'}
-          onClick={() => onNavigate('map')}
-        />
+        <div 
+          ref={mapRef}
+          style={{ position: 'relative' }}
+          onMouseEnter={() => handleMouseEnter('map')}
+          onMouseLeave={(e) => handleMouseLeave(e, 'map')}
+        >
+          <SidebarModuleItem
+            icon={<MapIcon />}
+            label="Map"
+            active={current === 'map' || hoveredModule === 'map'}
+            onClick={() => onNavigate('map')}
+          />
+          {hoveredModule === 'map' && (
+            <div ref={mapPillRef} style={PILL_STYLES.container}>
+              <button 
+                className="topbar-pill" 
+                onClick={() => onBookmarkPill && onBookmarkPill('bookmark')} 
+                style={PILL_STYLES.pill}
+              >
+                <BookmarkIcon style={PILL_STYLES.icon} />
+                Bookmark
+              </button>
+            </div>
+          )}
+        </div>
         <div 
           ref={publicRef}
           style={{ position: 'relative' }}
@@ -169,6 +204,14 @@ export default function SidebarClient({
             <div ref={bookingPillRef} style={PILL_STYLES.container}>
               <button
                 className="topbar-pill"
+                onClick={() => window.location.href = '/client/columbarium'}
+                style={PILL_STYLES.pill}
+              >
+                <ColumbariumIcon style={PILL_STYLES.icon} />
+                Columbarium
+              </button>
+              <button
+                className="topbar-pill"
                 onClick={() => onBookingPill('availability')}
                 style={PILL_STYLES.pill}
               >
@@ -196,14 +239,26 @@ export default function SidebarClient({
         </div>
       </div>
 
-      <div className="topbar-right" style={{ position: 'absolute', right: '24px' }}>
-      <SidebarModuleItem
-        icon={<LogoutIcon />}
-        label="Logout"
-        onClick={onLogout}
-        className="logout"
-      />
-        </div>
+      <div className="topbar-right" style={{ 
+        position: 'absolute', 
+        right: '24px',
+        display: 'flex',
+        gap: '16px',
+        alignItems: 'center'
+      }}>
+        <SidebarModuleItem
+          icon={<ProfileIcon />}
+          label="Profile"
+          active={current === 'profile'}
+          onClick={() => onNavigate('profile')}
+        />
+        <SidebarModuleItem
+          icon={<LogoutIcon />}
+          label="Logout"
+          onClick={onLogout}
+          className="logout"
+        />
+      </div>
     </nav>
   );
 }

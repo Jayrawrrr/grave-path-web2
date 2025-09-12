@@ -3,6 +3,7 @@ import React, { useEffect, useState, useContext, useRef } from 'react';
 import axios from 'axios';
 import { AuthContext } from '../context/AuthContext';
 import { useReactToPrint } from 'react-to-print';
+import { FaBuilding, FaPrint, FaFilter } from 'react-icons/fa';
 import './IntermentRecordsReport.css';
 
 export default function IntermentRecordsReport() {
@@ -12,6 +13,11 @@ export default function IntermentRecordsReport() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [filters, setFilters] = useState({ plotId: '', status: '', search: '' });
+  const [showFilters, setShowFilters] = useState(false);
+  
+  // Pagination state
+  const [currentPage, setCurrentPage] = useState(1);
+  const [pageSize, setPageSize] = useState(10);
   const printRef = useRef(null);
 
   const handlePrint = useReactToPrint({
@@ -25,8 +31,13 @@ export default function IntermentRecordsReport() {
     const fetchRecords = async () => {
       setLoading(true);
       try {
+        // Fix URL construction to avoid double /api
+        const baseURL = process.env.REACT_APP_API_URL || '/api';
+        const cleanURL = baseURL.replace(/\/+$/, ''); // Remove trailing slashes
+        const endpoint = cleanURL.endsWith('/api') ? '/admin/interments' : '/api/admin/interments';
+        
         const res = await axios.get(
-          `${process.env.REACT_APP_API_URL}/admin/interments`,
+          `${cleanURL}${endpoint}`,
           { headers: { Authorization: `Bearer ${token}` } }
         );
         setRecords(res.data);
@@ -36,8 +47,8 @@ export default function IntermentRecordsReport() {
         setSummary({ total: res.data.length, upcoming: upcoming.length, past: past.length });
         setError(null);
       } catch (err) {
-        console.error(err);
-        setError('Failed to load interment records report');
+        console.error('Interment records fetch error:', err);
+        setError('Failed to load interment records report. Please try again.');
       } finally {
         setLoading(false);
       }
@@ -47,6 +58,11 @@ export default function IntermentRecordsReport() {
 
   const uniquePlotIds = Array.from(new Set(records.map(r => r.plotId))).filter(Boolean);
   const uniqueStatuses = Array.from(new Set(records.map(r => r.status))).filter(Boolean);
+
+  const handleFilterChange = (key, value) => {
+    setFilters(prev => ({ ...prev, [key]: value }));
+    setCurrentPage(1); // Reset to first page when filters change
+  };
 
   const filteredRecords = records.filter(item => {
     return (
@@ -59,13 +75,178 @@ export default function IntermentRecordsReport() {
     );
   });
 
-  if (loading) return <div>Loading interment records report…</div>;
-  if (error) return <div className="error">{error}</div>;
+  // Pagination logic
+  const totalPages = Math.ceil(filteredRecords.length / pageSize);
+  const startIndex = (currentPage - 1) * pageSize;
+  const endIndex = startIndex + pageSize;
+  const paginatedRecords = filteredRecords.slice(startIndex, endIndex);
+
+  if (loading) return <div className="loading-spinner">Loading interment records report...</div>;
+  if (error) return <div className="error-message">{error}</div>;
 
   return (
     <div className="interment-records-report-page">
-      {/* Printable section */}
-      <div className="print-area" ref={printRef}>
+      <div className="interment-records-report-header-FIXED">
+        <div className="header-content">
+          <div className="header-icon">
+            <FaBuilding />
+          </div>
+          <div className="header-text">
+            <h2>Interment Records Report</h2>
+            <p>View and manage all interment records</p>
+          </div>
+        </div>
+        <div className="header-actions">
+          <button onClick={handlePrint} className="print-btn">
+            <FaPrint /> PRINT REPORT
+          </button>
+        </div>
+      </div>
+      
+      {/* Summary Statistics */}
+      <div className="summary-stats">
+        <div className="stat-box total">
+          <span className="stat-label">Total Records</span>
+          <span className="stat-value">{summary.total}</span>
+        </div>
+        <div className="stat-box upcoming">
+          <span className="stat-label">Upcoming</span>
+          <span className="stat-value">{summary.upcoming}</span>
+        </div>
+        <div className="stat-box past">
+          <span className="stat-label">Past</span>
+          <span className="stat-value">{summary.past}</span>
+        </div>
+      </div>
+
+      {/* Filter Section */}
+      <div className="filter-actions">
+        <button 
+          className="btn btn-outline"
+          onClick={() => setShowFilters(!showFilters)}
+        >
+          <FaFilter /> {showFilters ? 'Hide' : 'Show'} Filters
+        </button>
+      </div>
+
+      {showFilters && (
+        <div className="filters-panel">
+          <div className="filter-row">
+            <div className="filter-group">
+              <label>Plot ID:</label>
+              <select 
+                value={filters.plotId} 
+                onChange={e => handleFilterChange('plotId', e.target.value)}
+              >
+                <option value="">All Plot IDs</option>
+                {uniquePlotIds.map(pid => <option key={pid} value={pid}>{pid}</option>)}
+              </select>
+            </div>
+            <div className="filter-group">
+              <label>Status:</label>
+              <select 
+                value={filters.status} 
+                onChange={e => handleFilterChange('status', e.target.value)}
+              >
+                <option value="">All Statuses</option>
+                {uniqueStatuses.map(status => <option key={status} value={status}>{status}</option>)}
+              </select>
+            </div>
+            <div className="filter-group">
+              <label>Search:</label>
+              <input 
+                type="text" 
+                placeholder="Search by name or plot ID..." 
+                value={filters.search} 
+                onChange={e => handleFilterChange('search', e.target.value)}
+              />
+            </div>
+          </div>
+          <div className="filter-row">
+            <div className="filter-group">
+              <label>Show:</label>
+              <select 
+                value={pageSize} 
+                onChange={(e) => {
+                  setPageSize(parseInt(e.target.value));
+                  setCurrentPage(1);
+                }}
+              >
+                <option value={5}>5</option>
+                <option value={10}>10</option>
+                <option value={25}>25</option>
+                <option value={50}>50</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Records Table */}
+      <div className="table-section">
+        <h3>Interment Details ({filteredRecords.length} records)</h3>
+        {filteredRecords.length === 0 ? (
+          <div className="no-records">
+            <p>No interment records found for the selected filters.</p>
+          </div>
+        ) : (
+          <>
+            <table className="report-table">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Plot ID</th>
+                  <th>Date of Interment</th>
+                  <th>Time</th>
+                  <th>Officiant</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                {paginatedRecords.map(item => (
+                <tr key={item._id}>
+                  <td className="name-cell">{item.name}</td>
+                  <td className="plot-id">{item.plotId}</td>
+                  <td>{new Date(item.intermentDate).toLocaleDateString()}</td>
+                  <td>{item.intermentTime || '—'}</td>
+                  <td>{item.officiant || '—'}</td>
+                  <td>
+                    <span className={`status-badge ${item.status?.toLowerCase()}`}>
+                      {item.status?.toUpperCase() || 'N/A'}
+                    </span>
+                  </td>
+                </tr>
+              ))}
+              </tbody>
+            </table>
+
+            {totalPages > 1 && (
+              <div className="pagination">
+                <button 
+                  className="btn btn-outline"
+                  onClick={() => setCurrentPage(prev => Math.max(1, prev - 1))}
+                  disabled={currentPage === 1}
+                >
+                  Previous
+                </button>
+                <span className="page-info">
+                  Page {currentPage} of {totalPages} ({filteredRecords.length} records)
+                </span>
+                <button 
+                  className="btn btn-outline"
+                  onClick={() => setCurrentPage(prev => Math.min(totalPages, prev + 1))}
+                  disabled={currentPage === totalPages}
+                >
+                  Next
+                </button>
+              </div>
+            )}
+          </>
+        )}
+      </div>
+
+      {/* Print Section - Hidden on screen, visible in print */}
+      <div className="print-only" ref={printRef}>
         <div className="print-header">
           <div className="logo-row">
             <img src="/gravepath1.png" alt="Grave Path Logo" className="logo" />
@@ -79,7 +260,7 @@ export default function IntermentRecordsReport() {
         </div>
 
         <h2>Interment Records Report</h2>
-        <div className="summary-stats">
+        <div className="summary-stats print-summary">
           <div className="stat-box">
             <span className="stat-label">Total Records</span>
             <span className="stat-value">{summary.total}</span>
@@ -94,7 +275,7 @@ export default function IntermentRecordsReport() {
           </div>
         </div>
 
-        <table className="report-table">
+        <table className="report-table print-table">
           <thead>
             <tr>
               <th>Name</th>
@@ -120,25 +301,12 @@ export default function IntermentRecordsReport() {
         </table>
       </div>
 
-      {/* Filters and Print button (not included in print) */}
-      <div className="filters" style={{ display: 'flex', gap: 12, marginBottom: 16 }}>
-        <select value={filters.plotId} onChange={e => setFilters(f => ({ ...f, plotId: e.target.value }))}>
-          <option value="">All Plot IDs</option>
-          {uniquePlotIds.map(pid => <option key={pid} value={pid}>{pid}</option>)}
-        </select>
-        <select value={filters.status} onChange={e => setFilters(f => ({ ...f, status: e.target.value }))}>
-          <option value="">All Statuses</option>
-          {uniqueStatuses.map(status => <option key={status} value={status}>{status}</option>)}
-        </select>
-        <input
-          type="text"
-          placeholder="Search by name or plot ID..."
-          value={filters.search}
-          onChange={e => setFilters(f => ({ ...f, search: e.target.value }))}
-        />
+      {/* Export Actions */}
+      <div className="report-actions">
+        <button className="btn-export" onClick={handlePrint}>
+          Print Report
+        </button>
       </div>
-
-      <button className="print-button" onClick={handlePrint}>Print PDF</button>
     </div>
   );
 }

@@ -1,0 +1,279 @@
+/* MapboxMap.css */
+.mapbox-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 500px;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Lot markers */
+.lot-marker {
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-weight: bold;
+  color: white;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+}
+
+.lot-marker:hover {
+  transform: scale(1.2);
+  z-index: 1000;
+}
+
+.lot-marker.available {
+  background-color: #28a745 !important;
+}
+
+.lot-marker.reserved {
+  background-color: #ffc107 !important;
+}
+
+.lot-marker.occupied {
+  background-color: #dc3545 !important;
+}
+
+.lot-marker.landmark {
+  background-color: #6c757d !important;
+  border-radius: 50% 50% 50% 0 !important;
+  transform: rotate(-45deg) !important;
+}
+
+.lot-marker.landmark:hover {
+  transform: rotate(-45deg) scale(1.2) !important;
+}
+
+/* Popup styling */
+.lot-popup {
+  min-width: 200px;
+  padding: 8px;
+}
+
+.lot-popup h4 {
+  margin: 0 0 8px 0;
+  color: #2c3e50;
+  font-size: 16px;
+}
+
+.lot-popup p {
+  margin: 4px 0;
+  font-size: 14px;
+  color: #555;
+}
+
+.lot-popup strong {
+  color: #2c3e50;
+}
+
+/* Map controls */
+.map-controls {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* FREE FEATURE: Style Switcher */
+.style-switcher {
+  background: white;
+  padding: 12px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  min-width: 150px;
+}
+
+.style-switcher h4 {
+  margin: 0 0 8px 0;
+  font-size: 14px;
+  color: #2c3e50;
+}
+
+.style-select {
+  width: 100%;
+  padding: 6px 8px;
+  border: 1px solid #dee2e6;
+  border-radius: 4px;
+  background: white;
+  color: #495057;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.style-select:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+.map-legend {
+  background: white;
+  padding: 12px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  min-width: 150px;
+}
+
+.map-legend h4 {
+  margin: 0 0 8px 0;
+  font-size: 14px;
+  color: #2c3e50;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  margin: 4px 0;
+  font-size: 12px;
+}
+
+.legend-color {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  margin-right: 8px;
+  border: 1px solid #ddd;
+}
+
+.legend-color.available {
+  background-color: #28a745;
+}
+
+.legend-color.reserved {
+  background-color: #ffc107;
+}
+
+.legend-color.occupied {
+  background-color: #dc3545;
+}
+
+.legend-color.landmark {
+  background-color: #6c757d;
+  border-radius: 50% 50% 50% 0;
+  transform: rotate(-45deg);
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .mapbox-container {
+    min-height: 400px;
+  }
+  
+  .map-controls {
+    top: 5px;
+    right: 5px;
+  }
+  
+  .map-legend {
+    padding: 8px;
+    min-width: 120px;
+  }
+  
+  .map-legend h4 {
+    font-size: 12px;
+  }
+  
+  .legend-item {
+    font-size: 11px;
+  }
+  
+  .legend-color {
+    width: 10px;
+    height: 10px;
+  }
+  
+  .lot-popup {
+    min-width: 150px;
+    padding: 6px;
+  }
+  
+  .lot-popup h4 {
+    font-size: 14px;
+  }
+  
+  .lot-popup p {
+    font-size: 12px;
+  }
+}
+
+/* Touch interactions for mobile */
+@media (hover: none) and (pointer: coarse) {
+  .lot-marker {
+    min-width: 20px;
+    min-height: 20px;
+  }
+  
+  .lot-marker:hover {
+    transform: none;
+  }
+  
+  .lot-marker:active {
+    transform: scale(1.1);
+  }
+}
+
+/* Loading state */
+.mapbox-container.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f8f9fa;
+}
+
+.mapbox-container.loading::after {
+  content: 'Loading map...';
+  color: #6c757d;
+  font-size: 16px;
+}
+
+/* Error state */
+.mapbox-container.error {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+/* Custom map style overrides */
+.mapboxgl-popup-content {
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.mapboxgl-popup-close-button {
+  font-size: 18px;
+  color: #6c757d;
+}
+
+.mapboxgl-popup-close-button:hover {
+  color: #dc3545;
+}
+
+/* Map navigation controls */
+.mapboxgl-ctrl-group {
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.mapboxgl-ctrl-group button {
+  border-radius: 0;
+}
+
+.mapboxgl-ctrl-group button:first-child {
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.mapboxgl-ctrl-group button:last-child {
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}

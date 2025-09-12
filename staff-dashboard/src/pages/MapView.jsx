@@ -49,17 +49,21 @@ const statusConfig = {
     color: '#28a745',
     label: 'Available'
   },
-  reserved: {
-    color: '#007bff',
-    label: 'Reserved'
-  },
-  active: {
-    color: '#8e8e93',
-    label: 'Active'
-  },
   unavailable: {
     color: '#dc3545',
     label: 'Unavailable'
+  },
+  reserved: {
+    color: '#007bff',
+    label: 'Pending/Reserve'
+  },
+  active: {
+    color: '#8e8e93',
+    label: 'Active/Occupied'
+  },
+  landmark: {
+    color: '#000000',
+    label: 'Landmark'
   }
 };
 
@@ -101,6 +105,17 @@ const roads = [
 
 // Entry point coordinates (where visitors start)
 const ENTRY_POINT = [mapHeight * 0.51, mapWidth * 0.3];
+
+// Columbarium building coordinates and size (based on the black square in the image)
+const COLUMBARIUM_BUILDING = {
+  bounds: [
+    [mapHeight * 0.52, mapWidth * 0.17], // Top-left corner
+    [mapHeight * 0.60, mapWidth * 0.25]  // Bottom-right corner
+  ],
+  name: 'Columbarium Building',
+  type: 'building',
+  color: '#000000'
+};
 
 // DraggableLot component
 function DraggableLot({ lot, bounds, color, onDragEnd, isEditing }) {
@@ -212,6 +227,8 @@ export default function MapView() {
   const [map, setMap] = useState(null);
   const [pathToPlot, setPathToPlot] = useState(null);
   const [error, setError] = useState(null);
+  const [showColumbariumPopup, setShowColumbariumPopup] = useState(false);
+  const [columbariumPopupPosition, setColumbariumPopupPosition] = useState(null);
 
   // Add error timeout cleanup
   useEffect(() => {
@@ -507,6 +524,51 @@ export default function MapView() {
     return path;
   };
 
+  // Function to create path to columbarium building
+  const createPathToColumbarium = () => {
+    const buildingCenter = [
+      (COLUMBARIUM_BUILDING.bounds[0][0] + COLUMBARIUM_BUILDING.bounds[1][0]) / 2,
+      (COLUMBARIUM_BUILDING.bounds[0][1] + COLUMBARIUM_BUILDING.bounds[1][1]) / 2
+    ];
+
+    const startRoadPoint = findNearestRoadPoint(ENTRY_POINT);
+    const endRoadPoint = findNearestRoadPoint(buildingCenter);
+
+    let path = [ENTRY_POINT];
+    path.push(startRoadPoint.point);
+
+    const roadPath = findPathThroughRoads(startRoadPoint, endRoadPoint);
+    path = [...path, ...roadPath];
+
+    path.push(endRoadPoint.point);
+    path.push(buildingCenter);
+
+    return path;
+  };
+
+  // Function to create point-to-point navigation between two lots
+  const createPointToPointPath = (startLot, endLot) => {
+    const startPlotCenter = getPlotCenter(startLot.bounds);
+    const endPlotCenter = getPlotCenter(endLot.bounds);
+    
+    const startPoint = [startPlotCenter[0], startPlotCenter[1]];
+    const endPoint = [endPlotCenter[0], endPlotCenter[1]];
+
+    const startRoadPoint = findNearestRoadPoint(startPoint);
+    const endRoadPoint = findNearestRoadPoint(endPoint);
+
+    let path = [startPoint]; // Start from the starting lot
+    path.push(startRoadPoint.point); // Move to nearest road
+
+    const roadPath = findPathThroughRoads(startRoadPoint, endRoadPoint);
+    path = [...path, ...roadPath]; // Navigate through road network
+
+    path.push(endRoadPoint.point); // Move from road to destination
+    path.push(endPoint); // End at the destination lot
+
+    return path;
+  };
+
   // Function to find a path through the road network
   const findPathThroughRoads = (startPoint, endPoint) => {
     let path = [];
@@ -643,6 +705,35 @@ export default function MapView() {
     setPathToPlot(null);  // Clear the navigation path
   };
 
+  // Handler for point-to-point navigation
+  const handlePointToPointNavigation = (startLot, endLot) => {
+    if (!map) {
+      console.error('Map not ready');
+      return;
+    }
+
+    console.log('Point-to-point navigation from:', startLot.id, 'to:', endLot.id);
+    
+    // Create path between the two lots
+    const path = createPointToPointPath(startLot, endLot);
+    setPathToPlot(path);
+
+    // Calculate bounds to fit both lots and the path
+    const startCenter = getPlotCenter(startLot.bounds);
+    const endCenter = getPlotCenter(endLot.bounds);
+    
+    const bounds = [
+      [Math.min(startCenter[0], endCenter[0]) - 50, Math.min(startCenter[1], endCenter[1]) - 50],
+      [Math.max(startCenter[0], endCenter[0]) + 50, Math.max(startCenter[1], endCenter[1]) + 50]
+    ];
+    
+    // Fit the map to show both lots and the navigation path
+    map.fitBounds(bounds, { padding: [50, 50] });
+
+    // Clear any existing selection
+    setSelectedLot(null);
+  };
+
   const handleMoveClick = async (newPosition) => {
     if (!lotToMove) {
       console.error('No valid lot selected for moving');
@@ -734,11 +825,51 @@ export default function MapView() {
     setLotToMove(null);
   };
 
+  const handleColumbariumClick = () => {
+    if (isEditing) return; // Don't show popup in edit mode
+    
+    const buildingCenter = [
+      (COLUMBARIUM_BUILDING.bounds[0][0] + COLUMBARIUM_BUILDING.bounds[1][0]) / 2,
+      (COLUMBARIUM_BUILDING.bounds[0][1] + COLUMBARIUM_BUILDING.bounds[1][1]) / 2
+    ];
+
+    // Create path to columbarium
+    const path = createPathToColumbarium();
+    setPathToPlot(path);
+
+    // Show popup at building center
+    setColumbariumPopupPosition(buildingCenter);
+    setShowColumbariumPopup(true);
+
+    // Clear any existing lot selection
+    setSelectedLot(null);
+  };
+
+  const handleEnterColumbarium = () => {
+    setShowColumbariumPopup(false);
+    // Navigate to columbarium management based on user role
+    const userRole = localStorage.getItem('role');
+    if (userRole === 'admin' || userRole === 'staff') {
+      window.location.href = `/${userRole}/columbarium/management`;
+    } else {
+      window.location.href = '/client/columbarium';
+    }
+  };
+
+  const handleCancelColumbarium = () => {
+    setShowColumbariumPopup(false);
+    setPathToPlot(null); // Clear navigation path
+  };
+
   return (
     <div className="mapview-wrapper">
       {error && <div className="error-message">{error}</div>}
       <div className="locator-panel">
-        <GraveLocator lots={lots} onSelect={handleLocate} />
+        <GraveLocator 
+          lots={lots} 
+          onSelect={handleLocate} 
+          onNavigate={handlePointToPointNavigation}
+        />
       </div>
 
       <div className="edit-mode-toggle">
@@ -808,6 +939,21 @@ export default function MapView() {
           />
         ))}
 
+        {/* Columbarium Building */}
+        <Rectangle
+          bounds={COLUMBARIUM_BUILDING.bounds}
+          pathOptions={{
+            color: COLUMBARIUM_BUILDING.color,
+            fillColor: COLUMBARIUM_BUILDING.color,
+            weight: 2,
+            fillOpacity: 0.8,
+            opacity: 1
+          }}
+          eventHandlers={{
+            click: handleColumbariumClick
+          }}
+        />
+
         {lots.map(lot => {
           const [[y1, x1], [y2, x2]] = lot.bounds;
           const centerY = (y1 + y2) / 2;
@@ -818,8 +964,21 @@ export default function MapView() {
             [(centerY + PLOT_HEIGHT/2) * mapHeight, (centerX + PLOT_WIDTH/2) * mapWidth]
           ];
           
-          // Use the same color handling as PlotAvailability
-          const color = getLotColor(lot.status);
+          // Use simplified status-based color logic (same as PlotAvailability)
+          let color;
+          const status = lot.status.toLowerCase();
+          
+          if (status === 'landmark' || lot.type === 'landmark') {
+            color = getLotColor('landmark'); // Black
+          } else if (status === 'available') {
+            color = getLotColor('available'); // Green
+          } else if (status === 'reserve' || status === 'reserved' || status === 'pending' || status === 'approved') {
+            color = getLotColor('reserved'); // Blue
+          } else if (status === 'active' || status === 'occupied' || status === 'confirmed') {
+            color = getLotColor('active'); // Gray
+          } else {
+            color = getLotColor('unavailable'); // Red
+          }
 
           // Highlight the lot being moved
           const isMoving = lotToMove && lotToMove.id === lot.id;

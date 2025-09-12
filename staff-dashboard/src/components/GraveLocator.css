@@ -9,6 +9,48 @@
   padding: 0;
 }
 
+/* Locator header */
+.locator-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 20px 10px 20px;
+  border-bottom: 1px solid #eee;
+}
+
+.locator-header h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  color: #333;
+  font-weight: 600;
+}
+
+.nav-mode-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  background: #fff;
+  color: #666;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.nav-mode-btn:hover {
+  background: #f8f9fa;
+  border-color: #007bff;
+  color: #007bff;
+}
+
+.nav-mode-btn.active {
+  background: #007bff;
+  border-color: #007bff;
+  color: white;
+}
+
 /* Search bar */
 .grave-locator .locator-form {
   display: flex;
@@ -102,4 +144,134 @@
   stroke: #222;
   filter: grayscale(100%);
   opacity: 0.8;
+}
+
+/* Navigation Mode Styles */
+.navigation-mode {
+  padding: 10px 0;
+}
+
+.navigation-step {
+  margin-bottom: 20px;
+  padding: 0 15px;
+}
+
+.navigation-step.completed {
+  background: #f8f9fa;
+  margin: 0 0 20px 0;
+  padding: 15px;
+  border-radius: 12px;
+  border: 1px solid #e9ecef;
+}
+
+.step-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+  font-weight: 600;
+  color: #333;
+  font-size: 0.9rem;
+}
+
+.step-header svg {
+  color: #007bff;
+}
+
+.reset-btn {
+  margin-left: auto;
+  background: none;
+  border: none;
+  color: #dc3545;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+.reset-btn:hover {
+  background: #f8d7da;
+}
+
+.selected-lot {
+  padding: 10px 12px;
+  background: #e7f3ff;
+  border: 1px solid #b3d9ff;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  color: #0066cc;
+}
+
+/* Results List */
+.locator-results {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0 0 0;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.locator-results li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 15px;
+  border-bottom: 1px solid #eee;
+  transition: background-color 0.2s;
+}
+
+.locator-results li:hover {
+  background: #f8f9fa;
+}
+
+.locator-results li:last-child {
+  border-bottom: none;
+}
+
+.lot-info {
+  flex: 1;
+  font-size: 0.9rem;
+  color: #333;
+}
+
+.lot-info strong {
+  color: #007bff;
+  font-weight: 600;
+}
+
+.lot-landmark {
+  font-size: 0.8rem;
+  color: #666;
+  margin-top: 3px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.locator-results button {
+  padding: 6px 12px;
+  border: 1px solid #007bff;
+  border-radius: 16px;
+  background: #fff;
+  color: #007bff;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.locator-results button:hover {
+  background: #007bff;
+  color: white;
+}
+
+.navigate-btn {
+  background: #28a745 !important;
+  border-color: #28a745 !important;
+  color: white !important;
+}
+
+.navigate-btn:hover {
+  background: #218838 !important;
+  border-color: #218838 !important;
 }

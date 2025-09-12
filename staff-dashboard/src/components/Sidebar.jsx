@@ -3,54 +3,160 @@ import React, { useState, useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 import './Sidebar.css';
+import { 
+  FaMap, 
+  FaEye, 
+  FaInfoCircle, 
+  FaBullhorn, 
+  FaCalendarAlt, 
+  FaChartLine, 
+  FaEdit, 
+  FaCog, 
+  FaUsers, 
+  FaFileAlt, 
+  FaClipboardList, 
+  FaChartBar, 
+  FaListAlt, 
+  FaDollarSign, 
+  FaSignOutAlt,
+  FaChevronDown,
+  FaChevronRight,
+  FaHome,
+  FaUserShield,
+  FaUserTie,
+  FaUser,
+  FaCross,
+  FaTachometerAlt,
+  FaRobot,
+  FaBuilding
+} from 'react-icons/fa';
 
 export default function Sidebar() {
-  const { role, logout } = useContext(AuthContext);
+  const { role, logout, user } = useContext(AuthContext);
   const [publicOpen, setPublicOpen]       = useState(false);
   const [reservationOpen, setReservation] = useState(false);
   const [userOpen, setUserOpen]           = useState(false);
   const [recordOpen, setRecordOpen]       = useState(false);
   const [reportsOpen, setReportsOpen]     = useState(false);
+  const [columbariumOpen, setColumbariumOpen] = useState(false);
+
+  const getRoleIcon = () => {
+    switch (role) {
+      case 'admin': return <FaUserShield className="sidebar-role-icon" />;
+      case 'staff': return <FaUserTie className="sidebar-role-icon" />;
+      case 'client': return <FaUser className="sidebar-role-icon" />;
+      default: return <FaUser className="sidebar-role-icon" />;
+    }
+  };
+
+  const getRoleColor = () => {
+    switch (role) {
+      case 'admin': return 'admin';
+      case 'staff': return 'staff';
+      case 'client': return 'client';
+      default: return 'client';
+    }
+  };
+
+  const renderHeader = () => (
+    <div className="sidebar-header">
+      <div className="sidebar-brand">
+        <div className="sidebar-brand-icon">
+          <FaHome />
+        </div>
+        <div className="sidebar-brand-text">
+          <h3>Grave Path</h3>
+          <span>Memorial Park</span>
+        </div>
+      </div>
+      
+      <div className={`sidebar-user ${getRoleColor()}`}>
+        {getRoleIcon()}
+        <div className="sidebar-user-info">
+          <span className="sidebar-user-name">{user?.name || 'User'}</span>
+          <span className="sidebar-user-role">{role?.charAt(0).toUpperCase() + role?.slice(1)}</span>
+        </div>
+      </div>
+    </div>
+  );
+
+  const renderCollapsibleItem = (icon, title, isOpen, setOpen, children) => (
+    <div className="sidebar-item collapsible">
+      <div 
+        className={`sidebar-collapsible-header ${isOpen ? 'open' : ''}`} 
+        onClick={() => setOpen(o => !o)}
+      >
+        <div className="sidebar-item-content">
+          <span className="sidebar-item-icon">{icon}</span>
+          <span className="sidebar-item-text">{title}</span>
+        </div>
+        <span className="sidebar-chevron">
+          {isOpen ? <FaChevronDown /> : <FaChevronRight />}
+        </span>
+      </div>
+      {isOpen && (
+        <div className="sidebar-collapsible-content">
+          {children}
+        </div>
+      )}
+    </div>
+  );
+
+  const renderNavLink = (to, icon, text, className = "sidebar-subitem") => (
+    <NavLink 
+      to={to} 
+      className={({isActive}) => `${className} ${isActive ? 'active' : ''}`}
+    >
+      <span className="sidebar-item-icon">{icon}</span>
+      <span className="sidebar-item-text">{text}</span>
+    </NavLink>
+  );
 
   const renderLogout = () => (
-    <button className="sidebar-logout" onClick={logout}>
-      Log Out
-    </button>
+    <div className="sidebar-footer">
+      <button className="sidebar-logout" onClick={logout}>
+        <FaSignOutAlt className="sidebar-logout-icon" />
+        <span>Log Out</span>
+      </button>
+    </div>
   );
 
   if (role === 'staff') {
     return (
       <aside className="sidebar">
-        <nav>
-          <NavLink to="/staff/map" className={({isActive}) => isActive ? 'sidebar-item active' : 'sidebar-item'}>
-            🗺️ Map
-          </NavLink>
+        {renderHeader()}
+        
+        <nav className="sidebar-nav">
+          {renderNavLink("/staff/map", <FaMap />, "Map", "sidebar-item")}
+          {renderNavLink("/staff/profile", <FaUser />, "Profile", "sidebar-item")}
 
-          <div className="sidebar-item collapsible">
-            <div className="collapsible-header" onClick={() => setPublicOpen(o => !o)}>
-              🔍 Public Access {publicOpen ? '▾' : '▸'}
-            </div>
-            {publicOpen && (
-              <div className="collapsible-content">
-                <NavLink to="/staff/public-access/info"          className="sidebar-subitem">🛈 Visitor Info</NavLink>
-                <NavLink to="/staff/public-access/announcements" className="sidebar-subitem">📢 Announcements</NavLink>
-              </div>
-            )}
-          </div>
+          {renderCollapsibleItem(
+            <FaEye />, 
+            "Public Access", 
+            publicOpen, 
+            setPublicOpen,
+            <>
+              {renderNavLink("/staff/public-access/info", <FaInfoCircle />, "Visitor Info")}
+              {renderNavLink("/admin/visitor-info/management", <FaEdit />, "Visitor Info Management")}
+              {renderNavLink("/staff/public-access/announcements", <FaBullhorn />, "Announcements")}
+            </>
+          )}
 
-          <div className="sidebar-item collapsible">
-            <div className="collapsible-header" onClick={() => setReservation(o => !o)}>
-              📅 Reservations {reservationOpen ? '▾' : '▸'}
-            </div>
-            {reservationOpen && (
-              <div className="collapsible-content">
-                <NavLink to="/staff/reservations/availability" className="sidebar-subitem">📈 Plot Availability</NavLink>
-                <NavLink to="/staff/reservations/booking"      className="sidebar-subitem">✍️ Reserve</NavLink>
-                <NavLink to="/staff/reservations/management"   className="sidebar-subitem">⚙️ Manage</NavLink>
-              </div>
-            )}
-          </div>
+          {renderCollapsibleItem(
+            <FaCalendarAlt />, 
+            "Reservations", 
+            reservationOpen, 
+            setReservation,
+            <>
+              {renderNavLink("/staff/columbarium/management", <FaBuilding />, "Columbarium")}
+              {renderNavLink("/staff/reservations/availability", <FaChartLine />, "Plot Availability")}
+              {renderNavLink("/staff/reservations/booking", <FaEdit />, "Reserve")}
+              {renderNavLink("/staff/reservations/management", <FaCog />, "Manage")}
+            </>
+          )}
+
         </nav>
+        
         {renderLogout()}
       </aside>
     );
@@ -59,75 +165,75 @@ export default function Sidebar() {
   if (role === 'admin') {
     return (
       <aside className="sidebar">
-        <nav>
-          <NavLink to="/admin/map" className={({isActive}) => isActive ? 'sidebar-item active' : 'sidebar-item'}>
-            📍 Map
-          </NavLink>
+        {renderHeader()}
+        
+        <nav className="sidebar-nav">
+          {renderNavLink("/admin/dashboard", <FaTachometerAlt />, "Dashboard", "sidebar-item")}
+          {renderNavLink("/admin/chatbot/management", <FaRobot />, "Chatbot", "sidebar-item")}
+          {renderNavLink("/admin/map", <FaMap />, "Map", "sidebar-item")}
+          {renderNavLink("/admin/profile", <FaUserShield />, "Profile", "sidebar-item")}
 
-          <div className="sidebar-item collapsible">
-            <div className="collapsible-header" onClick={() => setPublicOpen(o => !o)}>
-              🔍 Public Access {publicOpen ? '▾' : '▸'}
-            </div>
-            {publicOpen && (
-              <div className="collapsible-content">
-                <NavLink to="/admin/public-access/info"          className="sidebar-subitem">🛈 Visitor Info</NavLink>
-                <NavLink to="/admin/public-access/announcements" className="sidebar-subitem">📢 Announcements</NavLink>
-              </div>
-            )}
-          </div>
+          {renderCollapsibleItem(
+            <FaEye />, 
+            "Public Access", 
+            publicOpen, 
+            setPublicOpen,
+            <>
+              {renderNavLink("/admin/public-access/info", <FaInfoCircle />, "Visitor Info")}
+              {renderNavLink("/admin/visitor-info/management", <FaEdit />, "Visitor Info Management")}
+              {renderNavLink("/admin/public-access/announcements", <FaBullhorn />, "Announcements")}
+            </>
+          )}
 
-          <div className="sidebar-item collapsible">
-            <div className="collapsible-header" onClick={() => setReservation(o => !o)}>
-              📅 Reservations {reservationOpen ? '▾' : '▸'}
-            </div>
-            {reservationOpen && (
-              <div className="collapsible-content">
-                <NavLink to="/admin/reservations/availability" className="sidebar-subitem">📈 Plot Availability</NavLink>
-                <NavLink to="/admin/reservations/booking"      className="sidebar-subitem">✍️ Reserve</NavLink>
-                <NavLink to="/admin/reservations/management"   className="sidebar-subitem">⚙️ Manage</NavLink>
-              </div>
-            )}
-          </div>
+          {renderCollapsibleItem(
+            <FaCalendarAlt />, 
+            "Reservations", 
+            reservationOpen, 
+            setReservation,
+            <>
+              {renderNavLink("/admin/columbarium/management", <FaBuilding />, "Columbarium")}
+              {renderNavLink("/admin/reservations/availability", <FaChartLine />, "Plot Availability")}
+              {renderNavLink("/admin/reservations/booking", <FaEdit />, "Reserve")}
+              {renderNavLink("/admin/reservations/management", <FaCog />, "Manage")}
+            </>
+          )}
 
-          <div className="sidebar-item collapsible">
-            <div className="collapsible-header" onClick={() => setUserOpen(o => !o)}>
-              👥 User & Access {userOpen ? '▾' : '▸'}
-            </div>
-            {userOpen && (
-              <div className="collapsible-content">
-                <NavLink to="/admin/users" className="sidebar-subitem">👥 Manage Staff</NavLink>
-              </div>
-            )}
-          </div>
+          {renderCollapsibleItem(
+            <FaUsers />, 
+            "User & Access", 
+            userOpen, 
+            setUserOpen,
+            <>
+              {renderNavLink("/admin/users", <FaUsers />, "Manage Staff")}
+            </>
+          )}
 
-          <div className="sidebar-item collapsible">
-            <div className="collapsible-header" onClick={() => setRecordOpen(o => !o)}>
-              📑 Record Management {recordOpen ? '▾' : '▸'}
-            </div>
-            {recordOpen && (
-              <div className="collapsible-content">
-                <NavLink to="/admin/record-management/burial-records"    className="sidebar-subitem">⚰️ Burial Records</NavLink>
-                <NavLink to="/admin/record-management/interment-records" className="sidebar-subitem">📋 Interment Records</NavLink>
-              </div>
-            )}
-          </div>
+          {renderCollapsibleItem(
+            <FaFileAlt />, 
+            "Record Management", 
+            recordOpen, 
+            setRecordOpen,
+            <>
+              {renderNavLink("/admin/record-management/burial-records", <FaCross />, "Burial Records")}
+              {renderNavLink("/admin/record-management/interment-records", <FaClipboardList />, "Interment Records")}
+            </>
+          )}
 
-          <div className="sidebar-item collapsible">
-            <div className="collapsible-header" onClick={() => setReportsOpen(o => !o)}>
-              📊 Reporting {reportsOpen ? '▾' : '▸'}
-            </div>
-            {reportsOpen && (
-              <div className="collapsible-content">
-                <NavLink to="/admin/reports/activity-logs"       className="sidebar-subitem">📝 Activity Logs</NavLink>
-                <NavLink to="/admin/reports/burial-records"      className="sidebar-subitem">📈 Burial Records Report</NavLink>
-                <NavLink to="/admin/reports/interment-records"   className="sidebar-subitem">📊 Interment Records Report</NavLink>
-                <NavLink to="/admin/reports/financial"           className="sidebar-subitem">💰 Financial Report</NavLink>
-                <NavLink to="/admin/reports/statistics"          className="sidebar-subitem">📈 Statistics Dashboard</NavLink>
-                <NavLink to="/admin/reports/reservations"        className="sidebar-subitem">📅 Reservation Reports</NavLink>
-              </div>
-            )}
-          </div>
+          {renderCollapsibleItem(
+            <FaChartBar />, 
+            "Reporting", 
+            reportsOpen, 
+            setReportsOpen,
+            <>
+              {renderNavLink("/admin/reports/activity-logs", <FaListAlt />, "Activity Logs")}
+              {renderNavLink("/admin/reports/burial-records", <FaChartLine />, "Burial Records Report")}
+              {renderNavLink("/admin/reports/interment-records", <FaChartBar />, "Interment Records Report")}
+              {renderNavLink("/admin/reports/financial", <FaDollarSign />, "Financial Report")}
+              {renderNavLink("/admin/reports/reservations", <FaCalendarAlt />, "Reservation Reports")}
+            </>
+          )}
         </nav>
+        
         {renderLogout()}
       </aside>
     );
@@ -136,35 +242,35 @@ export default function Sidebar() {
   if (role === 'client') {
     return (
       <aside className="sidebar">
-        <nav>
-          <NavLink to="/client/map" className={({isActive}) => isActive ? 'sidebar-item active' : 'sidebar-item'}>
-            🗺️ Map
-          </NavLink>
+        {renderHeader()}
+        
+        <nav className="sidebar-nav">
+          {renderNavLink("/client/map", <FaMap />, "Map", "sidebar-item")}
+          {renderNavLink("/client/profile", <FaUser />, "Profile", "sidebar-item")}
 
-          <div className="sidebar-item collapsible">
-            <div className="collapsible-header" onClick={() => setPublicOpen(o => !o)}>
-              🔍 Public Access {publicOpen ? '▾' : '▸'}
-            </div>
-            {publicOpen && (
-              <div className="collapsible-content">
-                <NavLink to="/client/visitor-info"   className="sidebar-subitem">🛈 Visitor Info</NavLink>
-              </div>
-            )}
-          </div>
+          {renderCollapsibleItem(
+            <FaEye />, 
+            "Public Access", 
+            publicOpen, 
+            setPublicOpen,
+            <>
+              {renderNavLink("/client/visitor-info", <FaInfoCircle />, "Visitor Info")}
+            </>
+          )}
 
-          <div className="sidebar-item collapsible">
-            <div className="collapsible-header" onClick={() => setReservation(o => !o)}>
-              📅 Reservations {reservationOpen ? '▾' : '▸'}
-            </div>
-            {reservationOpen && (
-              <div className="collapsible-content">
-                <NavLink to="/client/reservations/availability" className="sidebar-subitem">📈 Plot Availability</NavLink>
-                <NavLink to="/client/reservations/booking"      className="sidebar-subitem">✍️ Reserve</NavLink>
-                <NavLink to="/client/reservations/management"   className="sidebar-subitem">⚙️ My Reservations</NavLink>
-              </div>
-            )}
-          </div>
+          {renderCollapsibleItem(
+            <FaCalendarAlt />, 
+            "Reservations", 
+            reservationOpen, 
+            setReservation,
+            <>
+              {renderNavLink("/client/reservations/availability", <FaChartLine />, "Plot Availability")}
+              {renderNavLink("/client/reservations/booking", <FaEdit />, "Reserve")}
+              {renderNavLink("/client/reservations/management", <FaCog />, "My Reservations")}
+            </>
+          )}
         </nav>
+        
         {renderLogout()}
       </aside>
     );
