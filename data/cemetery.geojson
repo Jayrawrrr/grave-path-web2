@@ -1,0 +1,153 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Garden A",
+        "type": "garden",
+        "id": "garden-a"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [121.069415, 14.53879],
+          [121.069888, 14.538776],
+          [121.069876, 14.538393],
+          [121.069403, 14.538394],
+          [121.069415, 14.53879]
+        ]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Garden B",
+        "type": "garden",
+        "id": "garden-b"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [121.069928, 14.538777],
+          [121.070611, 14.538762],
+          [121.070609, 14.538391],
+          [121.069919, 14.53839],
+          [121.069928, 14.538777]
+        ]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Garden C",
+        "type": "garden",
+        "id": "garden-c"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [121.070769, 14.538362],
+          [121.071787, 14.538341],
+          [121.07189, 14.538103],
+          [121.070762, 14.53812],
+          [121.070769, 14.538362]
+        ]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Main Entrance Path",
+        "type": "road",
+        "roadId": "main-entrance-path"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [121.06912990201427, 14.53814713981777],
+          [121.06920165712648, 14.538409566278938],
+          [121.0712586366533, 14.537806991461068]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Chapel to Columbarium Path",
+        "type": "road",
+        "roadId": "chapel-columbarium-path"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [121.0712586366533, 14.537806991461068],
+          [121.0691971461874, 14.537855022845381]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Office to Columbarium Path",
+        "type": "road",
+        "roadId": "office-columbarium-path"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [121.06920165712648, 14.538409566278938],
+          [121.0691971461874, 14.537855022845381]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Main Chapel",
+        "type": "landmark",
+        "landmarkType": "chapel"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [121.0712586366533, 14.537806991461068]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Entrance",
+        "type": "landmark",
+        "landmarkType": "entrance"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [121.06912990201427, 14.53814713981777]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Office",
+        "type": "landmark",
+        "landmarkType": "office"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [121.06920165712648, 14.538409566278938]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Columbarium",
+        "type": "landmark",
+        "landmarkType": "columbarium"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [121.0691971461874, 14.537855022845381]
+      }
+    }
+  ]
+}
