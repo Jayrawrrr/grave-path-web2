@@ -1,0 +1,432 @@
+{
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Main Entrance Road",
+        "type": "main",
+        "description": "Primary entrance road from main gate"
+      },
+      "geometry": {
+        "coordinates": [
+          [121.068655, 14.538215],
+          [121.069128, 14.538134],
+          [121.069891, 14.538123],
+          [121.070494, 14.538094],
+          [121.071009, 14.537904]
+        ],
+        "type": "LineString"
+      },
+      "id": "main-entrance-road"
+    },
+    {
+      "type": "Feature", 
+      "properties": {
+        "name": "Central Loop Road",
+        "type": "main",
+        "description": "Main loop connecting all gardens"
+      },
+      "geometry": {
+        "coordinates": [
+          [121.069891, 14.538123],
+          [121.069854, 14.537866],
+          [121.070484, 14.537852],
+          [121.070484, 14.537673],
+          [121.069842, 14.537695],
+          [121.069845, 14.537525],
+          [121.070478, 14.537501],
+          [121.070467, 14.537189],
+          [121.069127, 14.537029],
+          [121.069468, 14.537538],
+          [121.069841, 14.537524],
+          [121.069848, 14.537411],
+          [121.069844, 14.537695],
+          [121.069852, 14.53787],
+          [121.069434, 14.537879],
+          [121.06944, 14.537716],
+          [121.069845, 14.537695]
+        ],
+        "type": "LineString"
+      },
+      "id": "central-loop"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Northern Cemetery Road",
+        "type": "main",
+        "description": "Northern perimeter road"
+      },
+      "geometry": {
+        "coordinates": [
+          [121.069406, 14.538807],
+          [121.070623, 14.538781],
+          [121.071284, 14.538775],
+          [121.071977, 14.538766],
+          [121.072071, 14.538792],
+          [121.072213, 14.538879],
+          [121.072266, 14.538873],
+          [121.072315, 14.538786]
+        ],
+        "type": "LineString"
+      },
+      "id": "northern-road"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Eastern Cemetery Road", 
+        "type": "main",
+        "description": "Eastern section connecting to chapel"
+      },
+      "geometry": {
+        "coordinates": [
+          [121.071009, 14.537904],
+          [121.071337, 14.537872],
+          [121.071943, 14.537859],
+          [121.072582, 14.538089],
+          [121.072591, 14.538088],
+          [121.072698, 14.537876],
+          [121.073245, 14.537386],
+          [121.073448, 14.537161]
+        ],
+        "type": "LineString"
+      },
+      "id": "eastern-road"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Western Garden Access",
+        "type": "pathway",
+        "description": "Access to Garden A"
+      },
+      "geometry": {
+        "coordinates": [
+          [121.069891, 14.538123],
+          [121.069403, 14.538394],
+          [121.069393, 14.538385],
+          [121.069388, 14.538127]
+        ],
+        "type": "LineString"
+      },
+      "id": "garden-a-access"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Garden B Access Path",
+        "type": "pathway",
+        "description": "Direct access to Garden B"
+      },
+      "geometry": {
+        "coordinates": [
+          [121.070494, 14.538094],
+          [121.070499, 14.538098],
+          [121.070498, 14.538374],
+          [121.070621, 14.538377],
+          [121.070721, 14.538377],
+          [121.070754, 14.538371]
+        ],
+        "type": "LineString"
+      },
+      "id": "garden-b-access"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Garden C Main Path",
+        "type": "pathway",
+        "description": "Primary path through Garden C"
+      },
+      "geometry": {
+        "coordinates": [
+          [121.071337, 14.537872],
+          [121.071443, 14.53787],
+          [121.071439, 14.538099],
+          [121.071328, 14.538775],
+          [121.071329, 14.538364],
+          [121.071663, 14.538359],
+          [121.071802, 14.538356]
+        ],
+        "type": "LineString"
+      },
+      "id": "garden-c-main"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Chapel Access Road",
+        "type": "pathway",
+        "description": "Road to chapel area"
+      },
+      "geometry": {
+        "coordinates": [
+          [121.071009, 14.537904],
+          [121.071014, 14.537335],
+          [121.071000, 14.537008],
+          [121.071039, 14.536961],
+          [121.071094, 14.536974],
+          [121.071247, 14.537185],
+          [121.071545, 14.537557],
+          [121.071691, 14.537686],
+          [121.071937, 14.537858]
+        ],
+        "type": "LineString"
+      },
+      "id": "chapel-access"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Service Road North",
+        "type": "pathway",
+        "description": "Northern service pathway"
+      },
+      "geometry": {
+        "coordinates": [
+          [121.069331, 14.539142],
+          [121.069915, 14.539121],
+          [121.070621, 14.539106],
+          [121.070621, 14.538781]
+        ],
+        "type": "LineString"
+      },
+      "id": "service-north"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Eastern Walkway",
+        "type": "pathway",
+        "description": "Eastern pedestrian path"
+      },
+      "geometry": {
+        "coordinates": [
+          [121.072315, 14.538786],
+          [121.072378, 14.538243],
+          [121.072471, 14.538051],
+          [121.072602, 14.537812],
+          [121.072697, 14.537879]
+        ],
+        "type": "LineString"
+      },
+      "id": "eastern-walkway"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Columbarium Circuit",
+        "type": "pathway",
+        "description": "Path around columbarium"
+      },
+      "geometry": {
+        "coordinates": [
+          [121.069388, 14.538127],
+          [121.069127, 14.537029],
+          [121.070467, 14.537189],
+          [121.070475, 14.537006],
+          [121.071000, 14.537008]
+        ],
+        "type": "LineString"
+      },
+      "id": "columbarium-circuit"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Garden Connector Path",
+        "type": "pathway",
+        "description": "Connects all three gardens"
+      },
+      "geometry": {
+        "coordinates": [
+          [121.069403, 14.538394],
+          [121.069415, 14.53879],
+          [121.069888, 14.538776],
+          [121.069928, 14.538777],
+          [121.070611, 14.538762],
+          [121.070769, 14.538362],
+          [121.071329, 14.538364]
+        ],
+        "type": "LineString"
+      },
+      "id": "garden-connector"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Restroom Access Path",
+        "type": "pathway",
+        "description": "Access to restroom facilities"
+      },
+      "geometry": {
+        "coordinates": [
+          [121.071802, 14.538356],
+          [121.071879, 14.538307],
+          [121.071915, 14.538062],
+          [121.072004, 14.538719],
+          [121.072039, 14.538783],
+          [121.071708, 14.539057],
+          [121.071287, 14.539065]
+        ],
+        "type": "LineString"
+      },
+      "id": "restroom-access"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Southern Service Path",
+        "type": "pathway",
+        "description": "Southern maintenance access"
+      },
+      "geometry": {
+        "coordinates": [
+          [121.071221, 14.536659],
+          [121.071429, 14.536553],
+          [121.071037, 14.536959],
+          [121.071031, 14.536867],
+          [121.071041, 14.536795],
+          [121.071092, 14.53673],
+          [121.07122, 14.536657]
+        ],
+        "type": "LineString"
+      },
+      "id": "southern-service"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "type": "garden",
+        "name": "Garden A"
+      },
+      "geometry": {
+        "coordinates": [
+          [
+            [121.069415, 14.53879],
+            [121.069888, 14.538776],
+            [121.069876, 14.538393],
+            [121.069403, 14.538394],
+            [121.069415, 14.53879]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "id": "garden-a"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "type": "garden",
+        "name": "Garden B"
+      },
+      "geometry": {
+        "coordinates": [
+          [
+            [121.069928, 14.538777],
+            [121.070611, 14.538762],
+            [121.070609, 14.538391],
+            [121.069919, 14.53839],
+            [121.069928, 14.538777]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "id": "garden-b"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "type": "garden",
+        "name": "Garden C"
+      },
+      "geometry": {
+        "coordinates": [
+          [
+            [121.070769, 14.538362],
+            [121.071787, 14.538341],
+            [121.07189, 14.538103],
+            [121.070762, 14.53812],
+            [121.070769, 14.538362]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "id": "garden-c"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Main Building",
+        "type": "landmark"
+      },
+      "geometry": {
+        "coordinates": [121.069217, 14.538334],
+        "type": "Point"
+      },
+      "id": "main-building"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Chapel",
+        "type": "landmark"
+      },
+      "geometry": {
+        "coordinates": [121.071317, 14.537649],
+        "type": "Point"
+      },
+      "id": "chapel"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Columbarium",
+        "type": "landmark"
+      },
+      "geometry": {
+        "coordinates": [121.069129, 14.538037],
+        "type": "Point"
+      },
+      "id": "columbarium"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Restroom 1",
+        "type": "landmark"
+      },
+      "geometry": {
+        "coordinates": [121.071879, 14.538307],
+        "type": "Point"
+      },
+      "id": "restroom-1"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Restroom 2",
+        "type": "landmark"
+      },
+      "geometry": {
+        "coordinates": [121.072004, 14.538719],
+        "type": "Point"
+      },
+      "id": "restroom-2"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Restroom 3",
+        "type": "landmark"
+      },
+      "geometry": {
+        "coordinates": [121.071708, 14.539057],
+        "type": "Point"
+      },
+      "id": "restroom-3"
+    }
+  ],
+  "type": "FeatureCollection"
+}
