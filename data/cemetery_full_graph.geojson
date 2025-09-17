@@ -1638,6 +1638,81 @@
           ]
         ]
       }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "edge_id": "e43",
+        "road_id": "main-north-connection",
+        "from": "n3",
+        "to": "n14",
+        "type": "main",
+        "length_m": 150.0,
+        "description": "Connection between main road system and northern cemetery"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            121.069891,
+            14.538123
+          ],
+          [
+            121.069406,
+            14.538807
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "edge_id": "e44",
+        "road_id": "main-south-service",
+        "from": "n12",
+        "to": "n42",
+        "type": "service",
+        "length_m": 100.0,
+        "description": "Connection between main road system and southern service area"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            121.069127,
+            14.537029
+          ],
+          [
+            121.071221,
+            14.536659
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "edge_id": "e45",
+        "road_id": "main-north-service",
+        "from": "n3",
+        "to": "n33",
+        "type": "service",
+        "length_m": 120.0,
+        "description": "Connection between main road system and northern service area"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            121.069891,
+            14.538123
+          ],
+          [
+            121.069331,
+            14.539142
+          ]
+        ]
+      }
     }
   ]
 }
