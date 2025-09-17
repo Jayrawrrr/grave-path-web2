@@ -1,0 +1,1715 @@
+{
+  "graph": {
+    "type": "undirected",
+    "description": "Cemetery road network with main roads and pedestrian pathways",
+    "metadata": {
+      "location": "Manila, Philippines",
+      "coordinate_system": "WGS84",
+      "total_nodes": 52,
+      "total_edges": 62,
+      "road_types": [
+        "main",
+        "pathway"
+      ],
+      "landmarks": 6
+    }
+  },
+  "nodes": [
+    {
+      "id": "n1",
+      "coordinates": [
+        121.068655,
+        14.538215
+      ],
+      "type": "entrance",
+      "description": "Main entrance gate"
+    },
+    {
+      "id": "n2",
+      "coordinates": [
+        121.069128,
+        14.538134
+      ],
+      "type": "intersection"
+    },
+    {
+      "id": "n3",
+      "coordinates": [
+        121.069891,
+        14.538123
+      ],
+      "type": "major_intersection",
+      "description": "Central hub"
+    },
+    {
+      "id": "n4",
+      "coordinates": [
+        121.069929,
+        14.539526
+      ],
+      "type": "endpoint"
+    },
+    {
+      "id": "n5",
+      "coordinates": [
+        121.069925,
+        14.539417
+      ],
+      "type": "intersection"
+    },
+    {
+      "id": "n6",
+      "coordinates": [
+        121.06943,
+        14.539427
+      ],
+      "type": "intersection"
+    },
+    {
+      "id": "n7",
+      "coordinates": [
+        121.069378,
+        14.539381
+      ],
+      "type": "intersection"
+    },
+    {
+      "id": "n8",
+      "coordinates": [
+        121.06933,
+        14.539137
+      ],
+      "type": "intersection"
+    },
+    {
+      "id": "n9",
+      "coordinates": [
+        121.06932,
+        14.538877
+      ],
+      "type": "intersection"
+    },
+    {
+      "id": "n10",
+      "coordinates": [
+        121.069342,
+        14.538827
+      ],
+      "type": "intersection"
+    },
+    {
+      "id": "n11",
+      "coordinates": [
+        121.069406,
+        14.538807
+      ],
+      "type": "major_intersection",
+      "description": "Northern road junction"
+    },
+    {
+      "id": "n12",
+      "coordinates": [
+        121.070623,
+        14.538781
+      ],
+      "type": "intersection"
+    },
+    {
+      "id": "n13",
+      "coordinates": [
+        121.071977,
+        14.538766
+      ],
+      "type": "intersection"
+    },
+    {
+      "id": "n14",
+      "coordinates": [
+        121.072071,
+        14.538792
+      ],
+      "type": "intersection"
+    },
+    {
+      "id": "n15",
+      "coordinates": [
+        121.072213,
+        14.538879
+      ],
+      "type": "intersection"
+    },
+    {
+      "id": "n16",
+      "coordinates": [
+        121.072266,
+        14.538873
+      ],
+      "type": "intersection"
+    },
+    {
+      "id": "n17",
+      "coordinates": [
+        121.072315,
+        14.538786
+      ],
+      "type": "intersection"
+    },
+    {
+      "id": "n18",
+      "coordinates": [
+        121.072591,
+        14.538088
+      ],
+      "type": "intersection"
+    },
+    {
+      "id": "n19",
+      "coordinates": [
+        121.072698,
+        14.537876
+      ],
+      "type": "intersection"
+    },
+    {
+      "id": "n20",
+      "coordinates": [
+        121.073245,
+        14.537386
+      ],
+      "type": "intersection"
+    },
+    {
+      "id": "n21",
+      "coordinates": [
+        121.073448,
+        14.537161
+      ],
+      "type": "endpoint",
+      "description": "Eastern terminus"
+    },
+    {
+      "id": "n22",
+      "coordinates": [
+        121.071009,
+        14.537904
+      ],
+      "type": "major_intersection",
+      "description": "Eastern junction"
+    },
+    {
+      "id": "n23",
+      "coordinates": [
+        121.070494,
+        14.538094
+      ],
+      "type": "intersection"
+    },
+    {
+      "id": "n24",
+      "coordinates": [
+        121.069888,
+        14.538122
+      ],
+      "type": "intersection"
+    },
+    {
+      "id": "n25",
+      "coordinates": [
+        121.069854,
+        14.537866
+      ],
+      "type": "intersection"
+    },
+    {
+      "id": "n26",
+      "coordinates": [
+        121.070484,
+        14.537852
+      ],
+      "type": "intersection"
+    },
+    {
+      "id": "n27",
+      "coordinates": [
+        121.070484,
+        14.537673
+      ],
+      "type": "intersection"
+    },
+    {
+      "id": "n28",
+      "coordinates": [
+        121.069842,
+        14.537695
+      ],
+      "type": "intersection"
+    },
+    {
+      "id": "n29",
+      "coordinates": [
+        121.069845,
+        14.537525
+      ],
+      "type": "intersection"
+    },
+    {
+      "id": "n30",
+      "coordinates": [
+        121.070478,
+        14.537501
+      ],
+      "type": "intersection"
+    },
+    {
+      "id": "n31",
+      "coordinates": [
+        121.070467,
+        14.537189
+      ],
+      "type": "intersection"
+    },
+    {
+      "id": "n32",
+      "coordinates": [
+        121.069127,
+        14.537029
+      ],
+      "type": "intersection"
+    },
+    {
+      "id": "n33",
+      "coordinates": [
+        121.070482,
+        14.537674
+      ],
+      "type": "intersection"
+    },
+    {
+      "id": "n34",
+      "coordinates": [
+        121.070477,
+        14.5375
+      ],
+      "type": "intersection"
+    },
+    {
+      "id": "n35",
+      "coordinates": [
+        121.069468,
+        14.537538
+      ],
+      "type": "intersection"
+    },
+    {
+      "id": "n36",
+      "coordinates": [
+        121.069841,
+        14.537524
+      ],
+      "type": "intersection"
+    },
+    {
+      "id": "n37",
+      "coordinates": [
+        121.069848,
+        14.537411
+      ],
+      "type": "intersection"
+    },
+    {
+      "id": "n38",
+      "coordinates": [
+        121.069434,
+        14.537879
+      ],
+      "type": "intersection"
+    },
+    {
+      "id": "n39",
+      "coordinates": [
+        121.069852,
+        14.53787
+      ],
+      "type": "intersection"
+    },
+    {
+      "id": "n40",
+      "coordinates": [
+        121.069844,
+        14.537695
+      ],
+      "type": "intersection"
+    },
+    {
+      "id": "n41",
+      "coordinates": [
+        121.06944,
+        14.537716
+      ],
+      "type": "intersection"
+    },
+    {
+      "id": "n42",
+      "coordinates": [
+        121.071287,
+        14.539065
+      ],
+      "type": "intersection"
+    },
+    {
+      "id": "n43",
+      "coordinates": [
+        121.071284,
+        14.538775
+      ],
+      "type": "intersection"
+    },
+    {
+      "id": "n44",
+      "coordinates": [
+        121.072582,
+        14.538089
+      ],
+      "type": "intersection"
+    },
+    {
+      "id": "n45",
+      "coordinates": [
+        121.071937,
+        14.537858
+      ],
+      "type": "intersection"
+    },
+    {
+      "id": "n46",
+      "coordinates": [
+        121.071691,
+        14.537686
+      ],
+      "type": "intersection"
+    },
+    {
+      "id": "n47",
+      "coordinates": [
+        121.071545,
+        14.537557
+      ],
+      "type": "intersection"
+    },
+    {
+      "id": "n48",
+      "coordinates": [
+        121.071247,
+        14.537185
+      ],
+      "type": "intersection"
+    },
+    {
+      "id": "n49",
+      "coordinates": [
+        121.071094,
+        14.536974
+      ],
+      "type": "intersection"
+    },
+    {
+      "id": "n50",
+      "coordinates": [
+        121.071039,
+        14.536961
+      ],
+      "type": "intersection"
+    },
+    {
+      "id": "n51",
+      "coordinates": [
+        121.071,
+        14.537008
+      ],
+      "type": "intersection"
+    },
+    {
+      "id": "n52",
+      "coordinates": [
+        121.071014,
+        14.537335
+      ],
+      "type": "intersection"
+    },
+    {
+      "id": "n53",
+      "coordinates": [
+        121.071337,
+        14.537872
+      ],
+      "type": "intersection"
+    },
+    {
+      "id": "n54",
+      "coordinates": [
+        121.071943,
+        14.537859
+      ],
+      "type": "intersection"
+    }
+  ],
+  "landmarks": [
+    {
+      "id": "chapel",
+      "coordinates": [
+        121.071317,
+        14.537649
+      ],
+      "type": "landmark",
+      "name": "Chapel",
+      "nearest_node": "n47"
+    },
+    {
+      "id": "columbarium",
+      "coordinates": [
+        121.069129,
+        14.538037
+      ],
+      "type": "landmark",
+      "name": "Columbarium",
+      "nearest_node": "n32"
+    },
+    {
+      "id": "main_building",
+      "coordinates": [
+        121.069217,
+        14.538334
+      ],
+      "type": "landmark",
+      "name": "Main Building",
+      "nearest_node": "n3"
+    },
+    {
+      "id": "restroom_1",
+      "coordinates": [
+        121.071879,
+        14.538307
+      ],
+      "type": "landmark",
+      "name": "Restroom 1",
+      "nearest_node": "n45"
+    },
+    {
+      "id": "restroom_2",
+      "coordinates": [
+        121.072004,
+        14.538719
+      ],
+      "type": "landmark",
+      "name": "Restroom 2",
+      "nearest_node": "n17"
+    },
+    {
+      "id": "restroom_3",
+      "coordinates": [
+        121.071708,
+        14.539057
+      ],
+      "type": "landmark",
+      "name": "Restroom 3",
+      "nearest_node": "n42"
+    }
+  ],
+  "edges": [
+    {
+      "id": "e1",
+      "source": "n1",
+      "target": "n2",
+      "type": "main",
+      "weight": 0.053,
+      "name": "Main Entrance Road Segment 1"
+    },
+    {
+      "id": "e2",
+      "source": "n2",
+      "target": "n3",
+      "type": "main",
+      "weight": 0.081,
+      "name": "Main Entrance Road Segment 2"
+    },
+    {
+      "id": "e3",
+      "source": "n3",
+      "target": "n4",
+      "type": "main",
+      "weight": 0.14,
+      "name": "Main Entrance Road Segment 3"
+    },
+    {
+      "id": "e4",
+      "source": "n5",
+      "target": "n6",
+      "type": "main",
+      "weight": 0.049,
+      "name": "Northern Main Road Segment 1"
+    },
+    {
+      "id": "e5",
+      "source": "n6",
+      "target": "n7",
+      "type": "main",
+      "weight": 0.007,
+      "name": "Northern Main Road Segment 2"
+    },
+    {
+      "id": "e6",
+      "source": "n7",
+      "target": "n8",
+      "type": "main",
+      "weight": 0.028,
+      "name": "Northern Main Road Segment 3"
+    },
+    {
+      "id": "e7",
+      "source": "n8",
+      "target": "n9",
+      "type": "main",
+      "weight": 0.029,
+      "name": "Northern Main Road Segment 4"
+    },
+    {
+      "id": "e8",
+      "source": "n9",
+      "target": "n10",
+      "type": "main",
+      "weight": 0.006,
+      "name": "Northern Main Road Segment 5"
+    },
+    {
+      "id": "e9",
+      "source": "n10",
+      "target": "n11",
+      "type": "main",
+      "weight": 0.007,
+      "name": "Northern Main Road Segment 6"
+    },
+    {
+      "id": "e10",
+      "source": "n11",
+      "target": "n12",
+      "type": "main",
+      "weight": 0.135,
+      "name": "Northern Perimeter Road Segment 1"
+    },
+    {
+      "id": "e11",
+      "source": "n12",
+      "target": "n13",
+      "type": "main",
+      "weight": 0.151,
+      "name": "Northern Perimeter Road Segment 2"
+    },
+    {
+      "id": "e12",
+      "source": "n13",
+      "target": "n14",
+      "type": "main",
+      "weight": 0.01,
+      "name": "Northern Perimeter Road Segment 3"
+    },
+    {
+      "id": "e13",
+      "source": "n14",
+      "target": "n15",
+      "type": "main",
+      "weight": 0.016,
+      "name": "Northern Perimeter Road Segment 4"
+    },
+    {
+      "id": "e14",
+      "source": "n15",
+      "target": "n16",
+      "type": "main",
+      "weight": 0.006,
+      "name": "Northern Perimeter Road Segment 5"
+    },
+    {
+      "id": "e15",
+      "source": "n16",
+      "target": "n17",
+      "type": "main",
+      "weight": 0.01,
+      "name": "Northern Perimeter Road Segment 6"
+    },
+    {
+      "id": "e16",
+      "source": "n17",
+      "target": "n18",
+      "type": "main",
+      "weight": 0.076,
+      "name": "Eastern Main Road Segment 1"
+    },
+    {
+      "id": "e17",
+      "source": "n18",
+      "target": "n19",
+      "type": "main",
+      "weight": 0.024,
+      "name": "Eastern Main Road Segment 2"
+    },
+    {
+      "id": "e18",
+      "source": "n19",
+      "target": "n20",
+      "type": "main",
+      "weight": 0.077,
+      "name": "Eastern Main Road Segment 3"
+    },
+    {
+      "id": "e19",
+      "source": "n20",
+      "target": "n21",
+      "type": "main",
+      "weight": 0.032,
+      "name": "Eastern Main Road Segment 4"
+    },
+    {
+      "id": "e20",
+      "source": "n22",
+      "target": "n23",
+      "type": "main",
+      "weight": 0.064,
+      "name": "Central Loop Segment 1"
+    },
+    {
+      "id": "e21",
+      "source": "n23",
+      "target": "n24",
+      "type": "main",
+      "weight": 0.067,
+      "name": "Central Loop Segment 2"
+    },
+    {
+      "id": "e22",
+      "source": "n24",
+      "target": "n25",
+      "type": "main",
+      "weight": 0.029,
+      "name": "Central Loop Segment 3"
+    },
+    {
+      "id": "e23",
+      "source": "n25",
+      "target": "n26",
+      "type": "main",
+      "weight": 0.07,
+      "name": "Central Loop Segment 4"
+    },
+    {
+      "id": "e24",
+      "source": "n26",
+      "target": "n27",
+      "type": "main",
+      "weight": 0.02,
+      "name": "Central Loop Segment 5"
+    },
+    {
+      "id": "e25",
+      "source": "n27",
+      "target": "n28",
+      "type": "main",
+      "weight": 0.071,
+      "name": "Central Loop Segment 6"
+    },
+    {
+      "id": "e26",
+      "source": "n28",
+      "target": "n29",
+      "type": "main",
+      "weight": 0.019,
+      "name": "Central Loop Segment 7"
+    },
+    {
+      "id": "e27",
+      "source": "n29",
+      "target": "n30",
+      "type": "main",
+      "weight": 0.07,
+      "name": "Central Loop Segment 8"
+    },
+    {
+      "id": "e28",
+      "source": "n30",
+      "target": "n31",
+      "type": "main",
+      "weight": 0.035,
+      "name": "Central Loop Segment 9"
+    },
+    {
+      "id": "e29",
+      "source": "n31",
+      "target": "n32",
+      "type": "main",
+      "weight": 0.149,
+      "name": "Central Loop Segment 10"
+    },
+    {
+      "id": "e30",
+      "source": "n33",
+      "target": "n34",
+      "type": "main",
+      "weight": 0.019,
+      "name": "Secondary Loop Segment 1"
+    },
+    {
+      "id": "e31",
+      "source": "n34",
+      "target": "n35",
+      "type": "main",
+      "weight": 0.112,
+      "name": "Secondary Loop Segment 2"
+    },
+    {
+      "id": "e32",
+      "source": "n36",
+      "target": "n37",
+      "type": "main",
+      "weight": 0.013,
+      "name": "Minor Loop Segment 1"
+    },
+    {
+      "id": "e33",
+      "source": "n38",
+      "target": "n39",
+      "type": "main",
+      "weight": 0.046,
+      "name": "Cross Connection Segment 1"
+    },
+    {
+      "id": "e34",
+      "source": "n39",
+      "target": "n40",
+      "type": "main",
+      "weight": 0.019,
+      "name": "Cross Connection Segment 2"
+    },
+    {
+      "id": "e35",
+      "source": "n40",
+      "target": "n41",
+      "type": "main",
+      "weight": 0.045,
+      "name": "Cross Connection Segment 3"
+    },
+    {
+      "id": "e36",
+      "source": "n42",
+      "target": "n43",
+      "type": "main",
+      "weight": 0.032,
+      "name": "Northern Access Segment"
+    },
+    {
+      "id": "e37",
+      "source": "n44",
+      "target": "n45",
+      "type": "main",
+      "weight": 0.071,
+      "name": "Eastern Access Segment 1"
+    },
+    {
+      "id": "e38",
+      "source": "n45",
+      "target": "n46",
+      "type": "main",
+      "weight": 0.028,
+      "name": "Chapel Road Segment 1"
+    },
+    {
+      "id": "e39",
+      "source": "n46",
+      "target": "n47",
+      "type": "main",
+      "weight": 0.019,
+      "name": "Chapel Road Segment 2"
+    },
+    {
+      "id": "e40",
+      "source": "n47",
+      "target": "n48",
+      "type": "main",
+      "weight": 0.047,
+      "name": "Chapel Road Segment 3"
+    },
+    {
+      "id": "e41",
+      "source": "n48",
+      "target": "n49",
+      "type": "main",
+      "weight": 0.024,
+      "name": "Chapel Road Segment 4"
+    },
+    {
+      "id": "e42",
+      "source": "n49",
+      "target": "n50",
+      "type": "main",
+      "weight": 0.006,
+      "name": "Chapel Road Segment 5"
+    },
+    {
+      "id": "e43",
+      "source": "n50",
+      "target": "n51",
+      "type": "main",
+      "weight": 0.005,
+      "name": "Chapel Road Segment 6"
+    },
+    {
+      "id": "e44",
+      "source": "n51",
+      "target": "n52",
+      "type": "main",
+      "weight": 0.036,
+      "name": "Chapel Road Segment 7"
+    },
+    {
+      "id": "e45",
+      "source": "n52",
+      "target": "n22",
+      "type": "main",
+      "weight": 0.063,
+      "name": "Chapel Road Segment 8"
+    },
+    {
+      "id": "e46",
+      "source": "n22",
+      "target": "n53",
+      "type": "main",
+      "weight": 0.037,
+      "name": "Eastern Junction Connection"
+    },
+    {
+      "id": "e47",
+      "source": "n53",
+      "target": "n54",
+      "type": "main",
+      "weight": 0.068,
+      "name": "Eastern Road Connection"
+    },
+    {
+      "id": "e48",
+      "source": "n3",
+      "target": "n24",
+      "type": "pathway",
+      "weight": 0.001,
+      "name": "Central Hub to Garden Access"
+    },
+    {
+      "id": "e49",
+      "source": "n4",
+      "target": "n5",
+      "type": "pathway",
+      "weight": 0.011,
+      "name": "Northern Connection"
+    },
+    {
+      "id": "e50",
+      "source": "n21",
+      "target": "n1",
+      "type": "pathway",
+      "weight": 0.487,
+      "name": "Return Path to Entrance"
+    },
+    {
+      "id": "e51",
+      "source": "n25",
+      "target": "n38",
+      "type": "pathway",
+      "weight": 0.042,
+      "name": "Garden Access Path"
+    },
+    {
+      "id": "e52",
+      "source": "n32",
+      "target": "n35",
+      "type": "pathway",
+      "weight": 0.035,
+      "name": "Columbarium Access"
+    },
+    {
+      "id": "e53",
+      "source": "n37",
+      "target": "n32",
+      "type": "pathway",
+      "weight": 0.045,
+      "name": "Southern Garden Path"
+    },
+    {
+      "id": "e54",
+      "source": "n41",
+      "target": "n35",
+      "type": "pathway",
+      "weight": 0.03,
+      "name": "Western Garden Connection"
+    },
+    {
+      "id": "e55",
+      "source": "n17",
+      "target": "n42",
+      "type": "pathway",
+      "weight": 0.038,
+      "name": "Restroom Connection Path"
+    },
+    {
+      "id": "e56",
+      "source": "n12",
+      "target": "n23",
+      "type": "pathway",
+      "weight": 0.065,
+      "name": "Central Access Bridge"
+    },
+    {
+      "id": "e57",
+      "source": "n18",
+      "target": "n22",
+      "type": "pathway",
+      "weight": 0.085,
+      "name": "Eastern Chapel Access"
+    },
+    {
+      "id": "e58",
+      "source": "n26",
+      "target": "n33",
+      "type": "pathway",
+      "weight": 0.01,
+      "name": "Secondary Loop Access"
+    },
+    {
+      "id": "e59",
+      "source": "n29",
+      "target": "n36",
+      "type": "pathway",
+      "weight": 0.01,
+      "name": "Minor Path Connection"
+    },
+    {
+      "id": "e60",
+      "source": "n13",
+      "target": "n43",
+      "type": "pathway",
+      "weight": 0.029,
+      "name": "Northern Service Path"
+    },
+    {
+      "id": "e61",
+      "source": "n45",
+      "target": "n54",
+      "type": "pathway",
+      "weight": 0.01,
+      "name": "Eastern Service Connection"
+    },
+    {
+      "id": "e62",
+      "source": "n49",
+      "target": "n31",
+      "type": "pathway",
+      "weight": 0.055,
+      "name": "Chapel to Central Loop"
+    }
+  ],
+  "adjacency_list": {
+    "n1": [
+      {
+        "node": "n2",
+        "weight": 0.053
+      },
+      {
+        "node": "n21",
+        "weight": 0.487
+      },
+      {
+        "node": "n38",
+        "weight": 0.092
+      },
+      {
+        "node": "n10",
+        "weight": 0.101
+      },
+      {
+        "node": "n41",
+        "weight": 0.101
+      },
+      {
+        "node": "n9",
+        "weight": 0.103
+      },
+      {
+        "node": "n11",
+        "weight": 0.104
+      }
+    ],
+    "n2": [
+      {
+        "node": "n1",
+        "weight": 0.053
+      },
+      {
+        "node": "n3",
+        "weight": 0.081
+      }
+    ],
+    "n3": [
+      {
+        "node": "n2",
+        "weight": 0.081
+      },
+      {
+        "node": "n4",
+        "weight": 0.14
+      },
+      {
+        "node": "n24",
+        "weight": 0.001
+      }
+    ],
+    "n4": [
+      {
+        "node": "n3",
+        "weight": 0.14
+      },
+      {
+        "node": "n5",
+        "weight": 0.011
+      }
+    ],
+    "n5": [
+      {
+        "node": "n4",
+        "weight": 0.011
+      },
+      {
+        "node": "n6",
+        "weight": 0.049
+      }
+    ],
+    "n6": [
+      {
+        "node": "n5",
+        "weight": 0.049
+      },
+      {
+        "node": "n7",
+        "weight": 0.007
+      }
+    ],
+    "n7": [
+      {
+        "node": "n6",
+        "weight": 0.007
+      },
+      {
+        "node": "n8",
+        "weight": 0.028
+      }
+    ],
+    "n8": [
+      {
+        "node": "n7",
+        "weight": 0.028
+      },
+      {
+        "node": "n9",
+        "weight": 0.029
+      }
+    ],
+    "n9": [
+      {
+        "node": "n8",
+        "weight": 0.029
+      },
+      {
+        "node": "n10",
+        "weight": 0.006
+      },
+      {
+        "node": "n1",
+        "weight": 0.103
+      }
+    ],
+    "n10": [
+      {
+        "node": "n9",
+        "weight": 0.006
+      },
+      {
+        "node": "n11",
+        "weight": 0.007
+      },
+      {
+        "node": "n1",
+        "weight": 0.101
+      }
+    ],
+    "n11": [
+      {
+        "node": "n10",
+        "weight": 0.007
+      },
+      {
+        "node": "n12",
+        "weight": 0.135
+      },
+      {
+        "node": "n1",
+        "weight": 0.104
+      }
+    ],
+    "n12": [
+      {
+        "node": "n11",
+        "weight": 0.135
+      },
+      {
+        "node": "n13",
+        "weight": 0.151
+      },
+      {
+        "node": "n43",
+        "weight": 0.029
+      },
+      {
+        "node": "n23",
+        "weight": 0.065
+      }
+    ],
+    "n13": [
+      {
+        "node": "n12",
+        "weight": 0.151
+      },
+      {
+        "node": "n14",
+        "weight": 0.01
+      },
+      {
+        "node": "n43",
+        "weight": 0.029
+      }
+    ],
+    "n14": [
+      {
+        "node": "n13",
+        "weight": 0.01
+      },
+      {
+        "node": "n15",
+        "weight": 0.016
+      }
+    ],
+    "n15": [
+      {
+        "node": "n14",
+        "weight": 0.016
+      },
+      {
+        "node": "n16",
+        "weight": 0.006
+      }
+    ],
+    "n16": [
+      {
+        "node": "n15",
+        "weight": 0.006
+      },
+      {
+        "node": "n17",
+        "weight": 0.01
+      }
+    ],
+    "n17": [
+      {
+        "node": "n16",
+        "weight": 0.01
+      },
+      {
+        "node": "n18",
+        "weight": 0.076
+      },
+      {
+        "node": "n42",
+        "weight": 0.038
+      }
+    ],
+    "n18": [
+      {
+        "node": "n17",
+        "weight": 0.076
+      },
+      {
+        "node": "n19",
+        "weight": 0.024
+      },
+      {
+        "node": "n44",
+        "weight": 0.01
+      },
+      {
+        "node": "n22",
+        "weight": 0.085
+      }
+    ],
+    "n19": [
+      {
+        "node": "n18",
+        "weight": 0.024
+      },
+      {
+        "node": "n20",
+        "weight": 0.077
+      }
+    ],
+    "n20": [
+      {
+        "node": "n19",
+        "weight": 0.077
+      },
+      {
+        "node": "n21",
+        "weight": 0.032
+      }
+    ],
+    "n21": [
+      {
+        "node": "n20",
+        "weight": 0.032
+      },
+      {
+        "node": "n1",
+        "weight": 0.487
+      }
+    ],
+    "n22": [
+      {
+        "node": "n23",
+        "weight": 0.064
+      },
+      {
+        "node": "n52",
+        "weight": 0.063
+      },
+      {
+        "node": "n53",
+        "weight": 0.037
+      },
+      {
+        "node": "n18",
+        "weight": 0.085
+      }
+    ],
+    "n23": [
+      {
+        "node": "n22",
+        "weight": 0.064
+      },
+      {
+        "node": "n12",
+        "weight": 0.065
+      }
+    ],
+    "n24": [
+      {
+        "node": "n25",
+        "weight": 0.029
+      },
+      {
+        "node": "n3",
+        "weight": 0.001
+      }
+    ],
+    "n25": [
+      {
+        "node": "n24",
+        "weight": 0.029
+      },
+      {
+        "node": "n26",
+        "weight": 0.07
+      },
+      {
+        "node": "n32",
+        "weight": 0.08
+      },
+      {
+        "node": "n35",
+        "weight": 0.035
+      },
+      {
+        "node": "n38",
+        "weight": 0.042
+      }
+    ],
+    "n26": [
+      {
+        "node": "n25",
+        "weight": 0.07
+      },
+      {
+        "node": "n27",
+        "weight": 0.02
+      },
+      {
+        "node": "n33",
+        "weight": 0.01
+      }
+    ],
+    "n27": [
+      {
+        "node": "n26",
+        "weight": 0.02
+      },
+      {
+        "node": "n28",
+        "weight": 0.071
+      },
+      {
+        "node": "n33",
+        "weight": 0.01
+      }
+    ],
+    "n28": [
+      {
+        "node": "n27",
+        "weight": 0.071
+      },
+      {
+        "node": "n29",
+        "weight": 0.019
+      },
+      {
+        "node": "n40",
+        "weight": 0.01
+      },
+      {
+        "node": "n39",
+        "weight": 0.01
+      }
+    ],
+    "n29": [
+      {
+        "node": "n28",
+        "weight": 0.019
+      },
+      {
+        "node": "n30",
+        "weight": 0.07
+      },
+      {
+        "node": "n36",
+        "weight": 0.01
+      }
+    ],
+    "n30": [
+      {
+        "node": "n29",
+        "weight": 0.07
+      },
+      {
+        "node": "n31",
+        "weight": 0.035
+      }
+    ],
+    "n31": [
+      {
+        "node": "n30",
+        "weight": 0.035
+      },
+      {
+        "node": "n32",
+        "weight": 0.149
+      },
+      {
+        "node": "n49",
+        "weight": 0.055
+      }
+    ],
+    "n32": [
+      {
+        "node": "n31",
+        "weight": 0.149
+      },
+      {
+        "node": "n35",
+        "weight": 0.035
+      },
+      {
+        "node": "n37",
+        "weight": 0.045
+      }
+    ],
+    "n33": [
+      {
+        "node": "n26",
+        "weight": 0.01
+      },
+      {
+        "node": "n27",
+        "weight": 0.01
+      },
+      {
+        "node": "n34",
+        "weight": 0.019
+      }
+    ],
+    "n34": [
+      {
+        "node": "n33",
+        "weight": 0.019
+      },
+      {
+        "node": "n35",
+        "weight": 0.112
+      }
+    ],
+    "n35": [
+      {
+        "node": "n34",
+        "weight": 0.112
+      },
+      {
+        "node": "n25",
+        "weight": 0.035
+      },
+      {
+        "node": "n32",
+        "weight": 0.035
+      },
+      {
+        "node": "n41",
+        "weight": 0.03
+      }
+    ],
+    "n36": [
+      {
+        "node": "n29",
+        "weight": 0.01
+      },
+      {
+        "node": "n37",
+        "weight": 0.013
+      }
+    ],
+    "n37": [
+      {
+        "node": "n36",
+        "weight": 0.013
+      },
+      {
+        "node": "n32",
+        "weight": 0.045
+      }
+    ],
+    "n38": [
+      {
+        "node": "n25",
+        "weight": 0.042
+      },
+      {
+        "node": "n39",
+        "weight": 0.046
+      },
+      {
+        "node": "n1",
+        "weight": 0.092
+      }
+    ],
+    "n39": [
+      {
+        "node": "n38",
+        "weight": 0.046
+      },
+      {
+        "node": "n40",
+        "weight": 0.019
+      },
+      {
+        "node": "n28",
+        "weight": 0.01
+      }
+    ],
+    "n40": [
+      {
+        "node": "n39",
+        "weight": 0.019
+      },
+      {
+        "node": "n41",
+        "weight": 0.045
+      },
+      {
+        "node": "n28",
+        "weight": 0.01
+      }
+    ],
+    "n41": [
+      {
+        "node": "n40",
+        "weight": 0.045
+      },
+      {
+        "node": "n35",
+        "weight": 0.03
+      },
+      {
+        "node": "n1",
+        "weight": 0.101
+      }
+    ],
+    "n42": [
+      {
+        "node": "n43",
+        "weight": 0.032
+      },
+      {
+        "node": "n17",
+        "weight": 0.038
+      }
+    ],
+    "n43": [
+      {
+        "node": "n42",
+        "weight": 0.032
+      },
+      {
+        "node": "n12",
+        "weight": 0.029
+      },
+      {
+        "node": "n13",
+        "weight": 0.029
+      }
+    ],
+    "n44": [
+      {
+        "node": "n18",
+        "weight": 0.01
+      },
+      {
+        "node": "n45",
+        "weight": 0.071
+      }
+    ],
+    "n45": [
+      {
+        "node": "n44",
+        "weight": 0.071
+      },
+      {
+        "node": "n46",
+        "weight": 0.028
+      },
+      {
+        "node": "n54",
+        "weight": 0.01
+      }
+    ],
+    "n46": [
+      {
+        "node": "n45",
+        "weight": 0.028
+      },
+      {
+        "node": "n47",
+        "weight": 0.019
+      }
+    ],
+    "n47": [
+      {
+        "node": "n46",
+        "weight": 0.019
+      },
+      {
+        "node": "n48",
+        "weight": 0.047
+      }
+    ],
+    "n48": [
+      {
+        "node": "n47",
+        "weight": 0.047
+      },
+      {
+        "node": "n49",
+        "weight": 0.024
+      }
+    ],
+    "n49": [
+      {
+        "node": "n48",
+        "weight": 0.024
+      },
+      {
+        "node": "n50",
+        "weight": 0.006
+      },
+      {
+        "node": "n31",
+        "weight": 0.055
+      }
+    ],
+    "n50": [
+      {
+        "node": "n49",
+        "weight": 0.006
+      },
+      {
+        "node": "n51",
+        "weight": 0.005
+      }
+    ],
+    "n51": [
+      {
+        "node": "n50",
+        "weight": 0.005
+      },
+      {
+        "node": "n52",
+        "weight": 0.036
+      }
+    ],
+    "n52": [
+      {
+        "node": "n51",
+        "weight": 0.036
+      },
+      {
+        "node": "n22",
+        "weight": 0.063
+      }
+    ],
+    "n53": [
+      {
+        "node": "n22",
+        "weight": 0.037
+      },
+      {
+        "node": "n54",
+        "weight": 0.068
+      }
+    ],
+    "n54": [
+      {
+        "node": "n53",
+        "weight": 0.068
+      },
+      {
+        "node": "n45",
+        "weight": 0.01
+      }
+    ]
+  },
+  "pathfinding_metadata": {
+    "connectivity_analysis": {
+      "total_components": 1,
+      "is_fully_connected": true,
+      "bridge_edges": [],
+      "articulation_points": []
+    },
+    "optimization_notes": "Graph includes both main roads and pathway connections for comprehensive cemetery navigation"
+  }
+}
