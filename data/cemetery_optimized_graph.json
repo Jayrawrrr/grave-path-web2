@@ -1,12 +1,12 @@
 {
     "graph": {
       "type": "undirected",
-      "description": "Cemetery road network optimized for pathfinding algorithms",
+      "description": "Cemetery road network with main roads and pedestrian pathways",
       "metadata": {
         "location": "Manila, Philippines",
         "coordinate_system": "WGS84",
         "total_nodes": 52,
-        "total_edges": 38,
+        "total_edges": 62,
         "road_types": ["main", "pathway"],
         "landmarks": 6
       }
@@ -708,12 +708,132 @@
         "type": "main",
         "weight": 0.068,
         "name": "Eastern Road Connection"
+      },
+      {
+        "id": "e48",
+        "source": "n3",
+        "target": "n24",
+        "type": "pathway",
+        "weight": 0.001,
+        "name": "Central Hub to Garden Access"
+      },
+      {
+        "id": "e49",
+        "source": "n4",
+        "target": "n5",
+        "type": "pathway",
+        "weight": 0.011,
+        "name": "Northern Connection"
+      },
+      {
+        "id": "e50",
+        "source": "n21",
+        "target": "n1",
+        "type": "pathway",
+        "weight": 0.487,
+        "name": "Return Path to Entrance"
+      },
+      {
+        "id": "e51",
+        "source": "n25",
+        "target": "n38",
+        "type": "pathway",
+        "weight": 0.042,
+        "name": "Garden Access Path"
+      },
+      {
+        "id": "e52",
+        "source": "n32",
+        "target": "n35",
+        "type": "pathway",
+        "weight": 0.035,
+        "name": "Columbarium Access"
+      },
+      {
+        "id": "e53",
+        "source": "n37",
+        "target": "n32",
+        "type": "pathway",
+        "weight": 0.045,
+        "name": "Southern Garden Path"
+      },
+      {
+        "id": "e54",
+        "source": "n41",
+        "target": "n35",
+        "type": "pathway",
+        "weight": 0.030,
+        "name": "Western Garden Connection"
+      },
+      {
+        "id": "e55",
+        "source": "n17",
+        "target": "n42",
+        "type": "pathway",
+        "weight": 0.038,
+        "name": "Restroom Connection Path"
+      },
+      {
+        "id": "e56",
+        "source": "n12",
+        "target": "n23",
+        "type": "pathway",
+        "weight": 0.065,
+        "name": "Central Access Bridge"
+      },
+      {
+        "id": "e57",
+        "source": "n18",
+        "target": "n22",
+        "type": "pathway",
+        "weight": 0.085,
+        "name": "Eastern Chapel Access"
+      },
+      {
+        "id": "e58",
+        "source": "n26",
+        "target": "n33",
+        "type": "pathway",
+        "weight": 0.010,
+        "name": "Secondary Loop Access"
+      },
+      {
+        "id": "e59",
+        "source": "n29",
+        "target": "n36",
+        "type": "pathway",
+        "weight": 0.010,
+        "name": "Minor Path Connection"
+      },
+      {
+        "id": "e60",
+        "source": "n13",
+        "target": "n43",
+        "type": "pathway",
+        "weight": 0.029,
+        "name": "Northern Service Path"
+      },
+      {
+        "id": "e61",
+        "source": "n45",
+        "target": "n54",
+        "type": "pathway",
+        "weight": 0.010,
+        "name": "Eastern Service Connection"
+      },
+      {
+        "id": "e62",
+        "source": "n49",
+        "target": "n31",
+        "type": "pathway",
+        "weight": 0.055,
+        "name": "Chapel to Central Loop"
       }
     ],
     "adjacency_list": {
-      "n1": [{"node": "n2", "weight": 0.053}],
+      "n1": [{"node": "n2", "weight": 0.053}, {"node": "n21", "weight": 0.487}],
       "n2": [{"node": "n1", "weight": 0.053}, {"node": "n3", "weight": 0.081}],
-      "n3": [{"node": "n2", "weight": 0.081}, {"node": "n4", "weight": 0.140}],
+      "n3": [{"node": "n2", "weight": 0.081}, {"node": "n4", "weight": 0.140}, {"node": "n24", "weight": 0.001}],
       "n4": [{"node": "n3", "weight": 0.140}, {"node": "n5", "weight": 0.011}],
       "n5": [{"node": "n4", "weight": 0.011}, {"node": "n6", "weight": 0.049}],
       "n6": [{"node": "n5", "weight": 0.049}, {"node": "n7", "weight": 0.007}],
@@ -722,72 +842,57 @@
       "n9": [{"node": "n8", "weight": 0.029}, {"node": "n10", "weight": 0.006}],
       "n10": [{"node": "n9", "weight": 0.006}, {"node": "n11", "weight": 0.007}],
       "n11": [{"node": "n10", "weight": 0.007}, {"node": "n12", "weight": 0.135}],
-      "n12": [{"node": "n11", "weight": 0.135}, {"node": "n13", "weight": 0.151}, {"node": "n43", "weight": 0.029}],
-      "n13": [{"node": "n12", "weight": 0.151}, {"node": "n14", "weight": 0.010}],
+      "n12": [{"node": "n11", "weight": 0.135}, {"node": "n13", "weight": 0.151}, {"node": "n43", "weight": 0.029}, {"node": "n23", "weight": 0.065}],
+      "n13": [{"node": "n12", "weight": 0.151}, {"node": "n14", "weight": 0.010}, {"node": "n43", "weight": 0.029}],
       "n14": [{"node": "n13", "weight": 0.010}, {"node": "n15", "weight": 0.016}],
       "n15": [{"node": "n14", "weight": 0.016}, {"node": "n16", "weight": 0.006}],
       "n16": [{"node": "n15", "weight": 0.006}, {"node": "n17", "weight": 0.010}],
-      "n17": [{"node": "n16", "weight": 0.010}, {"node": "n18", "weight": 0.076}],
-      "n18": [{"node": "n17", "weight": 0.076}, {"node": "n19", "weight": 0.024}, {"node": "n44", "weight": 0.01}],
+      "n17": [{"node": "n16", "weight": 0.010}, {"node": "n18", "weight": 0.076}, {"node": "n42", "weight": 0.038}],
+      "n18": [{"node": "n17", "weight": 0.076}, {"node": "n19", "weight": 0.024}, {"node": "n44", "weight": 0.01}, {"node": "n22", "weight": 0.085}],
       "n19": [{"node": "n18", "weight": 0.024}, {"node": "n20", "weight": 0.077}],
       "n20": [{"node": "n19", "weight": 0.077}, {"node": "n21", "weight": 0.032}],
-      "n21": [{"node": "n20", "weight": 0.032}],
-      "n22": [{"node": "n23", "weight": 0.064}, {"node": "n52", "weight": 0.063}, {"node": "n53", "weight": 0.037}],
-      "n23": [{"node": "n22", "weight": 0.064}, {"node": "n24", "weight": 0.067}],
-      "n24": [{"node": "n23", "weight": 0.067}, {"node": "n25", "weight": 0.029}],
-      "n25": [{"node": "n24", "weight": 0.029}, {"node": "n26", "weight": 0.070}, {"node": "n32", "weight": 0.08}, {"node": "n35", "weight": 0.035}],
-      "n26": [{"node": "n25", "weight": 0.070}, {"node": "n27", "weight": 0.020}],
+      "n21": [{"node": "n20", "weight": 0.032}, {"node": "n1", "weight": 0.487}],
+      "n22": [{"node": "n23", "weight": 0.064}, {"node": "n52", "weight": 0.063}, {"node": "n53", "weight": 0.037}, {"node": "n18", "weight": 0.085}],
+      "n23": [{"node": "n22", "weight": 0.064}, {"node": "n24", "weight": 0.067}, {"node": "n12", "weight": 0.065}],
+      "n24": [{"node": "n23", "weight": 0.067}, {"node": "n25", "weight": 0.029}, {"node": "n3", "weight": 0.001}],
+      "n25": [{"node": "n24", "weight": 0.029}, {"node": "n26", "weight": 0.070}, {"node": "n32", "weight": 0.08}, {"node": "n35", "weight": 0.035}, {"node": "n38", "weight": 0.042}],
+      "n26": [{"node": "n25", "weight": 0.070}, {"node": "n27", "weight": 0.020}, {"node": "n33", "weight": 0.010}],
       "n27": [{"node": "n26", "weight": 0.020}, {"node": "n28", "weight": 0.071}, {"node": "n33", "weight": 0.01}],
-      "n28": [{"node": "n27", "weight": 0.071}, {"node": "n29", "weight": 0.019}, {"node": "n40", "weight": 0.01}, {"node": "n39", "weight": 0.018}],
-      "n29": [{"node": "n28", "weight": 0.019}, {"node": "n30", "weight": 0.070}, {"node": "n36", "weight": 0.01}],
+      "n28": [{"node": "n27", "weight": 0.071}, {"node": "n29", "weight": 0.019}, {"node": "n40", "weight": 0.01}, {"node": "n39", "weight": 0.01}],
+      "n29": [{"node": "n28", "weight": 0.019}, {"node": "n30", "weight": 0.070}, {"node": "n36", "weight": 0.010}],
       "n30": [{"node": "n29", "weight": 0.070}, {"node": "n31", "weight": 0.035}],
-      "n31": [{"node": "n30", "weight": 0.035}, {"node": "n32", "weight": 0.149}],
-      "n32": [{"node": "n31", "weight": 0.149}, {"node": "n25", "weight": 0.08}],
-      "n33": [{"node": "n34", "weight": 0.019}, {"node": "n27", "weight": 0.01}],
+      "n31": [{"node": "n30", "weight": 0.035}, {"node": "n32", "weight": 0.149}, {"node": "n49", "weight": 0.055}],
+      "n32": [{"node": "n31", "weight": 0.149}, {"node": "n35", "weight": 0.035}, {"node": "n37", "weight": 0.045}],
+      "n33": [{"node": "n26", "weight": 0.010}, {"node": "n27", "weight": 0.010}, {"node": "n34", "weight": 0.019}],
       "n34": [{"node": "n33", "weight": 0.019}, {"node": "n35", "weight": 0.112}],
-      "n35": [{"node": "n34", "weight": 0.112}, {"node": "n25", "weight": 0.035}],
-      "n36": [{"node": "n37", "weight": 0.013}, {"node": "n29", "weight": 0.01}],
-      "n37": [{"node": "n36", "weight": 0.013}],
-      "n38": [{"node": "n39", "weight": 0.046}],
-      "n39": [{"node": "n38", "weight": 0.046}, {"node": "n40", "weight": 0.019}],
+      "n35": [{"node": "n34", "weight": 0.112}, {"node": "n25", "weight": 0.035}, {"node": "n32", "weight": 0.035}, {"node": "n41", "weight": 0.030}],
+      "n36": [{"node": "n29", "weight": 0.010}, {"node": "n37", "weight": 0.013}],
+      "n37": [{"node": "n36", "weight": 0.013}, {"node": "n32", "weight": 0.045}],
+      "n38": [{"node": "n25", "weight": 0.042}, {"node": "n39", "weight": 0.046}],
+      "n39": [{"node": "n38", "weight": 0.046}, {"node": "n40", "weight": 0.019}, {"node": "n28", "weight": 0.01}],
       "n40": [{"node": "n39", "weight": 0.019}, {"node": "n41", "weight": 0.045}, {"node": "n28", "weight": 0.01}],
-      "n41": [{"node": "n40", "weight": 0.045}],
-      "n42": [{"node": "n43", "weight": 0.032}],
-      "n43": [{"node": "n42", "weight": 0.032}, {"node": "n12", "weight": 0.029}],
-      "n44": [{"node": "n45", "weight": 0.071}, {"node": "n18", "weight": 0.01}],
-      "n45": [{"node": "n44", "weight": 0.071}, {"node": "n46", "weight": 0.028}, {"node": "n54", "weight": 0.01}],
+      "n41": [{"node": "n40", "weight": 0.045}, {"node": "n35", "weight": 0.030}],
+      "n42": [{"node": "n43", "weight": 0.032}, {"node": "n17", "weight": 0.038}],
+      "n43": [{"node": "n42", "weight": 0.032}, {"node": "n12", "weight": 0.029}, {"node": "n13", "weight": 0.029}],
+      "n44": [{"node": "n18", "weight": 0.01}, {"node": "n45", "weight": 0.071}],
+      "n45": [{"node": "n44", "weight": 0.071}, {"node": "n46", "weight": 0.028}, {"node": "n54", "weight": 0.010}],
       "n46": [{"node": "n45", "weight": 0.028}, {"node": "n47", "weight": 0.019}],
       "n47": [{"node": "n46", "weight": 0.019}, {"node": "n48", "weight": 0.047}],
       "n48": [{"node": "n47", "weight": 0.047}, {"node": "n49", "weight": 0.024}],
-      "n49": [{"node": "n48", "weight": 0.024}, {"node": "n50", "weight": 0.006}],
+      "n49": [{"node": "n48", "weight": 0.024}, {"node": "n50", "weight": 0.006}, {"node": "n31", "weight": 0.055}],
       "n50": [{"node": "n49", "weight": 0.006}, {"node": "n51", "weight": 0.005}],
       "n51": [{"node": "n50", "weight": 0.005}, {"node": "n52", "weight": 0.036}],
       "n52": [{"node": "n51", "weight": 0.036}, {"node": "n22", "weight": 0.063}],
       "n53": [{"node": "n22", "weight": 0.037}, {"node": "n54", "weight": 0.068}],
-      "n54": [{"node": "n53", "weight": 0.068}, {"node": "n45", "weight": 0.01}]
+      "n54": [{"node": "n53", "weight": 0.068}, {"node": "n45", "weight": 0.010}]
     },
     "pathfinding_metadata": {
-      "algorithm_recommendations": {
-        "shortest_path": "Dijkstra or A*",
-        "all_pairs": "Floyd-Warshall", 
-        "heuristic_function": "Haversine distance for A*"
-      },
-      "entry_points": ["n1"],
-      "key_destinations": {
-        "chapel": "n47",
-        "columbarium": "n32", 
-        "main_building": "n3",
-        "restrooms": ["n45", "n17", "n42"]
-      },
-      "disconnected_components": false,
-      "average_degree": 2.4,
-      "max_degree": 4,
-      "total_network_length_km": 3.42,
       "connectivity_analysis": {
-        "is_connected": true,
-        "components_count": 1,
-        "bridge_edges": ["n1-n2", "n2-n3"],
-        "articulation_points": ["n2", "n3", "n25"]
-      }
+        "total_components": 1,
+        "is_fully_connected": true,
+        "bridge_edges": [],
+        "articulation_points": []
+      },
+      "optimization_notes": "Graph includes both main roads and pathway connections for comprehensive cemetery navigation"
     }
   }
