@@ -478,6 +478,15 @@
       ],
       "type": "intersection",
       "description": "Second horizontal pathway intersection on n3-n4 line"
+    },
+    {
+      "id": "n58",
+      "coordinates": [
+        121.069388,
+        14.538127
+      ],
+      "type": "intersection",
+      "description": "Intermediate intersection on n2-n3 line"
     }
   ],
   "landmarks": [
@@ -1072,22 +1081,6 @@
       "name": "Horizontal Connecting Pathway"
     },
     {
-      "id": "e67",
-      "source": "n2",
-      "target": "n55",
-      "type": "pathway",
-      "weight": 0.025,
-      "name": "Path to Horizontal Intersection"
-    },
-    {
-      "id": "e68",
-      "source": "n55",
-      "target": "n2",
-      "type": "pathway",
-      "weight": 0.025,
-      "name": "Path from Horizontal Intersection"
-    },
-    {
       "id": "e69",
       "source": "n11",
       "target": "n55",
@@ -1182,6 +1175,54 @@
       "type": "pathway",
       "weight": 0.001,
       "name": "Path from n4 to Second Intersection"
+    },
+    {
+      "id": "e81",
+      "source": "n2",
+      "target": "n58",
+      "type": "main",
+      "weight": 0.026,
+      "name": "Main Road to Intermediate Intersection"
+    },
+    {
+      "id": "e82",
+      "source": "n58",
+      "target": "n2",
+      "type": "main",
+      "weight": 0.026,
+      "name": "Main Road from Intermediate Intersection"
+    },
+    {
+      "id": "e83",
+      "source": "n58",
+      "target": "n3",
+      "type": "main",
+      "weight": 0.055,
+      "name": "Main Road to Central Hub"
+    },
+    {
+      "id": "e84",
+      "source": "n3",
+      "target": "n58",
+      "type": "main",
+      "weight": 0.055,
+      "name": "Main Road from Central Hub"
+    },
+    {
+      "id": "e85",
+      "source": "n58",
+      "target": "n55",
+      "type": "pathway",
+      "weight": 0.003,
+      "name": "Cross-Connection to n2-n11 Line"
+    },
+    {
+      "id": "e86",
+      "source": "n55",
+      "target": "n58",
+      "type": "pathway",
+      "weight": 0.003,
+      "name": "Cross-Connection from n2-n11 Line"
     }
   ],
   "adjacency_list": {
@@ -1229,8 +1270,8 @@
         "weight": 0.075
       },
       {
-        "node": "n55",
-        "weight": 0.025
+        "node": "n58",
+        "weight": 0.026
       }
     ],
     "n3": [
@@ -1253,6 +1294,10 @@
       {
         "node": "n57",
         "weight": 0.001
+      },
+      {
+        "node": "n58",
+        "weight": 0.055
       }
     ],
     "n4": [
@@ -1911,16 +1956,16 @@
     ],
     "n55": [
       {
-        "node": "n2",
-        "weight": 0.025
-      },
-      {
         "node": "n11",
         "weight": 0.042
       },
       {
         "node": "n56",
         "weight": 0.061
+      },
+      {
+        "node": "n58",
+        "weight": 0.003
       }
     ],
     "n56": [
@@ -1949,6 +1994,20 @@
       {
         "node": "n4",
         "weight": 0.001
+      }
+    ],
+    "n58": [
+      {
+        "node": "n2",
+        "weight": 0.026
+      },
+      {
+        "node": "n3",
+        "weight": 0.055
+      },
+      {
+        "node": "n55",
+        "weight": 0.003
       }
     ]
   },
