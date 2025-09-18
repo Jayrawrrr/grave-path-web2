@@ -1305,6 +1305,22 @@
       "type": "main",
       "weight": 0.001,
       "name": "Main Road from Intersection Point"
+    },
+    {
+      "id": "e95",
+      "source": "n58",
+      "target": "n11",
+      "type": "main",
+      "weight": 0.075,
+      "name": "Direct Connection from n58 to n11"
+    },
+    {
+      "id": "e96",
+      "source": "n11",
+      "target": "n58",
+      "type": "main",
+      "weight": 0.075,
+      "name": "Direct Connection from n11 to n58"
     }
   ],
   "adjacency_list": {
@@ -1496,6 +1512,10 @@
       {
         "node": "n60",
         "weight": 0.122
+      },
+      {
+        "node": "n58",
+        "weight": 0.075
       }
     ],
     "n12": [
@@ -2106,6 +2126,10 @@
       {
         "node": "n55",
         "weight": 0.003
+      },
+      {
+        "node": "n11",
+        "weight": 0.075
       }
     ],
     "n59": [
