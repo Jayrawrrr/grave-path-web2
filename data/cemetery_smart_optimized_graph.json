@@ -1309,18 +1309,50 @@
     {
       "id": "e95",
       "source": "n58",
-      "target": "n11",
-      "type": "main",
-      "weight": 0.075,
-      "name": "Direct Connection from n58 to n11"
+      "target": "n55",
+      "type": "pathway",
+      "weight": 0.0375,
+      "name": "Pathway from n58 to n55"
     },
     {
       "id": "e96",
-      "source": "n11",
+      "source": "n55",
       "target": "n58",
-      "type": "main",
-      "weight": 0.075,
-      "name": "Direct Connection from n11 to n58"
+      "type": "pathway",
+      "weight": 0.0375,
+      "name": "Pathway from n55 to n58"
+    },
+    {
+      "id": "e97",
+      "source": "n55",
+      "target": "n11",
+      "type": "pathway",
+      "weight": 0.0375,
+      "name": "Pathway from n55 to n11"
+    },
+    {
+      "id": "e98",
+      "source": "n11",
+      "target": "n55",
+      "type": "pathway",
+      "weight": 0.0375,
+      "name": "Pathway from n11 to n55"
+    },
+    {
+      "id": "e99",
+      "source": "n55",
+      "target": "n56",
+      "type": "pathway",
+      "weight": 0.01,
+      "name": "Pathway from n55 to n56"
+    },
+    {
+      "id": "e100",
+      "source": "n56",
+      "target": "n55",
+      "type": "pathway",
+      "weight": 0.01,
+      "name": "Pathway from n56 to n55"
     }
   ],
   "adjacency_list": {
@@ -1503,7 +1535,7 @@
       },
       {
         "node": "n55",
-        "weight": 0.042
+        "weight": 0.0375
       },
       {
         "node": "n57",
@@ -1512,10 +1544,6 @@
       {
         "node": "n60",
         "weight": 0.122
-      },
-      {
-        "node": "n58",
-        "weight": 0.075
       }
     ],
     "n12": [
@@ -2063,15 +2091,15 @@
     "n55": [
       {
         "node": "n11",
-        "weight": 0.042
+        "weight": 0.0375
       },
       {
         "node": "n56",
-        "weight": 0.061
+        "weight": 0.01
       },
       {
         "node": "n58",
-        "weight": 0.003
+        "weight": 0.0375
       },
       {
         "node": "n59",
@@ -2089,7 +2117,7 @@
       },
       {
         "node": "n55",
-        "weight": 0.061
+        "weight": 0.01
       },
       {
         "node": "n59",
@@ -2125,11 +2153,7 @@
       },
       {
         "node": "n55",
-        "weight": 0.003
-      },
-      {
-        "node": "n11",
-        "weight": 0.075
+        "weight": 0.0375
       }
     ],
     "n59": [
