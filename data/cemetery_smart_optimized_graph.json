@@ -451,6 +451,33 @@
         14.537859
       ],
       "type": "intersection"
+    },
+    {
+      "id": "n55",
+      "coordinates": [
+        121.069391,
+        14.538384
+      ],
+      "type": "intersection",
+      "description": "Horizontal pathway intersection on n2-n11 line"
+    },
+    {
+      "id": "n56",
+      "coordinates": [
+        121.070,
+        14.5384
+      ],
+      "type": "intersection",
+      "description": "Horizontal pathway intersection on n3-n4 line"
+    },
+    {
+      "id": "n57",
+      "coordinates": [
+        121.070,
+        14.5388
+      ],
+      "type": "intersection",
+      "description": "Second horizontal pathway intersection on n3-n4 line"
     }
   ],
   "landmarks": [
@@ -1011,6 +1038,150 @@
       "type": "pathway",
       "weight": 0.055,
       "name": "Chapel to Central Loop"
+    },
+    {
+      "id": "e63",
+      "source": "n2",
+      "target": "n11",
+      "type": "main",
+      "weight": 0.075,
+      "name": "Direct Path from Intersection to Target Area"
+    },
+    {
+      "id": "e64",
+      "source": "n11",
+      "target": "n2",
+      "type": "main",
+      "weight": 0.075,
+      "name": "Direct Path from Target Area to Intersection"
+    },
+    {
+      "id": "e65",
+      "source": "n55",
+      "target": "n56",
+      "type": "pathway",
+      "weight": 0.061,
+      "name": "Horizontal Connecting Pathway"
+    },
+    {
+      "id": "e66",
+      "source": "n56",
+      "target": "n55",
+      "type": "pathway",
+      "weight": 0.061,
+      "name": "Horizontal Connecting Pathway"
+    },
+    {
+      "id": "e67",
+      "source": "n2",
+      "target": "n55",
+      "type": "pathway",
+      "weight": 0.025,
+      "name": "Path to Horizontal Intersection"
+    },
+    {
+      "id": "e68",
+      "source": "n55",
+      "target": "n2",
+      "type": "pathway",
+      "weight": 0.025,
+      "name": "Path from Horizontal Intersection"
+    },
+    {
+      "id": "e69",
+      "source": "n11",
+      "target": "n55",
+      "type": "pathway",
+      "weight": 0.042,
+      "name": "Path to Horizontal Intersection"
+    },
+    {
+      "id": "e70",
+      "source": "n55",
+      "target": "n11",
+      "type": "pathway",
+      "weight": 0.042,
+      "name": "Path from Horizontal Intersection"
+    },
+    {
+      "id": "e71",
+      "source": "n3",
+      "target": "n56",
+      "type": "pathway",
+      "weight": 0.011,
+      "name": "Path to Horizontal Intersection"
+    },
+    {
+      "id": "e72",
+      "source": "n56",
+      "target": "n3",
+      "type": "pathway",
+      "weight": 0.011,
+      "name": "Path from Horizontal Intersection"
+    },
+    {
+      "id": "e73",
+      "source": "n4",
+      "target": "n56",
+      "type": "pathway",
+      "weight": 0.113,
+      "name": "Path to Horizontal Intersection"
+    },
+    {
+      "id": "e74",
+      "source": "n56",
+      "target": "n4",
+      "type": "pathway",
+      "weight": 0.113,
+      "name": "Path from Horizontal Intersection"
+    },
+    {
+      "id": "e75",
+      "source": "n11",
+      "target": "n57",
+      "type": "main",
+      "weight": 0.001,
+      "name": "Second Horizontal Main Path"
+    },
+    {
+      "id": "e76",
+      "source": "n57",
+      "target": "n11",
+      "type": "main",
+      "weight": 0.001,
+      "name": "Second Horizontal Main Path"
+    },
+    {
+      "id": "e77",
+      "source": "n57",
+      "target": "n3",
+      "type": "pathway",
+      "weight": 0.001,
+      "name": "Path to n3 from Second Intersection"
+    },
+    {
+      "id": "e78",
+      "source": "n3",
+      "target": "n57",
+      "type": "pathway",
+      "weight": 0.001,
+      "name": "Path from n3 to Second Intersection"
+    },
+    {
+      "id": "e79",
+      "source": "n57",
+      "target": "n4",
+      "type": "pathway",
+      "weight": 0.001,
+      "name": "Path to n4 from Second Intersection"
+    },
+    {
+      "id": "e80",
+      "source": "n4",
+      "target": "n57",
+      "type": "pathway",
+      "weight": 0.001,
+      "name": "Path from n4 to Second Intersection"
     }
   ],
   "adjacency_list": {
@@ -1052,6 +1223,14 @@
       {
         "node": "n3",
         "weight": 0.081
+      },
+      {
+        "node": "n11",
+        "weight": 0.075
+      },
+      {
+        "node": "n55",
+        "weight": 0.025
       }
     ],
     "n3": [
@@ -1066,6 +1245,14 @@
       {
         "node": "n24",
         "weight": 0.001
+      },
+      {
+        "node": "n56",
+        "weight": 0.011
+      },
+      {
+        "node": "n57",
+        "weight": 0.001
       }
     ],
     "n4": [
@@ -1076,6 +1263,14 @@
       {
         "node": "n5",
         "weight": 0.011
+      },
+      {
+        "node": "n56",
+        "weight": 0.113
+      },
+      {
+        "node": "n57",
+        "weight": 0.001
       }
     ],
     "n5": [
@@ -1158,6 +1353,18 @@
       {
         "node": "n1",
         "weight": 0.104
+      },
+      {
+        "node": "n2",
+        "weight": 0.075
+      },
+      {
+        "node": "n55",
+        "weight": 0.042
+      },
+      {
+        "node": "n57",
+        "weight": 0.001
       }
     ],
     "n12": [
@@ -1700,6 +1907,48 @@
       {
         "node": "n45",
         "weight": 0.01
+      }
+    ],
+    "n55": [
+      {
+        "node": "n2",
+        "weight": 0.025
+      },
+      {
+        "node": "n11",
+        "weight": 0.042
+      },
+      {
+        "node": "n56",
+        "weight": 0.061
+      }
+    ],
+    "n56": [
+      {
+        "node": "n3",
+        "weight": 0.011
+      },
+      {
+        "node": "n4",
+        "weight": 0.113
+      },
+      {
+        "node": "n55",
+        "weight": 0.061
+      }
+    ],
+    "n57": [
+      {
+        "node": "n11",
+        "weight": 0.001
+      },
+      {
+        "node": "n3",
+        "weight": 0.001
+      },
+      {
+        "node": "n4",
+        "weight": 0.001
       }
     ]
   },
