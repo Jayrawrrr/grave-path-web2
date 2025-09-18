@@ -464,8 +464,8 @@
     {
       "id": "n56",
       "coordinates": [
-        121.070,
-        14.5384
+        121.069898,
+        14.538380
       ],
       "type": "intersection",
       "description": "Horizontal pathway intersection on n3-n4 line"
@@ -473,8 +473,8 @@
     {
       "id": "n57",
       "coordinates": [
-        121.070,
-        14.5388
+        121.069909,
+        14.538796
       ],
       "type": "intersection",
       "description": "Second horizontal pathway intersection on n3-n4 line"
@@ -487,6 +487,24 @@
       ],
       "type": "intersection",
       "description": "Intermediate intersection on n2-n3 line"
+    },
+    {
+      "id": "n59",
+      "coordinates": [
+        121.070622,
+        14.538374
+      ],
+      "type": "intersection",
+      "description": "Additional intersection on horizontal pathway"
+    },
+    {
+      "id": "n60",
+      "coordinates": [
+        121.070621,
+        14.538781
+      ],
+      "type": "intersection",
+      "description": "Target point for n11 horizontal pathway"
     }
   ],
   "landmarks": [
@@ -1223,6 +1241,70 @@
       "type": "pathway",
       "weight": 0.003,
       "name": "Cross-Connection from n2-n11 Line"
+    },
+    {
+      "id": "e87",
+      "source": "n55",
+      "target": "n59",
+      "type": "pathway",
+      "weight": 0.123,
+      "name": "Horizontal Pathway to Additional Intersection"
+    },
+    {
+      "id": "e88",
+      "source": "n59",
+      "target": "n55",
+      "type": "pathway",
+      "weight": 0.123,
+      "name": "Horizontal Pathway from Additional Intersection"
+    },
+    {
+      "id": "e89",
+      "source": "n59",
+      "target": "n56",
+      "type": "pathway",
+      "weight": 0.002,
+      "name": "Short Connection to n56"
+    },
+    {
+      "id": "e90",
+      "source": "n56",
+      "target": "n59",
+      "type": "pathway",
+      "weight": 0.002,
+      "name": "Short Connection from n56"
+    },
+    {
+      "id": "e91",
+      "source": "n11",
+      "target": "n60",
+      "type": "main",
+      "weight": 0.122,
+      "name": "Horizontal Main Road to Target Point"
+    },
+    {
+      "id": "e92",
+      "source": "n60",
+      "target": "n11",
+      "type": "main",
+      "weight": 0.122,
+      "name": "Horizontal Main Road from Target Point"
+    },
+    {
+      "id": "e93",
+      "source": "n60",
+      "target": "n57",
+      "type": "main",
+      "weight": 0.001,
+      "name": "Main Road to Intersection Point"
+    },
+    {
+      "id": "e94",
+      "source": "n57",
+      "target": "n60",
+      "type": "main",
+      "weight": 0.001,
+      "name": "Main Road from Intersection Point"
     }
   ],
   "adjacency_list": {
@@ -1410,6 +1492,10 @@
       {
         "node": "n57",
         "weight": 0.001
+      },
+      {
+        "node": "n60",
+        "weight": 0.122
       }
     ],
     "n12": [
@@ -1966,6 +2052,10 @@
       {
         "node": "n58",
         "weight": 0.003
+      },
+      {
+        "node": "n59",
+        "weight": 0.123
       }
     ],
     "n56": [
@@ -1980,6 +2070,10 @@
       {
         "node": "n55",
         "weight": 0.061
+      },
+      {
+        "node": "n59",
+        "weight": 0.002
       }
     ],
     "n57": [
@@ -1993,6 +2087,10 @@
       },
       {
         "node": "n4",
+        "weight": 0.001
+      },
+      {
+        "node": "n60",
         "weight": 0.001
       }
     ],
@@ -2008,6 +2106,26 @@
       {
         "node": "n55",
         "weight": 0.003
+      }
+    ],
+    "n59": [
+      {
+        "node": "n55",
+        "weight": 0.123
+      },
+      {
+        "node": "n56",
+        "weight": 0.002
+      }
+    ],
+    "n60": [
+      {
+        "node": "n11",
+        "weight": 0.122
+      },
+      {
+        "node": "n57",
+        "weight": 0.001
       }
     ]
   },
