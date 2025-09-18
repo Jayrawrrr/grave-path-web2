@@ -1356,35 +1356,19 @@
     },
     {
       "id": "e101",
-      "source": "n55",
+      "source": "n56",
       "target": "n57",
-      "type": "pathway",
+      "type": "main",
       "weight": 0.02,
-      "name": "Pathway from n55 to n57 via n56"
+      "name": "Main Road from n56 to n57"
     },
     {
       "id": "e102",
       "source": "n57",
-      "target": "n55",
-      "type": "pathway",
-      "weight": 0.02,
-      "name": "Pathway from n57 to n55 via n56"
-    },
-    {
-      "id": "e103",
-      "source": "n11",
       "target": "n56",
-      "type": "pathway",
+      "type": "main",
       "weight": 0.02,
-      "name": "Pathway from n11 to n56 via n57"
-    },
-    {
-      "id": "e104",
-      "source": "n56",
-      "target": "n11",
-      "type": "pathway",
-      "weight": 0.02,
-      "name": "Pathway from n56 to n11 via n57"
+      "name": "Main Road from n57 to n56"
     }
   ],
   "adjacency_list": {
@@ -1568,10 +1552,6 @@
       {
         "node": "n55",
         "weight": 0.0375
-      },
-      {
-        "node": "n56",
-        "weight": 0.02
       },
       {
         "node": "n57",
@@ -2134,10 +2114,6 @@
         "weight": 0.01
       },
       {
-        "node": "n57",
-        "weight": 0.02
-      },
-      {
         "node": "n58",
         "weight": 0.0375
       },
@@ -2156,12 +2132,12 @@
         "weight": 0.113
       },
       {
-        "node": "n11",
-        "weight": 0.02
-      },
-      {
         "node": "n55",
         "weight": 0.01
+      },
+      {
+        "node": "n57",
+        "weight": 0.02
       },
       {
         "node": "n59",
@@ -2182,7 +2158,7 @@
         "weight": 0.001
       },
       {
-        "node": "n55",
+        "node": "n56",
         "weight": 0.02
       },
       {
